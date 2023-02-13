@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon ./src/index.ts --config nodemon.dev.json",
+    "build": "rollup -c",
+    "prod": "nodemon ./dist/index.js --config nodemon.prod.json",
+    "start": "yarn build && yarn prod",
+    "test": "jest"
+  },
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "fastify": "^4.13.0"
+  },
+  "devDependencies": {
+    "@swc-node/register": "^1.6.1",
+    "@swc/core": "^1.3.35",
+    "@swc/helpers": "^0.4.14",
+    "@types/node": "^18.13.0",
+    "eslint-config-custom": "workspace:*",
+    "nodemon": "^2.0.20",
+    "rollup": "^3.15.0",
+    "rollup-plugin-swc3": "^0.8.0",
+    "ts-node": "^10.9.1",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.9.5"
+  }
+}

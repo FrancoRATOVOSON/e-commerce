@@ -1,0 +1,9 @@
+{
+  "watch": ["api"],
+  "execMap": {
+    "js": "node"
+  },
+  "events": {
+    "restart": "clear"
+  }
+}

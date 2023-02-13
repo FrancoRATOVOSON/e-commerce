@@ -1,0 +1,11 @@
+{
+  "verbose": true,
+  "restartable": "rs",
+  "watch": ["./src", "./node_modules/@prisma/client", "prisma"],
+  "execMap": {
+    "ts": "node -r @swc-node/register"
+  },
+  "events": {
+    "restart": "clear"
+  }
+}
