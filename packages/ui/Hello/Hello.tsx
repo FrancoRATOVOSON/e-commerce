@@ -2,6 +2,6 @@ import React from "react";
 
 export default function Hello() {
   return (
-    <div>Hello</div>
+    <div className="font-sans text-lg">Hello</div>
   )
 }
