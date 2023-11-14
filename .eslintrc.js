@@ -7,4 +7,12 @@ module.exports = {
       rootDir: ["apps/*/"],
     },
   },
+  rules: {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/*.config.[js,ts"]
+      }
+    ]
+  }
 };

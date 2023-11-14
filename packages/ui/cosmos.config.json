@@ -1,4 +1,4 @@
 {
-  "plugins": ["react-cosmos-plugin-webpack"],
-  "globalImports": ["./style.css"]
+  "plugins": ["react-cosmos-plugin-vite"],
+  "vite.indexPath": "./entry.tsx"
 }
