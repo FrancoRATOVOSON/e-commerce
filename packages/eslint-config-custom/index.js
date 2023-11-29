@@ -15,6 +15,13 @@ module.exports = {
       "ts": "never",
       "jsx": "never",
       "tsx": "never",
-    }]
+    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "peerDependencies": true,
+        "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/*.config.ts"]
+      }
+    ]
   },
 };

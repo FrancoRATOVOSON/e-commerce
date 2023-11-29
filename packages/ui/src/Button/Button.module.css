@@ -1,0 +1,19 @@
+.button {
+  @apply transition px-3 rounded h-10 text-center;
+}
+
+.primary {
+  @apply bg-primary text-white;
+}
+
+.primary:hover {
+  @apply bg-ctas;
+}
+
+.secondary {
+  @apply bg-white text-primary border-primary border;
+}
+
+.secondary:hover {
+  @apply bg-primary text-white;
+}

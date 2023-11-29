@@ -1,0 +1,8 @@
+.card {
+  @apply border rounded-lg border-primary overflow-clip text-dark w-fit bg-white;
+  @apply w-72 transition-shadow;
+}
+
+.card:hover {
+  @apply shadow-md shadow-primary;
+}

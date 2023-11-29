@@ -1,0 +1,1 @@
+export default ({children}) => (<div className="p-10">{children}</div>)
