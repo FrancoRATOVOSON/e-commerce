@@ -31,23 +31,33 @@ export default function Card({
 
   return (
     <div className={`${className} ${styles.card}`} {...props}>
-      <img className='w-full h-60' src={image.src} alt={image.alt} />
-      <div className='flex flex-col gap-2 p-3'>
-        <div className='flex flex-col gap-0'>
+      <div className='relative w-full h-52'>
+        <img
+        className={`${styles.pos_absolute}`}
+        src={image.src}
+        alt={image.alt} />
+        <div className={`${styles.pos_absolute} ${styles.details} flex p-4 items-end justify-center`}>
+          <Button
+          type='Glass'
+          onClick={() => seeDetailsAction(productId)}
+          className='w-full'>
+            Détails
+          </Button>
+        </div>
+      </div>
+      <div className='flex flex-col gap-2 pt-2'>
+        <div className='flex flex-row justify-between'>
           <p className='font-semibold'>{title}</p>
           <p className='font-light'>
             {new Intl.NumberFormat('fr-FR', {style: 'currency', currency: price.currency}).format(price.value)}
           </p>
         </div>
-        <div className='flex flex-col gap-2'>
-          <Button
-          type='Primary'
-          className='bg-ctas'
-          onClick={() => addToCartAction(productId)}>
-            Ajouter au panier
-          </Button>
-          <Button type='Secondary' onClick={() => seeDetailsAction(productId)} >Détails</Button>
-        </div>
+        <Button
+        type='Primary'
+        className='bg-ctas'
+        onClick={() => addToCartAction(productId)}>
+          Ajouter au panier
+        </Button>
       </div>
     </div>
   )

@@ -8179,6 +8179,7 @@ turbo@latest:
     postcss: ^8.4.31
     react: latest
     react-dom: latest
+    tailwindconfig: "*"
     tailwindcss: ^3.3.5
     tsconfig: "workspace:*"
     typescript: ^4.9.5

@@ -11,7 +11,8 @@
     "cosmos": "yarn workspace ui cosmos",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "web": "turbo run dev --filter=web"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",

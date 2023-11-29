@@ -5,6 +5,7 @@ module.exports = {
     dark: '#03092a',
     primary: "#195679",
     accent: "#58d9e9",
-    light: "#d1f7ff"
+    light: "#d1f7ff",
+    "white-glass": '#ffffffC0'
   },
 }

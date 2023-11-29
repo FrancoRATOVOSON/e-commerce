@@ -17,3 +17,11 @@
 .secondary:hover {
   @apply bg-primary text-white;
 }
+
+.glass {
+  @apply text-dark bg-white-glass shadow-white-glass backdrop-blur-md;
+}
+
+.glass:hover {
+  @apply bg-white backdrop-blur-0;
+}

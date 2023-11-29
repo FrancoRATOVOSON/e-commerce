@@ -1,8 +1,20 @@
 .card {
-  @apply border rounded-lg border-primary overflow-clip text-dark w-fit bg-white;
+  @apply text-dark w-fit bg-white;
   @apply w-72 transition-shadow;
 }
 
 .card:hover {
-  @apply shadow-md shadow-primary;
+  
+}
+
+.pos_absolute {
+  @apply absolute top-0 right-0 bottom-0 left-0 object-center w-full h-full rounded-md;
+}
+
+.details {
+  @apply opacity-0 transition;
+}
+
+.card:hover .details {
+  @apply opacity-100;
 }
