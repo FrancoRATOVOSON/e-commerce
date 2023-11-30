@@ -1,0 +1,21 @@
+.search {
+  @apply flex flex-row justify-start items-center gap-1;
+  @apply h-10 border rounded border-dark overflow-clip;
+  @apply text-dark;
+}
+
+.search:focus-within {
+  @apply border-2 border-primary;
+}
+
+.search:focus-within .icon {
+  @apply text-primary;
+}
+
+.iconContainer {
+  @apply flex items-center justify-center w-10 h-10;
+}
+
+.input {
+  @apply w-full h-full my-1 outline-none text-dark;
+}

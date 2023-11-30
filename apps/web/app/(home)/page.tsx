@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { Hello } from "ui";
+import { Card, Hello } from "ui";
+import { Header } from "./components";
 
 export const metadata:Metadata = {
   title: 'YShop',
@@ -9,6 +10,7 @@ export const metadata:Metadata = {
 export default function Web() {
   return (
     <div>
+      <Header/>
       <h1>Web</h1>
       <Hello/>
     </div>
