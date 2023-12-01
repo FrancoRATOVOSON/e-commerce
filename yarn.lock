@@ -2639,6 +2639,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"database@workspace:packages/database":
+  version: 0.0.0-use.local
+  resolution: "database@workspace:packages/database"
+  languageName: unknown
+  linkType: soft
+
 "debug@npm:2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -8169,6 +8175,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:apps/web"
   dependencies:
+    "@faker-js/faker": "npm:^8.3.1"
     "@types/node": "npm:latest"
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"

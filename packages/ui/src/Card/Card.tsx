@@ -17,10 +17,12 @@ interface Product {
   image: ImageDetails | string
 }
 
+type OnClickAction = (id:string) => void
+
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product
-  addToCartAction: (id:string) => void
-  seeDetailsAction: (id:string) => void
+  addToCartAction: OnClickAction
+  seeDetailsAction: OnClickAction
 }
 
 export default function Card({
@@ -31,31 +33,37 @@ export default function Card({
 
   return (
     <div className={`${className} ${styles.card}`} {...props}>
-      <div className='relative w-full h-52'>
+      <div className={`${styles.card_top}`}>
         <img
-        className={`${styles.pos_absolute}`}
+        className={`${styles['pos-absolute']}`}
         src={image.src}
         alt={image.alt} />
-        <div className={`${styles.pos_absolute} ${styles.details} flex p-4 items-end justify-center`}>
+        <div className={`${styles['pos-absolute']} ${styles.card_top_details}`}>
           <Button
           type='Glass'
-          onClick={() => seeDetailsAction(productId)}
-          className='w-full'>
+          onClick={async () => {
+            'use server'
+            seeDetailsAction(productId)
+          }}
+          className={`${styles.details_button}`}>
             Détails
           </Button>
         </div>
       </div>
-      <div className='flex flex-col gap-2 pt-2'>
-        <div className='flex flex-row justify-between'>
-          <p className='font-semibold'>{title}</p>
-          <p className='font-light'>
+      <div className={`${styles.card_bottom}`}>
+        <div className={`${styles.card_bottom_details}`}>
+          <p className={`${styles.title}`}>{title}</p>
+          <p className={`${styles.price}`}>
             {new Intl.NumberFormat('fr-FR', {style: 'currency', currency: price.currency}).format(price.value)}
           </p>
         </div>
         <Button
         type='Primary'
-        className='bg-ctas'
-        onClick={() => addToCartAction(productId)}>
+        className={`${styles.cart_button}`}
+        onClick={async () => {
+          'use server'
+          addToCartAction(productId)
+        }}>
           Ajouter au panier
         </Button>
       </div>

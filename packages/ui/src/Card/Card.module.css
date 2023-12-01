@@ -3,18 +3,42 @@
   @apply w-72 transition-shadow;
 }
 
-.card:hover {
-  
-}
-
-.pos_absolute {
+.pos-absolute {
   @apply absolute top-0 right-0 bottom-0 left-0 object-center w-full h-full rounded-md;
 }
 
-.details {
-  @apply opacity-0 transition;
+.card_top {
+  @apply relative w-full h-52;
 }
 
-.card:hover .details {
+.card_top_details {
+  @apply opacity-0 transition;
+  @apply flex p-4 items-end justify-center;
+}
+
+.card:hover .card_top_details {
   @apply opacity-100;
+}
+
+.details_button {
+  @apply w-full;
+}
+
+.card_bottom {
+  @apply flex flex-col gap-2 pt-2;
+}
+
+.card_bottom_details {
+  @apply flex flex-row justify-between;
+}
+
+.title {
+  @apply font-semibold;
+}
+
+.price {
+  @apply font-light;
+}
+
+.cart_button {
 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import { Card, Hello } from "ui";
-import { Header } from "./components";
+import { Card } from "ui";
+import { CardList, Header } from "./components";
+import { getProductList } from "../lib";
 
 export const metadata:Metadata = {
   title: 'YShop',
@@ -8,11 +9,12 @@ export const metadata:Metadata = {
 }
 
 export default function Web() {
+  const productList = getProductList()
+  
   return (
     <div>
       <Header/>
-      <h1>Web</h1>
-      <Hello/>
+      <CardList/>
     </div>
   );
 }
