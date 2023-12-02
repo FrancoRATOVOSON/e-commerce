@@ -19,9 +19,9 @@
 }
 
 .glass {
-  @apply text-dark bg-white-glass shadow-white-glass backdrop-blur-md;
+  @apply text-dark bg-white-60 shadow-md shadow-white-40 backdrop-blur-sm;
 }
 
 .glass:hover {
-  @apply bg-white backdrop-blur-0;
+  @apply bg-white-80 backdrop-blur-md;
 }

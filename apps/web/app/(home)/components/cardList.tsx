@@ -3,11 +3,11 @@ import { getProductList } from '../../lib'
 import { Card } from 'ui'
 
 export default function CardList() {
-  const productList = getProductList()
+  const productList = getProductList(10)
   
   return (
     <div
-    className={`flex flex-row flex-wrap gap-10`}>
+    className={`flex flex-row flex-wrap gap-y-10 justify-between pb-6`}>
       {
         productList.map(product => (
           <Card

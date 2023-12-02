@@ -1,0 +1,16 @@
+.root {
+  @apply relative flex items-center select-none touch-none w-full h-5;
+}
+
+.track {
+  @apply bg-dark relative grow rounded-full h-1;
+}
+
+.range {
+  @apply absolute bg-accent rounded-full h-full;
+}
+
+.thumb {
+  @apply block w-5 h-5 bg-primary shadow-md shadow-dark rounded-full;
+  @apply focus:outline-none active:bg-ctas hover:scale-110 transition-all;
+}

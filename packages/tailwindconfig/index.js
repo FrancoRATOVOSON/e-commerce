@@ -1,11 +1,17 @@
-module.exports = {
-  colors: {
-    ctas: '#ff2a6d',
-    white: '#fff',
-    dark: '#03092a',
-    primary: "#195679",
-    accent: "#58d9e9",
-    light: "#d1f7ff",
-    "white-glass": '#ffffffC0'
-  },
+import neutral from './neutral'
+import base from './base'
+import semantic from './semantic'
+
+export default {
+  darkMode: 'class',
+  theme: {
+    boxShadow: {
+      glass: '0 8px 32px 0 rgba(8, 7, 8, 0.4)'
+    },
+    colors: {
+      ...neutral,
+      ...base,
+      ...semantic
+    }
+  }
 }

@@ -13,7 +13,7 @@ export default function Header() {
       `flex flex-row justify-between items-center py-6 px-6`
     }>
       <h1>YShop</h1>
-      <Search/>
+      <Search placeholder='Recherche...'/>
       <div
       className={
         `flex flex-row justify-end gap-6 items-center`

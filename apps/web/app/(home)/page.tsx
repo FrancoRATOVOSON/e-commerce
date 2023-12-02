@@ -1,7 +1,5 @@
 import { Metadata } from "next";
-import { Card } from "ui";
-import { CardList, Header } from "./components";
-import { getProductList } from "../lib";
+import { CardList, Filter, Header } from "./components";
 
 export const metadata:Metadata = {
   title: 'YShop',
@@ -9,12 +7,13 @@ export const metadata:Metadata = {
 }
 
 export default function Web() {
-  const productList = getProductList()
-  
   return (
     <div>
       <Header/>
-      <CardList/>
+      <div className="flex flex-row items-start justify-between px-6 gap-x-10">
+        <Filter/>
+        {/* <CardList/> */}
+      </div>
     </div>
   );
 }

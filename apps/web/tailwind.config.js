@@ -1,4 +1,6 @@
-const theme = require("tailwindconfig")
+/** @type {import('tailwindcss').Config} */
+
+const base = require("tailwindconfig")
 
 module.exports = {
   content: [
@@ -6,6 +8,5 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme,
-  plugins: [],
+  ...base
 }

@@ -21,7 +21,10 @@ const productSample = {
 }
 
 function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
-    return new Array<T>(length).fill(pattern());
+  let list:Array<T> = []
+  for (let index = 0; index < length; index++)
+    list.push(pattern())
+  return list
 }
 
 function getProduct() {

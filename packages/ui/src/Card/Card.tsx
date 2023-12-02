@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import Button from '../Button'
 import styles from './Card.module.css'
+import Price from '../Price'
 
 interface ImageDetails {
   src: string
@@ -41,10 +44,7 @@ export default function Card({
         <div className={`${styles['pos-absolute']} ${styles.card_top_details}`}>
           <Button
           type='Glass'
-          onClick={async () => {
-            'use server'
-            seeDetailsAction(productId)
-          }}
+          onClick={() => seeDetailsAction(productId)}
           className={`${styles.details_button}`}>
             Détails
           </Button>
@@ -54,16 +54,13 @@ export default function Card({
         <div className={`${styles.card_bottom_details}`}>
           <p className={`${styles.title}`}>{title}</p>
           <p className={`${styles.price}`}>
-            {new Intl.NumberFormat('fr-FR', {style: 'currency', currency: price.currency}).format(price.value)}
+            <Price currency={price.currency} value={price.value} />
           </p>
         </div>
         <Button
         type='Primary'
         className={`${styles.cart_button}`}
-        onClick={async () => {
-          'use server'
-          addToCartAction(productId)
-        }}>
+        onClick={() => addToCartAction(productId)}>
           Ajouter au panier
         </Button>
       </div>
