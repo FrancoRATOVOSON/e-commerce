@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // White
   white: '#fff',
   "white-95": '#ffffffD3',

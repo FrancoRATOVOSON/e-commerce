@@ -5,6 +5,7 @@ import {
   ShoppingCartIcon,
   UserIcon
 } from 'ui'
+import ToggleTheme from './toggleTheme'
 
 export default function Header() {
   return (
@@ -21,6 +22,7 @@ export default function Header() {
         <Button type='Secondary'>Se connecter</Button>
         <UserIcon/>
         <ShoppingCartIcon/>
+        <ToggleTheme/>
       </div>
     </header>
   )

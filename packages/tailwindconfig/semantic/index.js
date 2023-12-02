@@ -1,9 +1,9 @@
-import error from './error'
-import success from './success'
-import warning from './warning'
-import infos from './infos'
+const error = require('./error')
+const success = require('./success')
+const warning = require('./warning')
+const infos = require('./infos')
 
-export default {
+module.exports = {
   ...error,
   ...success,
   ...warning,

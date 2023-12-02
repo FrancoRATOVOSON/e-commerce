@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Text
   'light-text-high': "#211f26",
   'light-text-low': "#65636d",

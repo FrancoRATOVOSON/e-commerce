@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Solid
   'sucs-sld-base': "#30a46c",
   'light-sucs-sld-hover': "#2b9a66",

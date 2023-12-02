@@ -3,7 +3,9 @@ import {
   MagnifyingGlassIcon as MGlass,
   AdjustmentsHorizontalIcon as AdjustmentsH,
   UserIcon as Usr,
-  ShoppingCartIcon as ShoppingCart
+  ShoppingCartIcon as ShoppingCart,
+  SunIcon as Sun,
+  MoonIcon as Moon
 } from '@heroicons/react/24/solid'
 
 type IconType = typeof MGlass
@@ -39,4 +41,12 @@ export const UserIcon = (props:IconProps) => (
 
 export const ShoppingCartIcon = (props:IconProps) => (
   <IconTemplate Icon={ShoppingCart} {...props}/>
+)
+
+export const SunIcon = (props:IconProps) => (
+  <IconTemplate Icon={Sun} {...props}/>
+)
+
+export const MoonIcon = (props:IconProps) => (
+  <IconTemplate Icon={Moon} {...props}/>
 )

@@ -1,21 +1,37 @@
 .search {
   @apply flex flex-row justify-start items-center gap-1;
-  @apply h-10 border rounded border-dark overflow-clip;
-  @apply text-dark;
+  @apply h-10 rounded overflow-clip;
+  @apply border border-light-text-low;
+}
+:global(.dark) .search {
+  @apply border-dark-text-low;
 }
 
 .search:focus-within {
-  @apply border-2 border-primary;
+  @apply border-2 border-light-text-high;
+}
+:global(.dark) .search:focus-within {
+  @apply border-dark-text-high;
 }
 
 .search:focus-within .icon {
-  @apply text-primary;
+  @apply text-light-text-high;
+}
+:global(.dark) .search:focus-within .icon {
+  @apply text-dark-text-high;
 }
 
 .iconContainer {
   @apply flex items-center justify-center w-10 h-10;
+  @apply text-light-text-low;
+}
+:global(.dark) .iconContainer {
+  @apply border-dark-text-low;
 }
 
 .input {
-  @apply w-full h-full my-1 outline-none text-dark;
+  @apply w-full h-full my-1 outline-none;
+}
+:global(.dark) .input {
+  @apply bg-black;
 }

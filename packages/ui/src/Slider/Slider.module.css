@@ -3,14 +3,30 @@
 }
 
 .track {
-  @apply bg-dark relative grow rounded-full h-1;
+  @apply relative grow rounded-full h-1 bg-black-30;
+}
+:global(.dark) .track {
+  @apply bg-white-30;
 }
 
 .range {
-  @apply absolute bg-accent rounded-full h-full;
+  @apply absolute rounded-full h-full bg-black-70;
+}
+:global(.dark) .range {
+  @apply bg-white-70;
 }
 
 .thumb {
-  @apply block w-5 h-5 bg-primary shadow-md shadow-dark rounded-full;
-  @apply focus:outline-none active:bg-ctas hover:scale-110 transition-all;
+  @apply block w-5 h-5 rounded-full;
+  @apply shadow-md shadow-black-30;
+  @apply focus:outline-none transition-all;
+  @apply bg-black;
 }
+:global(.dark) .thumb {
+  @apply bg-white shadow-white-10;
+}
+
+.thumb:hover {
+  @apply scale-105 bg-light-sld-hover;
+}
+

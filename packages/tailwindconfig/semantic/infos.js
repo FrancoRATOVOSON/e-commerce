@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Solid
   'info-sld-base': "#0090ff",
   'light-info-sld-hover': "#0588f0",

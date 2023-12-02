@@ -1,12 +1,14 @@
-import neutral from './neutral'
-import base from './base'
-import semantic from './semantic'
+const neutral = require('./neutral')
+const base = require('./base')
+const semantic = require('./semantic')
 
-export default {
+module.exports = {
   darkMode: 'class',
   theme: {
-    boxShadow: {
-      glass: '0 8px 32px 0 rgba(8, 7, 8, 0.4)'
+    extend: {
+      boxShadow: {
+        glass: '0 8px 32px 0 rgba(8, 7, 8, 0.4)'
+      }
     },
     colors: {
       ...neutral,

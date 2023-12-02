@@ -16,7 +16,7 @@ export default function Button({type, className, children, ...props}:ButtonProps
         type === 'Secondary' ? styles.secondary :
         styles.glass
       }`
-    }  
+    }
     {...props}
     >
       {children}

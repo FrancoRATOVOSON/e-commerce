@@ -19,7 +19,7 @@ const SliderContainer = ({
   const [values, setValues] = useState<[number, number]>(defaultValues)
 
   return (
-    <div className="flex flex-col items-stretch gap-1">
+    <div className="flex flex-col items-stretch w-full gap-1 mx-40">
       <Slider
       defaultValue={defaultValues}
       min={min}
