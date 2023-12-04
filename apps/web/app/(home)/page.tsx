@@ -8,9 +8,9 @@ export const metadata:Metadata = {
 
 export default function Web() {
   return (
-    <div className="bg-white text-light-text-high dark:bg-black dark:text-dark-text-high">
+    <div>
       <Header/>
-      <div className="flex flex-row items-start justify-between px-6 gap-x-10">
+      <div className="flex flex-row items-stretch justify-between px-6 gap-x-10">
         <Filter/>
         <CardList/>
       </div>

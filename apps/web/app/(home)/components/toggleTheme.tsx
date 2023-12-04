@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { MoonIcon, SunIcon } from 'ui'
+import IconButton from './iconButton'
 
 export default function ToggleTheme() {
   const [dark, toggleDark] = useState<boolean>(false)
@@ -15,12 +16,12 @@ export default function ToggleTheme() {
   }
 
   return (
-    <button
+    <IconButton
     className="flex items-center justify-center w-10 h-10"
     onClick={() => toggleTheme()}>
       {
         dark ? <MoonIcon /> : <SunIcon />
       }
-    </button>
+    </IconButton>
   )
 }

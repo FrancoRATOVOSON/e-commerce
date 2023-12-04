@@ -5,5 +5,6 @@ export {default as Search} from './src/Search'
 export {default as Toggle} from './src/Toggle'
 export {default as Slider} from './src/Slider'
 export {default as Price} from './src/Price'
+export {default as AppLogo} from './src/AppLogo'
 
 export * from './src/Icons'

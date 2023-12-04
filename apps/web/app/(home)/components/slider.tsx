@@ -18,7 +18,7 @@ export default function Slider({className='', onChange}:SliderProps) {
   const [values, setValues] = useState<[number, number]>(DEFAULT_VALUES)
 
   return (
-    <div className="flex flex-col items-stretch gap-1">
+    <div className="flex flex-col w-full gap-1">
       <SliderComponent
       defaultValue={DEFAULT_VALUES}
       min={MIN}
@@ -30,7 +30,7 @@ export default function Slider({className='', onChange}:SliderProps) {
         onChange && onChange(value)
       }}
       value={values}/>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between font-light">
         <p><Price value={values[0]}/></p>
         <p><Price value={values[1]}/></p>
       </div>

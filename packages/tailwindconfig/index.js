@@ -8,12 +8,18 @@ module.exports = {
     extend: {
       boxShadow: {
         glass: '0 8px 32px 0 rgba(8, 7, 8, 0.4)'
+      },
+      fontFamily: {
+        jost: ['"Jost"', 'ui-sans-serif', 'system-ui']
       }
     },
     colors: {
       ...neutral,
       ...base,
-      ...semantic
+      ...semantic,
+      inherit: "inherit",
+      current: "currentColor",
+      transparent: "transparent"
     }
   }
 }

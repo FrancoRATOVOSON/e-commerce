@@ -10,7 +10,7 @@ export default function Search({
   ...props
 }:SearchProps) {
   return (
-    <div className={`${styles.search} ${className}`}>
+    <div className={`${styles.search} ${className ?? ''}`}>
       <div className={styles.iconContainer}>
         <MagnifyingGlassIcon className={styles.icon} size={20}/>
       </div>

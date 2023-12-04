@@ -7,7 +7,7 @@ export default function CardList() {
   
   return (
     <div
-    className={`flex flex-row flex-wrap gap-y-10 justify-between pb-6`}>
+    className={`flex flex-row flex-wrap gap-x-0 gap-y-10 justify-between pb-6`}>
       {
         productList.map(product => (
           <Card

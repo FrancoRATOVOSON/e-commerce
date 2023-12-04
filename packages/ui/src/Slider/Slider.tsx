@@ -19,7 +19,7 @@ export default function Slider({
 
   return (
     <SliderPrimitive.Root
-    className={`${styles.root} ${className}`}
+    className={`${styles.root} ${className ?? ''}`}
     defaultValue={defaultValue}
     min={min}
     max={max}

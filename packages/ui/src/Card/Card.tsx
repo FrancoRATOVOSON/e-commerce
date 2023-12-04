@@ -35,7 +35,7 @@ export default function Card({
   const image:ImageDetails = typeof img === 'string' ? {src: img, alt: title} : img
 
   return (
-    <div className={`${className} ${styles.card}`} {...props}>
+    <div className={`${className ?? ''} ${styles.card}`} {...props}>
       <div className={`${styles.card_top}`}>
         <img
         className={`${styles['pos-absolute']}`}

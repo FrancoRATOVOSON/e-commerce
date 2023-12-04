@@ -30,8 +30,5 @@
 }
 
 .input {
-  @apply w-full h-full my-1 outline-none;
-}
-:global(.dark) .input {
-  @apply bg-black;
+  @apply w-full h-full my-1 outline-none bg-inherit;
 }

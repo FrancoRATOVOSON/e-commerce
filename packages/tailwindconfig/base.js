@@ -7,7 +7,7 @@ module.exports = {
 
   // Background
   'light-bg-low': "#fdfcfd",
-  'light-bg-lower': "#faf9fb",
+  'light-bg-lower': "#f4f4f5",
   'dark-bg-low': "#121113",
   'dark-bg-lower': "#1a191b",
 

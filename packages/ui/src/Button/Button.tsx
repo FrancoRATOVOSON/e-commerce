@@ -11,7 +11,7 @@ export default function Button({type, className, children, ...props}:ButtonProps
   return (
     <button
     className={
-      `${className} ${styles.button} ${
+      `${className ?? ''} ${styles.button} ${
         type === 'Primary' ? styles.primary :
         type === 'Secondary' ? styles.secondary :
         styles.glass

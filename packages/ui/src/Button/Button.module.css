@@ -3,10 +3,10 @@
 }
 
 .primary {
-  @apply bg-dark-bg-low text-dark-text-high;
+  @apply bg-dark-bg-lower text-dark-text-high;
 }
 :global(.dark) .primary {
-  @apply bg-light-bg-low text-light-text-high;
+  @apply bg-light-bg-lower text-light-text-high;
 }
 
 .primary:hover {
@@ -27,10 +27,10 @@
 }
 
 .glass {
-  @apply text-light-text-high bg-white-60 backdrop-blur-sm;
+  @apply text-light-text-high bg-white-70 backdrop-blur-sm;
   @apply shadow-md shadow-white-40;
 }
 
 .glass:hover {
-  @apply bg-white-80 backdrop-blur-md;
+  @apply bg-white-90 backdrop-blur-md;
 }
