@@ -7603,6 +7603,9 @@ __metadata:
 "tailwindconfig@npm:*, tailwindconfig@workspace:packages/tailwindconfig":
   version: 0.0.0-use.local
   resolution: "tailwindconfig@workspace:packages/tailwindconfig"
+  dependencies:
+    eslint-config-custom: "npm:*"
+    tailwindcss: "npm:^3.3.5"
   languageName: unknown
   linkType: soft
 

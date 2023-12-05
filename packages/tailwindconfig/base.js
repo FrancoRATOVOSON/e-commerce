@@ -12,9 +12,9 @@ module.exports = {
   'dark-bg-lower': "#1a191b",
 
   // Component
-  'light-cp-base': "#fee9f5",
-  'light-cp-hover': "#fbdcef",
-  'light-cp-active': "#f6cee7",
+  'light-cp-base': "#fee0f1",
+  'light-cp-hover': "#fbd3eb",
+  'light-cp-active': "#f6c5e4",
   'dark-cp-base': "#37172f",
   'dark-cp-hover': "#4b143d",
   'dark-cp-active': "#591c47",

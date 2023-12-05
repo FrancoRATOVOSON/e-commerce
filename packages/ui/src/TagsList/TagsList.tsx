@@ -1,28 +1,35 @@
+'use client'
+
 import React from 'react'
 import Toggle from '../Toggle'
+import styles from './TagsList.module.css'
 
-interface TagListProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {
   tags: Array<string>
   onToggle?: (tag: string, state:boolean) => void
   initialState?: boolean
 }
 
-export default function TagList({
+export default function TagsList({
   tags,
   className='',
   initialState=false,
   onToggle,
   ...props
-}:TagListProps) {
+}:TagsListProps) {
   return (
     <div
-    className={`${className} flex flex-col`}
+    className={`${className} ${styles.list}`}
     {...props}>
       {tags.map(tag => {
         return (
           <Toggle
+          className={(state) =>
+            `${styles.tag} ${state ? styles.tag_selected : styles.tag_off}`
+          }
           initialState={initialState}
-          onToggle={state => onToggle && onToggle(tag,state)}>
+          onToggle={state => onToggle && onToggle(tag,state)}
+          key={tag}>
             {tag}
           </Toggle>
         )

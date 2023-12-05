@@ -1,0 +1,28 @@
+.list {
+  @apply flex flex-row justify-start items-center gap-x-2;
+  @apply w-full overflow-auto no-scrollbar;
+}
+
+.tag {
+  @apply py-1 px-3 rounded-lg font-medium text-xs;
+}
+.tag:hover {
+  @apply bg-light-cp-hover;
+}
+:global(.dark) .tag:hover {
+  @apply bg-dark-cp-hover;
+}
+
+.tag_off {
+  @apply bg-light-cp-base;
+}
+:global(.dark) .tag_off {
+  @apply bg-dark-cp-base;
+}
+
+.tag_selected {
+  @apply bg-light-cp-active;
+}
+:global(.dark) .tag_selected {
+  @apply bg-dark-cp-active;
+}

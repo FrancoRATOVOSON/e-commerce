@@ -1,6 +1,7 @@
 import React from 'react'
 import { AdjustmentsHorizontalIcon, Toggle } from 'ui'
-import Slider from './slider'
+import { PercentageSlider, PriceSlider } from './slider'
+import TagList from './tagList'
 
 interface FilterSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string
@@ -29,25 +30,16 @@ export default function Filter() {
   return (
     <div
     className={`
-    flex flex-col gap-6 basis-72 grow-0 shrink-0
+    flex flex-col gap-6 basis-72 grow-0 shrink-0 max-w-xs
     p-4 rounded-md h-fit border border-light-bg-lower bg-light-bg-lower
     dark:bg-dark-bg-lower dark:border-none
     `}>
-      <Toggle
-      onToggle={async () => {'use server'}}
-      className={
-        `flex flex-row gap-4 border border-black rounded-md p-2 w-fit
-        hover:text-sld-base hover:border-sld-base
-        dark:border-white hover:dark:border-sld-base`
-      }>
-        <AdjustmentsHorizontalIcon/>
-        <p>Filtrer</p>
-      </Toggle>
+      <p className='text-2xl font-semibold'>Filtrer</p>
       <div className='flex flex-col items-stretch justify-start w-full gap-6 text-sm'>
-        <FilterSection label='Par prix :'><Slider/></FilterSection>
-        <FilterSection label='Par catégories :'><Slider/></FilterSection>
-        <FilterSection label='Par tags :'><Slider/></FilterSection>
-        <FilterSection label='Par réductions :'><Slider/></FilterSection>
+        <FilterSection label='Par prix :'><PriceSlider/></FilterSection>
+        <FilterSection label='Par catégories :'><TagList/></FilterSection>
+        <FilterSection label='Par tags :'><TagList/></FilterSection>
+        <FilterSection label='Par réductions :'><PercentageSlider/></FilterSection>
       </div>
     </div>
   )

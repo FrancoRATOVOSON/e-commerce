@@ -1,6 +1,9 @@
+const plugin = require('tailwindcss/plugin')
+
 const neutral = require('./neutral')
 const base = require('./base')
 const semantic = require('./semantic')
+const plugins = require('./plugins')
 
 module.exports = {
   darkMode: 'class',
@@ -21,5 +24,12 @@ module.exports = {
       current: "currentColor",
       transparent: "transparent"
     }
-  }
+  },
+  plugins : [
+    plugin(({ addUtilities, addBase }) => {
+      const {base: bs, utilities} = plugins
+      addBase(bs)
+      addUtilities(utilities)
+    })
+  ]
 }

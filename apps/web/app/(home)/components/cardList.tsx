@@ -1,5 +1,5 @@
 import React from 'react'
-import { getProductList } from '../../lib'
+import { getProductList } from '@/lib'
 import { Card } from 'ui'
 
 export default function CardList() {

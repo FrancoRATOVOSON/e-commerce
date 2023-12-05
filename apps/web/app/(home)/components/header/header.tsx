@@ -7,7 +7,7 @@ import {
   UserIcon
 } from 'ui'
 import ToggleTheme from './toggleTheme'
-import IconButton from './iconButton'
+import IconButton from '../common/iconButton'
 
 export default function Header() {
   return (

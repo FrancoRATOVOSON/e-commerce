@@ -50,3 +50,5 @@ function getProduct() {
 }
 
 export const getProductList = (n:number=50) => getAnArrayOf(getProduct,n)
+
+export const getTagsList = (n:number=8) => getAnArrayOf(faker.commerce.product, n)
