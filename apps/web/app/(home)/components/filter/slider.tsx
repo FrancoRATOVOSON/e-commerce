@@ -27,7 +27,7 @@ function Slider({
   const [values, setValues] = useState<[number, number]>(defaultValue)
 
   return (
-    <div className={`${className} flex flex-col w-full gap-1`}>
+    <div className={`${className} flex flex-col w-full`}>
       <SliderComponent
       defaultValue={defaultValue}
       min={min}

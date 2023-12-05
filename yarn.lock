@@ -7531,6 +7531,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-config@npm:*, style-config@workspace:packages/style-config":
+  version: 0.0.0-use.local
+  resolution: "style-config@workspace:packages/style-config"
+  dependencies:
+    eslint-config-custom: "npm:*"
+    tailwindcss: "npm:^3.3.5"
+  languageName: unknown
+  linkType: soft
+
 "styled-jsx@npm:5.1.1":
   version: 5.1.1
   resolution: "styled-jsx@npm:5.1.1"
@@ -7599,15 +7608,6 @@ __metadata:
   checksum: 9827f828cabc404b3a147c38f824c8d5b846eb6f65189d965aa0b71ea8ecda5048f8f50b4bdfd8813148844175233cff56c6bc8d87a7118cf10707df870519f4
   languageName: node
   linkType: hard
-
-"tailwindconfig@npm:*, tailwindconfig@workspace:packages/tailwindconfig":
-  version: 0.0.0-use.local
-  resolution: "tailwindconfig@workspace:packages/tailwindconfig"
-  dependencies:
-    eslint-config-custom: "npm:*"
-    tailwindcss: "npm:^3.3.5"
-  languageName: unknown
-  linkType: soft
 
 "tailwindcss@npm:^3.2.6":
   version: 3.2.6
@@ -8062,7 +8062,7 @@ __metadata:
     react-cosmos: "npm:next"
     react-cosmos-plugin-vite: "npm:next"
     react-dom: "npm:latest"
-    tailwindconfig: "npm:*"
+    style-config: "npm:*"
     tailwindcss: "npm:^3.2.6"
     tsconfig: "npm:*"
     typescript: "npm:^5.3.2"
@@ -8251,7 +8251,7 @@ __metadata:
     postcss: "npm:^8.4.31"
     react: "npm:latest"
     react-dom: "npm:latest"
-    tailwindconfig: "npm:*"
+    style-config: "npm:*"
     tailwindcss: "npm:^3.3.5"
     tsconfig: "workspace:*"
     typescript: "npm:^5.3.2"

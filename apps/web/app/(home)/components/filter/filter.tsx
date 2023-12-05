@@ -17,7 +17,7 @@ const FilterSection = ({
     <div
     className={`
     ${className ?? ''}
-    flex flex-col justify-start items-stretch gap-2
+    flex flex-col justify-start items-stretch gap-1
     `}
     {...props}>
       <p className='font-medium'>{label}</p>

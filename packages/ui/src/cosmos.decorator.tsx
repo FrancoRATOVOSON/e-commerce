@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { MoonIcon, SunIcon } from "./Icons";
 
+import 'style-config/style.css'
+
 export default ({children}:{children:React.ReactNode}) => {
   const [dark, toggleDark] = useState<boolean>(false)
   
@@ -15,8 +17,7 @@ export default ({children}:{children:React.ReactNode}) => {
   return (
     <div
     className={`
-    flex flex-col w-screen h-screen gap-8 bg-white dark:bg-black
-    text-light-text-high dark:text-dark-text-high
+    flex flex-col w-screen h-screen gap-8
     `}>
       <div>
         <button

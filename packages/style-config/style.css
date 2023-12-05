@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    font-size: 16px;
-  }
-}
-
 html {
   @apply bg-light-bg-low text-light-text-high;
   @apply font-jost;
