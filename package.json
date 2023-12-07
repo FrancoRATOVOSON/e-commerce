@@ -17,11 +17,11 @@
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
+    "prettier": "^3.1.0",
+    "turbo": "^1.11.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@3.4.1"
 }
