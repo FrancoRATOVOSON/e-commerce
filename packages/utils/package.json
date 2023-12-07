@@ -1,5 +1,12 @@
 {
   "name": "utils",
   "version": "0.0.0",
-  "main": "index.ts"
+  "main": "index.ts",
+  "types": "types.ts",
+  "files": [
+    "faker.ts"
+  ],
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1"
+  }
 }

@@ -7,5 +7,4 @@ export {default as Slider} from './src/Slider'
 export {default as Price} from './src/Price'
 export {default as AppLogo} from './src/AppLogo'
 export {default as TagsList} from './src/TagsList'
-
-export type { CardProps } from './src/Card'
+export {default as InteractiveCard} from './src/InteractiveCard'

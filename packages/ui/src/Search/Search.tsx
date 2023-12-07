@@ -17,7 +17,7 @@ export default function Search({
       <input
       className={styles.input}
       placeholder={placeholder}
-      type='text'
+      type='search'
       {...props}/>
     </div>
   )

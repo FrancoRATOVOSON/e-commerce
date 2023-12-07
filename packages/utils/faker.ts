@@ -1,4 +1,5 @@
-import { faker } from "@faker-js/faker"
+import { faker } from '@faker-js/faker'
+import { ProductCardInfos } from './types'
 
 function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
   let list:Array<T> = []
@@ -7,7 +8,7 @@ function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
   return list
 }
 
-function getProduct() {
+export function getProductCardInfos():ProductCardInfos {
   const productTitle = faker.commerce.product()
   const productImage = faker.image.urlLoremFlickr({
     category: productTitle,
@@ -17,7 +18,7 @@ function getProduct() {
 
   return {
     productId: faker.string.uuid(),
-    title: productTitle,
+    name: productTitle,
     price: {
       value: faker.number.int({
         min: 1,
@@ -29,6 +30,6 @@ function getProduct() {
   }
 }
 
-export const getProductList = (n:number=50) => getAnArrayOf(getProduct,n)
+export const getProductList = (n:number=10) => getAnArrayOf(getProductCardInfos,n)
 
-export const getTagsList = (n:number=8) => getAnArrayOf(faker.commerce.product, n)
+export const getTagsList = (n:number=5) => getAnArrayOf(faker.commerce.product, n)
