@@ -11,8 +11,7 @@ const FilterSection = ({
   children,
   className,
   ...props
-}:FilterSectionProps) => {
-  return (
+}:FilterSectionProps) => (
     <div
     className={`
     ${className ?? ''}
@@ -23,7 +22,7 @@ const FilterSection = ({
       {children}
     </div>
   )
-}
+
 
 export default function Filter() {
   return (
@@ -31,7 +30,7 @@ export default function Filter() {
     className={`
     flex flex-col gap-6 basis-72 grow-0 shrink-0 max-w-xs
     p-4 rounded-md h-fit border border-light-bg-lower bg-light-bg-lower
-    dark:bg-dark-bg-lower dark:border-none
+    dark:bg-dark-bg-lower dark:border-none sticky
     `}>
       <p className='text-2xl font-semibold'>Filtrer</p>
       <div className='flex flex-col items-stretch justify-start w-full gap-6 text-sm'>

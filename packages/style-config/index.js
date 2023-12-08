@@ -14,6 +14,9 @@ module.exports = {
       },
       fontFamily: {
         jost: ['"Jost"', 'ui-sans-serif', 'system-ui']
+      },
+      spacing : {
+        '128': '32rem'
       }
     },
     colors: {

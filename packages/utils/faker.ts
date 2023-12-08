@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { ProductCardInfos } from './types'
+import { ProductCardInfos, ProductPageInfos } from './types'
 
 function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
   const list:Array<T> = []
@@ -27,6 +27,13 @@ export function getProductCardInfos():ProductCardInfos {
       currency: 'MGA'
     },
     image: productImage
+  }
+}
+
+export function getProductPageInfos():ProductPageInfos {
+  return {
+    ...getProductCardInfos(),
+    description: faker.lorem.sentences({min:2, max: 4})
   }
 }
 

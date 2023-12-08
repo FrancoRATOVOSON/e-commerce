@@ -2,12 +2,7 @@ import React from 'react'
 import Button from '../Button'
 import styles from './Card.module.css'
 import Price from '../Price'
-import { ProductCardInfos } from 'utils'
-
-interface ImageDetails {
-  src: string
-  alt: string
-}
+import { ImageDetails, ProductCardInfos } from 'utils'
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductCardInfos
@@ -16,7 +11,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function Card({
   product, className='', ...props
 }:CardProps) {
-  const {productId ,name, price, image: img} = product
+  const {name, price, image: img} = product
   const image:ImageDetails = typeof img === 'string' ? {src: img, alt: name} : img
 
   return (
