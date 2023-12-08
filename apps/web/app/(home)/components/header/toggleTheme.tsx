@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { MoonIcon, SunIcon } from 'ui'
+import { MoonIcon, SunIcon } from 'ui/icons'
 import IconButton from '../common/iconButton'
 
 export default function ToggleTheme() {

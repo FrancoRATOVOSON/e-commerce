@@ -1,6 +1,6 @@
 import React from 'react'
 import { TagsList } from 'ui'
-import { getTagsList } from '@/lib'
+import { getTagsList } from 'utils/faker'
 
 export default function TagList() {
   return (

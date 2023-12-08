@@ -2,12 +2,12 @@ import React from 'react'
 import {
   AppLogo,
   Button,
-  Search,
-  ShoppingCartIcon,
-  UserIcon
+  Search
 } from 'ui'
 import ToggleTheme from './toggleTheme'
 import IconButton from '../common/iconButton'
+import UserIconButton from './userIconButton'
+import { ShoppingCartIcon } from 'ui/icons'
 
 export default function Header() {
   return (
@@ -24,7 +24,7 @@ export default function Header() {
         `flex flex-row justify-end gap-6 items-center`
       }>
         <Button type='Secondary'>Se connecter</Button>
-        <IconButton><UserIcon/></IconButton>
+        <UserIconButton className='hidden'/>
         <IconButton><ShoppingCartIcon/></IconButton>
         <ToggleTheme/>
       </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { AdjustmentsHorizontalIcon, Toggle } from 'ui'
 import { PercentageSlider, PriceSlider } from './slider'
 import TagList from './tagList'
 

@@ -2,8 +2,8 @@ import { faker } from '@faker-js/faker'
 import { ProductCardInfos } from './types'
 
 function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
-  let list:Array<T> = []
-  for (let index = 0; index < length; index++)
+  const list:Array<T> = []
+  for (let index = 0; index < length; index+=1)
     list.push(pattern())
   return list
 }

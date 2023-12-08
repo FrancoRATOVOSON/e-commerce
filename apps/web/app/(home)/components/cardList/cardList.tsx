@@ -1,6 +1,6 @@
 import React from 'react'
-import { getProductList } from '@/lib'
-import { Card } from 'ui'
+import { getProductList } from 'utils/faker'
+import ShoppingCard from './shoppingCard'
 
 export default function CardList() {
   const productList = getProductList(10)
@@ -10,11 +10,9 @@ export default function CardList() {
     className={`flex flex-row flex-wrap gap-x-0 gap-y-10 justify-between pb-6`}>
       {
         productList.map(product => (
-          <Card
+          <ShoppingCard
           key={product.productId}
-          product={product}
-          addToCartAction={async() => {'use server'}}
-          seeDetailsAction={async () => {'use server'}}/>
+          product={product}/>
         ))
       }
     </div>

@@ -7,6 +7,9 @@
     "faker.ts"
   ],
   "devDependencies": {
-    "@faker-js/faker": "^8.3.1"
+    "@faker-js/faker": "^8.3.1",
+    "eslint": "^8.55.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^3.1.0"
   }
 }

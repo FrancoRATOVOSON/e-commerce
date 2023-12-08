@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Button, Card } from 'ui'
-import { ProductCardInfos } from 'utils'
+import { InteractiveCard } from 'ui'
+import { ProductCardInfos } from 'utils/types'
 
 interface ShoppingCardProps {
   product: ProductCardInfos
@@ -14,17 +14,10 @@ export default function ShoppingCard({
   product
 }:ShoppingCardProps) {
   return (
-    <div className={`${className}`}>
-      <button>
-        <Card product={product}/>
-      </button>
-      <div>
-        <Button
-        type='Primary'
-        className={``}>
-          Ajouter au panier
-        </Button>
-      </div>
-    </div>
+    <InteractiveCard
+    className={className}
+    actionLabel='Ajouter au panier'
+    product={product}
+    />
   )
 }
