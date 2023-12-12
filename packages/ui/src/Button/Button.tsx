@@ -11,7 +11,9 @@ export default function Button({type, className, children, ...props}:ButtonProps
   return (
     <button
     className={
-      `${className ?? ''} ${styles.button} ${
+      `${className ?? ''}
+      transition px-3 rounded h-10 text-center
+      ${
         type === 'Primary' ? styles.primary :
         type === 'Secondary' ? styles.secondary :
         styles.glass

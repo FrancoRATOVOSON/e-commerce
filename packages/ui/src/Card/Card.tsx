@@ -1,6 +1,4 @@
 import React from 'react'
-import Button from '../Button'
-import styles from './Card.module.css'
 import Price from '../Price'
 import { ImageDetails, ProductCardInfos } from 'utils'
 
@@ -15,17 +13,21 @@ export default function Card({
   const image:ImageDetails = typeof img === 'string' ? {src: img, alt: name} : img
 
   return (
-    <div className={`${className} ${styles.card}`} {...props}>
-      <div className={`${styles.card_top}`}>
+    <div className={`${className} w-72`} {...props}>
+      <div className={`rounded-md overflow-clip relative`}>
         <img
-        className={`${styles.card_img}`}
+        className={`w-full h-52`}
         src={image.src}
         alt={image.alt} />
-        <div className={styles.card_top_filter}/>
+        <div
+        className={`
+        absolute w-full h-full z-50 top-0 right-0 bottom-0 left-0 transition 
+        group-hover/icard:bg-opacity-100 group-hover:bg-white-10
+        `}/>
       </div>
-      <div className={`${styles.card_bottom}`}>
-        <p className={`${styles.name}`}>{name}</p>
-        <p className={`${styles.price}`}>
+      <div className={`flex flex-row justify-between pt-2 w-full`}>
+        <p className={`font-medium`}>{name}</p>
+        <p className={`font-light`}>
           <Price currency={price.currency} value={price.value} />
         </p>
       </div>

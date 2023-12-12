@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { TagsList } from 'ui'
 import { getTagsList } from 'utils/faker'

@@ -1,7 +1,3 @@
-.button {
-  @apply transition px-3 rounded h-10 text-center;
-}
-
 .primary {
   @apply bg-dark-bg-lower text-dark-text-high;
   @apply on-dark:bg-light-bg-lower on-dark:text-light-text-high;

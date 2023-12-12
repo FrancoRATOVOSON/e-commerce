@@ -1,13 +1,15 @@
+'use client'
+
 import React from 'react'
 import {
   AppLogo,
   Button,
   Search
 } from 'ui'
+import { ShoppingCartIcon } from 'ui/icons'
 import ToggleTheme from './toggleTheme'
 import IconButton from '../common/iconButton'
 import UserIconButton from './userIconButton'
-import { ShoppingCartIcon } from 'ui/icons'
 
 export default function Header() {
   return (

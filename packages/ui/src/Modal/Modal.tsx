@@ -1,5 +1,4 @@
 import React, { forwardRef, useEffect } from 'react'
-import styles from './Modal.module.css'
 
 interface ModalProps {
   children: React.ReactNode
@@ -15,8 +14,10 @@ const Modal = forwardRef(function({
   return (
     <dialog
     ref={modalRef}
-    className={`${className} ${styles.modal}`}>
-      <div className={`${childrenClassName} ${styles.children}`}>
+    className={`${className} 
+    bg-light-bg-low text-light-text-high backdrop:bg-black-30
+    on-dark:bg-dark-bg-low on-dark:text-dark-text-high`}>
+      <div className={`${childrenClassName} w-fit h-fit flex justify-center items-center p-8`}>
       {children}
       </div>
     </dialog>

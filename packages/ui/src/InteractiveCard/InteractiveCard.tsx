@@ -2,7 +2,6 @@ import React from 'react'
 import { ProductCardInfos } from 'utils'
 import Card from '../Card/Card'
 import Button from '../Button'
-import styles from './InteractiveCard.module.css'
 
 interface InteractiveCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductCardInfos
@@ -19,7 +18,7 @@ export default function InteractiveCard({
   className=''
 }:InteractiveCardProps) {
   return (
-    <div className={`${className} ${styles.card}`}>
+    <div className={`${className} flex flex-col gap-2 group/icard`}>
       <button
       onClick={() => onClickAction && onClickAction(product.productId)}>
         <Card product={product}/>
@@ -27,7 +26,7 @@ export default function InteractiveCard({
       <div>
         <Button
         type='Primary'
-        className={`${styles.action}`}
+        className={`w-full`}
         onClick={() => primaryAction && primaryAction(product.productId)}>
           {actionLabel}
         </Button>

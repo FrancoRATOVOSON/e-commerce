@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Toggle from '../Toggle'
 import styles from './TagsList.module.css'
@@ -19,7 +17,9 @@ export default function TagsList({
 }:TagsListProps) {
   return (
     <div
-    className={`${className} ${styles.list}`}
+    className={`${className} 
+    flex flex-row justify-start items-center gap-x-2 
+    w-full overflow-auto no-scrollbar py-1`}
     {...props}>
       {tags.map(tag => {
         return (

@@ -1,8 +1,3 @@
-.list {
-  @apply flex flex-row justify-start items-center gap-x-2;
-  @apply w-full overflow-auto no-scrollbar py-1;
-}
-
 .tag {
   @apply py-1 px-3 rounded-lg font-medium text-xs;
 }
