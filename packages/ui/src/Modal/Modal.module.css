@@ -1,0 +1,12 @@
+.modal {
+  @apply bg-light-bg-low text-light-text-high;
+  @apply backdrop:bg-black-30;
+}
+
+:global(.dark) .modal {
+  @apply bg-dark-bg-low text-dark-text-high;
+}
+
+.children {
+  @apply w-fit h-fit flex justify-center items-center p-8;
+}

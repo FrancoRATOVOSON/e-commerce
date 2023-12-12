@@ -37,6 +37,13 @@ export function getProductPageInfos():ProductPageInfos {
   }
 }
 
+export function getProductPageInfosFrom(product:ProductCardInfos):ProductPageInfos {
+  return {
+    ...product,
+    description: faker.lorem.sentences({min:2, max: 4})
+  }
+}
+
 export const getProductList = (n:number=10) => getAnArrayOf(getProductCardInfos,n)
 
 export const getTagsList = (n:number=5) => getAnArrayOf(faker.commerce.product, n)
