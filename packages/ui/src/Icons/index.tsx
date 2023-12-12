@@ -5,7 +5,8 @@ import {
   UserIcon as Usr,
   ShoppingCartIcon as ShoppingCart,
   SunIcon as Sun,
-  MoonIcon as Moon
+  MoonIcon as Moon,
+  XCircleIcon as XCircle
 } from '@heroicons/react/24/solid'
 
 type IconType = typeof MGlass
@@ -49,4 +50,8 @@ export const SunIcon = (props:IconProps) => (
 
 export const MoonIcon = (props:IconProps) => (
   <IconTemplate Icon={Moon} {...props}/>
+)
+
+export const XCircleIcon = (props:IconProps) => (
+  <IconTemplate Icon={XCircle} {...props}/>
 )

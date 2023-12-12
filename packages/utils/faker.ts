@@ -1,24 +1,30 @@
 import { faker } from '@faker-js/faker'
 import { ProductCardInfos, ProductPageInfos } from './types'
 
-function getAnArrayOf<T>(pattern: () => T, length: number): T[] {
+type NonEmptyArrayOf<T> = [T, ...T[]]
+type FunctionOf<T> = () => T
+
+function getRandomElementOf<T>(array: Array<T>):T {
+  return  array[Math.floor(Math.random() * array.length)]
+}
+
+function getAnArrayOf<T>(pattern: NonEmptyArrayOf<T> | FunctionOf<T>, length: number): T[] {
   const list:Array<T> = []
   for (let index = 0; index < length; index+=1)
-    list.push(pattern())
+    list.push(Array.isArray(pattern) ? getRandomElementOf(pattern) : pattern())
   return list
 }
 
 export function getProductCardInfos():ProductCardInfos {
-  const productTitle = faker.commerce.product()
+  const productName = faker.commerce.productName()
   const productImage = faker.image.urlLoremFlickr({
-    category: productTitle,
     height: 250,
     width: 300
   })
 
   return {
     productId: faker.string.uuid(),
-    name: productTitle,
+    name: productName,
     price: {
       value: faker.number.int({
         min: 1,
@@ -30,20 +36,16 @@ export function getProductCardInfos():ProductCardInfos {
   }
 }
 
-export function getProductPageInfos():ProductPageInfos {
-  return {
-    ...getProductCardInfos(),
-    description: faker.lorem.sentences({min:2, max: 4})
-  }
-}
-
 export function getProductPageInfosFrom(product:ProductCardInfos):ProductPageInfos {
   return {
     ...product,
-    description: faker.lorem.sentences({min:2, max: 4})
+    description: faker.commerce.productDescription(),
+    category: faker.commerce.department(),
   }
 }
 
 export const getProductList = (n:number=10) => getAnArrayOf(getProductCardInfos,n)
 
 export const getTagsList = (n:number=5) => getAnArrayOf(faker.commerce.product, n)
+
+export const getProductPageInfos = () => getProductPageInfosFrom(getProductCardInfos())

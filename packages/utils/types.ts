@@ -17,4 +17,6 @@ export interface ProductCardInfos {
 
 export interface ProductPageInfos extends ProductCardInfos {
   description: string
+  category: string
+  tags?: Array<string>
 }
