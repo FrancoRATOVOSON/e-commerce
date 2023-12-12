@@ -29,10 +29,12 @@ module.exports = {
     }
   },
   plugins : [
-    plugin(({ addUtilities, addBase }) => {
+    plugin(({ addUtilities, addBase, addVariant }) => {
       const {base: bs, utilities} = plugins
       addBase(bs)
       addUtilities(utilities)
+      addVariant('on-dark',':global(.dark) &')
+      addVariant('dark-hover',':global(.dark) &:hover')
     })
   ]
 }

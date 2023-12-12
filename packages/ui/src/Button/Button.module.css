@@ -4,33 +4,18 @@
 
 .primary {
   @apply bg-dark-bg-lower text-dark-text-high;
-}
-:global(.dark) .primary {
-  @apply bg-light-bg-lower text-light-text-high;
-}
-
-.primary:hover {
-  @apply bg-sld-base;
+  @apply on-dark:bg-light-bg-lower on-dark:text-light-text-high;
+  @apply hover:bg-sld-base;
 }
 
 .secondary {
   @apply text-light-text-high border border-black;
-}
-:global(.dark) .secondary {
-  @apply text-dark-text-high border-white;
-}
-
-.secondary:hover {
-  @apply text-sld-base;
-  @apply border-sld-base;
-  /* @apply bg-light-cp-hover dark:bg-dark-cp-base; */
+  @apply on-dark:text-dark-text-high on-dark:border-white;
+  @apply hover:text-sld-base hover:border-sld-base;
 }
 
 .glass {
   @apply text-light-text-high bg-white-70 backdrop-blur-sm;
   @apply shadow-md shadow-white-40;
-}
-
-.glass:hover {
-  @apply bg-white-90 backdrop-blur-md;
+  @apply hover:bg-white-90 hover:backdrop-blur-md;
 }
