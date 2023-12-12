@@ -1,4 +1,5 @@
 import * as SliderPrimitive from '@radix-ui/react-slider'
+import styles from './Slider.module.css'
 
 interface SliderProps extends SliderPrimitive.SliderProps {
   defaultValue?: [number, number]
@@ -13,14 +14,6 @@ export default function Slider({
   step=1,
   ...props
 }:SliderProps) {
-
-  const SliderThumb = () => (
-    <SliderPrimitive.Thumb
-    className={`
-    block w-5 h-5 rounded-full shadow-md shadow-black-30 focus:outline-none transition-all
-    bg-black on-dark:bg-white on-dark:shadow-white-10 hover:scale-105 hover:bg-light-sld-hover
-    `}/>
-  )
 
   return (
     <SliderPrimitive.Root
@@ -37,8 +30,8 @@ export default function Slider({
         <SliderPrimitive.Range
         className={`absolute rounded-full h-full bg-black-70 on-dark:bg-white-70`}/>
       </SliderPrimitive.Track>
-      <SliderThumb/>
-      <SliderThumb/>
+      <SliderPrimitive.Thumb className={styles.thumb}/>
+      <SliderPrimitive.Thumb className={styles.thumb}/>
     </SliderPrimitive.Root>
   )
 }

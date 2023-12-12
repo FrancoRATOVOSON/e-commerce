@@ -7,7 +7,7 @@ import { getTagsList } from 'utils/faker'
 export default function TagList() {
   return (
     <div className='w-full'>
-      <TagsList tags={getTagsList(6)} />
+      <TagsList tags={getTagsList(6)} tagsSize='Small' tagsType='Toggle' />
     </div>
   )
 }

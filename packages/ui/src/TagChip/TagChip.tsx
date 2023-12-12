@@ -1,36 +1,26 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { XCircleIcon } from '../Icons'
 import styles from './TagChip.module.css'
+import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '../../types'
 
 interface TagChipProps {
   label: string
-  action?: 'None' | 'Toggle' | 'Removable'
-  theme?: 'Base' | 'Success' | 'Error' | 'Warning' | 'Infos'
-  size?: 'Normal' | 'Small'
-  state?: boolean
-  onClick?: (state?:boolean) => void
+  action?: TagChipActionType
+  theme?: TagChipThemeType
+  size?: TagChipSizeType
+  initialState?: boolean
+  onClick?: (state:boolean) => void
   onRemove?: () => void
 }
 
 export default function TagChip({
-  label, action='None', theme='Base', size='Normal', state:st=false, onClick=()=>{}, onRemove=()=>{}
+  label, action='None', theme='Base', size='Normal',
+  initialState=false,
+  onClick=()=>{}, onRemove=()=>{}
 }:TagChipProps) {
-  const [state, setState] = useState<boolean>(st)
+  const [state, setState] = useState<boolean>(initialState)
 
   const themeStyle = useMemo(() => styles[theme.toLowerCase()],[theme])
-
-  const handleClick = useCallback(() => {
-    if (action === 'Toggle') {
-      onClick(state)
-      setState(!state)
-    }
-  },[onClick])
-  const handleRemove = useCallback(() => {
-    if (action === 'Removable') {
-      onRemove()
-      setState(false)
-    }
-  }, [onRemove])
 
   return (
     <div
@@ -41,12 +31,22 @@ export default function TagChip({
     ${themeStyle}
     ${action !== 'Toggle' ? 'pointer-events-none hover:pointer-events-none' : ''}
     `}
-    onClick={handleClick}
+    onClick={() => {
+      if (action === 'Toggle') {
+        onClick(state)
+        setState(!state)
+      }
+    }}
     aria-selected={state}>
       <span>{label}</span>
       {
         action === 'Removable' &&
-        <span onClick={handleRemove}>
+        <span onClick={() => {
+          if (action === 'Removable') {
+            onRemove()
+            setState(false)
+          }
+        }}>
           <XCircleIcon
           className={`
           pointer-events-auto cursor-pointer

@@ -1,18 +1,22 @@
 import React from 'react'
-import Toggle from '../Toggle'
-import styles from './TagsList.module.css'
+import TagChip from '../TagChip'
+import { TagChipActionType, TagChipSizeType } from '../../types'
 
 interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {
   tags: Array<string>
   onToggle?: (tag: string, state:boolean) => void
-  initialState?: boolean
+  onRemove?:(tag:string) => void
+  tagsType?: TagChipActionType
+  tagsSize?: TagChipSizeType
 }
 
 export default function TagsList({
   tags,
   className='',
-  initialState=false,
   onToggle,
+  onRemove,
+  tagsType='None',
+  tagsSize='Small',
   ...props
 }:TagsListProps) {
   return (
@@ -23,15 +27,15 @@ export default function TagsList({
     {...props}>
       {tags.map(tag => {
         return (
-          <Toggle
-          className={(state) =>
-            `${styles.tag} ${state ? styles.tag_selected : styles.tag_off}`
-          }
-          initialState={initialState}
-          onToggle={state => onToggle && onToggle(tag,state)}
-          key={tag}>
-            {tag}
-          </Toggle>
+          <TagChip
+          label={tag}
+          key={tag}
+          initialState={false}
+          action={tagsType}
+          size={tagsSize}
+          theme='Base'
+          onClick={state => onToggle && onToggle(tag,state)}
+          onRemove={() => onRemove && onRemove(tag)}/>
         )
       })}
     </div>
