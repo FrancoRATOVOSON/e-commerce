@@ -8,11 +8,20 @@ function getRandomElementOf<T>(array: Array<T>):T {
   return  array[Math.floor(Math.random() * array.length)]
 }
 
-function getAnArrayOf<T>(pattern: NonEmptyArrayOf<T> | FunctionOf<T>, length: number): T[] {
+function getAnArrayOf<T>(
+  pattern: NonEmptyArrayOf<FunctionOf<T>> | FunctionOf<T>, length: number
+): T[] {
   const list:Array<T> = []
   for (let index = 0; index < length; index+=1)
-    list.push(Array.isArray(pattern) ? getRandomElementOf(pattern) : pattern())
+    list.push(Array.isArray(pattern) ? getRandomElementOf(pattern)() : pattern())
   return list
+}
+
+function generateRandom(min=0, max=10) {
+  const diff = max - min
+  const rand = Math.random()
+
+  return Math.floor(rand * diff) + min
 }
 
 export function getProductCardInfos():ProductCardInfos {
@@ -41,6 +50,9 @@ export function getProductPageInfosFrom(product:ProductCardInfos):ProductPageInf
     ...product,
     description: faker.commerce.productDescription(),
     category: faker.commerce.department(),
+    tags: getAnArrayOf([
+      faker.commerce.product, faker.commerce.productAdjective, faker.commerce.productMaterial
+    ],generateRandom(0,5))
   }
 }
 

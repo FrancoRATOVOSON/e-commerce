@@ -22,7 +22,7 @@ export default function Card({
         <div
         className={`
         absolute w-full h-full z-50 top-0 right-0 bottom-0 left-0 transition 
-        group-hover/icard:bg-opacity-100 group-hover:bg-white-10
+        group-hover/icard:bg-opacity-100 group-hover/icard:bg-white-10
         `}/>
       </div>
       <div className={`flex flex-row justify-between pt-2 w-full`}>

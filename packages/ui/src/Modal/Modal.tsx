@@ -15,8 +15,8 @@ const Modal = forwardRef(function({
     <dialog
     ref={modalRef}
     className={`${className} 
-    bg-light-bg-low text-light-text-high backdrop:bg-black-30
-    on-dark:bg-dark-bg-low on-dark:text-dark-text-high`}>
+    bg-light-bg-low text-light-text-high backdrop:bg-black-30 dark:backdrop:bg-black-60
+    dark:bg-dark-bg-low dark:text-dark-text-high`}>
       <div className={`${childrenClassName} w-fit h-fit flex justify-center items-center p-8`}>
       {children}
       </div>

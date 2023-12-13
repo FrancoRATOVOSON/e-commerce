@@ -22,6 +22,7 @@ module.exports = {
         "peerDependencies": true,
         "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/*.config.ts"]
       }
-    ]
+    ],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
   },
 };

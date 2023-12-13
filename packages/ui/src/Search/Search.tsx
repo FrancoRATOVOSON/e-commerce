@@ -13,9 +13,9 @@ export default function Search({
   return (
     <div className={`
     flex flex-row justify-start items-center gap-1 h-10 rounded overflow-clip
-    border border-light-text-low on-dark:border-dark-text-low
+    border border-light-text-low dark:border-dark-text-low
     focus-within:border-2 focus-within:border-light-text-high
-    on-dark:focus-within:border-dark-text-high group/search
+    dark:focus-within:border-dark-text-high group/search
     ${className ?? ''}`}>
       <div className={`
       flex items-center justify-center w-10 h-10 
@@ -24,7 +24,7 @@ export default function Search({
         <MagnifyingGlassIcon
         className={`
         group-focus-within/search:text-light-text-high
-        on-dark:group-focus-within/search:text-dark-text-high
+        dark:group-focus-within/search:text-dark-text-high
         `}
         size={20}/>
       </div>

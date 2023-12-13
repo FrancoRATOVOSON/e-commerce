@@ -26,9 +26,9 @@ export default function Slider({
     step={step}
     {...props}>
       <SliderPrimitive.Track
-      className={`relative grow rounded-full h-1 bg-black-30 on-dark:bg-white-30`}>
+      className={`relative grow rounded-full h-1 bg-black-30 dark:bg-white-30`}>
         <SliderPrimitive.Range
-        className={`absolute rounded-full h-full bg-black-70 on-dark:bg-white-70`}/>
+        className={`absolute rounded-full h-full bg-black-70 dark:bg-white-70`}/>
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb className={styles.thumb}/>
       <SliderPrimitive.Thumb className={styles.thumb}/>
