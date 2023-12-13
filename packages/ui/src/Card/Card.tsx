@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Price from '../Price'
 import { ImageDetails, ProductCardInfos } from 'utils'
 import { TagChipSizeType } from '../../types'
@@ -8,7 +8,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: TagChipSizeType
 }
 
-export default function Card({
+const Card = memo(function({
   product, className='', size='Normal', ...props
 }:CardProps) {
   const {name, price, image: img} = product
@@ -16,11 +16,11 @@ export default function Card({
 
   return (
     <div className={`${className} flex
-    ${size === 'Normal' ? 'w-72 flex-col' : 'h-32 flex-row gap-4 w-fit max-w-sm'}`}
+    ${size === 'Normal' ? 'w-72 flex-col' : 'h-32 flex-row gap-4 w-96'}`}
     {...props}>
       <div className={`rounded-md overflow-clip relative`}>
         <img
-        className={`${size === 'Normal' ? 'w-full h-52' : 'w-36 h-full'}`}
+        className={`${size === 'Normal' ? 'w-full h-52' : 'h-32'}`}
         src={image.src}
         alt={image.alt} />
         <div
@@ -29,8 +29,8 @@ export default function Card({
         group-hover/icard:bg-opacity-100 group-hover/icard:bg-white-10
         `}/>
       </div>
-      <div className={`flex justify-between
-      ${size === 'Normal' ? 'flex-row pt-2 w-full' : 'flex-col'}`}>
+      <div className={`flex justify-between flex-col items-start
+      ${size === 'Normal' ? 'pt-2 w-full' : ''}`}>
         <p className={`font-medium`}>{name}</p>
         <p className={`font-light`}>
           <Price currency={price.currency} value={price.value} />
@@ -38,4 +38,6 @@ export default function Card({
       </div>
     </div>
   )
-}
+})
+
+export default Card

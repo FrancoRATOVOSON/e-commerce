@@ -1,9 +1,11 @@
+import { memo } from "react"
+
 interface PriceProps {
   currency?:string
   value:number
 }
 
-export default function Price({currency='MGA', value}:PriceProps) {
+const Price = memo(function({currency='MGA', value}:PriceProps) {
   return (
     <>
       {
@@ -17,4 +19,6 @@ export default function Price({currency='MGA', value}:PriceProps) {
       }
     </>
   )
-}
+})
+
+export default Price
