@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   AppLogo,
   Button,
@@ -14,13 +14,6 @@ import UserIconButton from './userIconButton'
 
 export default function Header() {
   const pathName = usePathname()
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-      document.documentElement.classList.add('dark')
-    else
-      document.documentElement.classList.remove('dark')
-  },[])
 
   const MiddleElement = () => {
     if (pathName === '/') return <Search className='w-96' placeholder='Recherche...'/>

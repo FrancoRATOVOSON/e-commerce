@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { MoonIcon, SunIcon } from 'ui/icons'
-import IconButton from '../iconButton/iconButton'
+import { IconButton } from '@/components'
 
 export default function ToggleTheme() {
   const [dark, toggleDark] = useState<boolean>(false)

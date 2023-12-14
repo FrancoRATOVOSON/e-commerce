@@ -1,7 +1,7 @@
 import * as React from 'react'
+import {Themer} from './components';
 
 import 'style-config/style.css'
-import { Header } from './components';
 
 export default function RootLayout({
   children,
@@ -10,9 +10,9 @@ export default function RootLayout({
 }) {
 
   return (
-    <html lang="en">
+    <html lang="fr">
       <body>
-        <Header/>
+        <Themer/>
         {children}
       </body>
     </html>
