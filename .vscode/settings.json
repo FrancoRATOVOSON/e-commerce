@@ -1,10 +1,9 @@
 {
   "eslint.enable": true,
-  "eslint.packageManager": "yarn",
-  //"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
   "eslint.format.enable": true,
   "[javascript]": {
@@ -54,8 +53,7 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "prettier.prettierPath": "node_modules/prettier/index.js",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }

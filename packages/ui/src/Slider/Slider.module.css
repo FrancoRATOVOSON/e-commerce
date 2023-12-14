@@ -1,0 +1,5 @@
+.thumb {
+  @apply block w-5 h-5 rounded-full shadow-md shadow-black-30 focus:outline-none transition-all;
+  @apply bg-black on-dark:bg-white on-dark:shadow-white-10;
+  @apply hover:scale-105 hover:bg-light-sld-hover cursor-pointer;
+}

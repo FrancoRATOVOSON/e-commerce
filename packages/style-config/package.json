@@ -1,0 +1,9 @@
+{
+  "name": "style-config",
+  "main": "index.js",
+  "version": "0.0.0",
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "tailwindcss": "^3.3.5"
+  }
+}

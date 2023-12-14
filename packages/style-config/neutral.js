@@ -1,0 +1,31 @@
+module.exports = {
+  // White
+  white: '#fff',
+  "white-95": '#ffffffD3',
+  "white-90": '#ffffffE6',
+  "white-80": '#ffffffCC',
+  "white-70": '#ffffffB3',
+  "white-60": '#ffffff99',
+  "white-50": '#ffffff80',
+  "white-40": '#ffffff66',
+  "white-30": '#ffffff4D',
+  "white-20": '#ffffff33',
+  "white-15": '#ffffff27',
+  "white-10": '#ffffff1A',
+  "white-05": '#ffffff0D',
+
+  // Black
+  black: '#080708',
+  "black-95": '#080708D3',
+  "black-90": '#080708E6',
+  "black-80": '#080708CC',
+  "black-70": '#080708B3',
+  "black-60": '#08070899',
+  "black-50": '#08070880',
+  "black-40": '#08070866',
+  "black-30": '#0807084D',
+  "black-20": '#08070833',
+  "black-15": '#08070827',
+  "black-10": '#0807081A',
+  "black-05": '#0807080D',
+}
