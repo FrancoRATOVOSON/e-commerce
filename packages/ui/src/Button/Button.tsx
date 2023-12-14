@@ -5,13 +5,17 @@ export type ButtonTypes = 'Primary' | 'Secondary' | 'Glass'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?: ButtonTypes
+  buttonType?: 'submit' | 'reset' | 'button'
 }
 
-export default function Button({type='Primary', className, children, ...props}:ButtonProps) {
+export default function Button({
+  type='Primary', className='', buttonType='button',
+  children, ...props
+}:ButtonProps) {
   return (
     <button
     className={
-      `${className ?? ''}
+      `${className}
       transition px-3 rounded h-10 text-center
       ${
         type === 'Primary' ? styles.primary :
@@ -19,6 +23,7 @@ export default function Button({type='Primary', className, children, ...props}:B
         styles.glass
       }`
     }
+    type={buttonType}
     {...props}
     >
       {children}

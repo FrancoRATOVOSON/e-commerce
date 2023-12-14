@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import React from 'react'
 import { Button, Price } from 'ui'
 import { getRandomPrice } from 'utils/faker'
+import { Link } from '@/components'
 
 export default function CartFooter() {
   return (
@@ -23,8 +23,7 @@ export default function CartFooter() {
           <p>
             Ou{' '}
             <Link
-            href={'/'}
-            className='text-sld-base hover:text-dark-sld-hover hover:underline underline-offset-4'>
+            href={'/'}>
               continuer le shopping
             </Link>
           </p>

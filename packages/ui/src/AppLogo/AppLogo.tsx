@@ -1,6 +1,6 @@
 import { SVGProps, memo } from "react"
 
-interface AppLogoProps extends Omit<
+export interface AppLogoProps extends Omit<
 SVGProps<SVGSVGElement>, 'viewBox'> {
   scale?: number;
   width?: number;

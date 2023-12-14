@@ -2,18 +2,18 @@
 
 import React from 'react'
 import {
-  AppLogo,
   Button,
   Search
 } from 'ui'
 import { ShoppingCartIcon } from 'ui/icons'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import ToggleTheme from './toggleTheme'
 import UserIconButton from './userIconButton'
+import { AppLogo, Link } from '@/components'
 
 export default function Header() {
   const pathName = usePathname()
+  const router = useRouter()
 
   const MiddleElement = () => {
     if (pathName === '/') return <Search className='w-96' placeholder='Recherche...'/>
@@ -28,22 +28,22 @@ export default function Header() {
       bg-light-bg-low dark:bg-dark-bg-low dark:shadow-md dark:shadow-dark-bg-low mb-6`
     }>
       <div>
-        <Link href={'/'}>
-          <AppLogo className='fill-light-text-high dark:fill-dark-text-high' scale={0.4}/>
-        </Link>
+        <AppLogo/>
       </div>
       <MiddleElement/>
       <div
       className={
         `flex flex-row justify-end gap-6 items-center`
       }>
-        <Button type='Secondary'>Se connecter</Button>
+        <Button type='Secondary' onClick={() => router.push('/login')}>
+          Se connecter
+        </Button>
         <UserIconButton className='hidden'/>
         <ToggleTheme/>
         {pathName !== '/cart' && (
           <Link
           href='/cart'
-          className='transition text-inherit hover:text-sld-base w-fit h-fit'>
+          contentType='icon'>
             <ShoppingCartIcon/>
           </Link>
         )}
