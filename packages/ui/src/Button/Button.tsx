@@ -4,10 +4,10 @@ import styles from './Button.module.css'
 export type ButtonTypes = 'Primary' | 'Secondary' | 'Glass'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type: ButtonTypes
+  type?: ButtonTypes
 }
 
-export default function Button({type, className, children, ...props}:ButtonProps) {
+export default function Button({type='Primary', className, children, ...props}:ButtonProps) {
   return (
     <button
     className={

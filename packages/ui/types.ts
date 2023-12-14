@@ -1,3 +1,5 @@
+export {type CartElementProps} from './src/CartElement'
+
 export type TagChipSizeType = 'Normal' | 'Small'
 
 export type TagChipThemeType = 'Base' | 'Success' | 'Error' | 'Warning' | 'Infos'

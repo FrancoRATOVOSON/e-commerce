@@ -4,7 +4,7 @@ import { MoonIcon, SunIcon } from "./Icons";
 import 'style-config/style.css'
 
 export default ({children}:{children:React.ReactNode}) => {
-  const [dark, toggleDark] = useState<boolean>(false)
+  const [dark, toggleDark] = useState<boolean>(document.documentElement.classList.contains('dark'))
   
   const toggleTheme = () => {
     if (!dark)

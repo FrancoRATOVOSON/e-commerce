@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { Button } from 'ui'
 import { UserIcon } from 'ui/icons'
-import { IconButton } from '../common'
+import IconButton from '../iconButton'
 
 interface UserIconButtonProps extends React.HTMLAttributes<HTMLDivElement> {}
 

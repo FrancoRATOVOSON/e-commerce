@@ -1,11 +1,15 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MoonIcon, SunIcon } from 'ui/icons'
-import IconButton from '../common/iconButton'
+import IconButton from '../iconButton/iconButton'
 
 export default function ToggleTheme() {
   const [dark, toggleDark] = useState<boolean>(false)
+
+  useEffect(() => {
+    if(document.documentElement.classList.contains('dark')) toggleDark(true)
+  }, [])
 
   const toggleTheme = () => {
     if (!dark)

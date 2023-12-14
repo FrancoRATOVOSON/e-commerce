@@ -17,7 +17,7 @@ function getAnArrayOf<T>(
   return list
 }
 
-function generateRandom(min=0, max=10) {
+export function generateRandom(min=0, max=10) {
   const diff = max - min
   const rand = Math.random()
 
@@ -61,3 +61,5 @@ export const getProductList = (n:number=10) => getAnArrayOf(getProductCardInfos,
 export const getTagsList = (n:number=5) => getAnArrayOf(faker.commerce.product, n)
 
 export const getProductPageInfos = () => getProductPageInfosFrom(getProductCardInfos())
+
+export const getRandomPrice = () => (faker.number.int({min: 1, max: 1_000}) * 1_000)

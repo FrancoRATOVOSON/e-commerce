@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CardList, Filter, Header } from "./components";
+import { CardList, Filter } from "./components";
 
 export const metadata:Metadata = {
   title: 'YShop',
@@ -8,12 +8,9 @@ export const metadata:Metadata = {
 
 export default function Web() {
   return (
-    <div>
-      <Header/>
-      <div className="flex flex-row items-stretch justify-between px-6 gap-x-10">
-        <Filter/>
-        <CardList/>
-      </div>
+    <div className="flex flex-row items-stretch justify-between px-6 gap-x-10">
+      <Filter/>
+      <CardList/>
     </div>
   );
 }

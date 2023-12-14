@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { ProductCardInfos } from 'utils'
 import Card from '../Card'
 import { TrashIcon } from '../Icons'
 import Price from '../Price'
 
-interface CartElementProps {
+export interface CartElementProps {
   className?: string
   product: ProductCardInfos
   quantity: number
@@ -18,7 +18,6 @@ export default function CartElement({
   onRemove=() => {}, onQuantityChange=() => {}
 }:CartElementProps) {
   const [quantity, setQuantity] = useState<number>(qtt)
-  const quantityInput = useRef<HTMLInputElement>(null)
 
   return (
     <div className={`${className} flex flex-row justify-between items-stretch overflow-clip`}>
@@ -28,7 +27,6 @@ export default function CartElement({
           <input
           type='number'
           min={1}
-          ref={quantityInput}
           defaultValue={quantity}
           className={`
           w-full px-0 py-1 ml-4 text-right bg-inherit text-inherit focus:outline-none 
