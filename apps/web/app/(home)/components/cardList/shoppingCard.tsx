@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { InteractiveCard } from 'ui'
 import { ProductCardInfos } from 'utils/types'
 import ProductModal from './productModal'
@@ -14,7 +14,12 @@ export default function ShoppingCard({
   className='',
   product
 }:ShoppingCardProps) {
-  const modal = useRef<HTMLDialogElement>(null)
+  const [isOpen, setOpen] = useState(false)
+  const productModalRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    if(isOpen) productModalRef.current?.showModal()
+  },[isOpen,product])
 
   return (
     <>
@@ -22,11 +27,16 @@ export default function ShoppingCard({
       className={className}
       actionLabel='Ajouter au panier'
       product={product}
-      onClickAction={() => modal.current?.showModal()}
+      onClickAction={() => setOpen(true)}
       />
-      <Suspense>
-        <ProductModal product={product} modalRef={modal}/>
-      </Suspense>
+      {
+        isOpen && (
+          <ProductModal
+          modalRef={productModalRef}
+          product={product}
+          onClose={() => setOpen(false)}/>
+        )
+      }
     </>
   )
 }

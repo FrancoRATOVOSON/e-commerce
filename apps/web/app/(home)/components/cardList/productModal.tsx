@@ -1,29 +1,22 @@
-import React from 'react'
-import { BigCard, Button, Modal } from 'ui'
-import { ProductCardInfos, ProductPageInfos } from 'utils'
-import { getProductDetails } from '@/lib'
+'use client'
+
+import React, { Suspense } from 'react'
+import { BigCardSkeleton, Modal } from 'ui'
+import { ProductCardInfos } from 'utils'
+import BigCard from './bigCard'
 
 interface ProductModalProps {
   product: ProductCardInfos
   modalRef: React.RefObject<HTMLDialogElement>
+  onClose?: () => void
 }
 
-export default async function ProductModal({product, modalRef}:ProductModalProps) {
-  const detailedProduct:ProductPageInfos = await getProductDetails(product)
-
+export default function ProductModal({product, modalRef, onClose}:ProductModalProps) {
   return (
-    <Modal ref={modalRef}>
-      <BigCard product={detailedProduct}>
-        <div className='flex flex-row items-end justify-between w-full h-full gap-4'>
-          <Button
-          type='Secondary'
-          className='w-full'
-          onClick={() => modalRef.current?.close()}>Fermer</Button>
-          <Button
-          className='w-full'
-          type='Primary'>Ajouter au panier</Button>
-        </div>
-      </BigCard>
+    <Modal ref={modalRef} onModalClose={onClose}>
+      <Suspense fallback={<BigCardSkeleton/>}>
+        <BigCard product={product} modalRef={modalRef} />
+      </Suspense>
     </Modal>
   )
 }
