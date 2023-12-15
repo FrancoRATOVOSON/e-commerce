@@ -1,5 +1,5 @@
-import React from 'react'
-import TagChip from '../TagChip'
+import React, { memo } from 'react'
+import TagChip, { TagChipSkeleton } from '../TagChip'
 import { TagChipActionType, TagChipSizeType } from '../../types'
 
 interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,3 +41,11 @@ export default function TagsList({
     </div>
   )
 }
+
+export const TagsListSkeleton = memo(() => (
+  <div className='flex flex-row items-center justify-start py-1 gap-x-2 w-fit'>
+    <TagChipSkeleton/>
+    <TagChipSkeleton/>
+    <TagChipSkeleton/>
+  </div>
+))

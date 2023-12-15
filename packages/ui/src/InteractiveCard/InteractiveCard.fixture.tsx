@@ -1,6 +1,7 @@
 import { getProductCardInfos } from "utils/faker";
-import InteractiveCard from "./InteractiveCard";
+import InteractiveCard, { InteractiveCardSkeleton } from "./InteractiveCard";
 
-export default <InteractiveCard
-product={getProductCardInfos()}
-actionLabel="Action"/>
+export default {
+  Component: <InteractiveCard product={getProductCardInfos()} actionLabel="Action"/>,
+  Skeleton: <InteractiveCardSkeleton/>
+}

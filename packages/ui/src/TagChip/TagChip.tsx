@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { memo, useMemo, useState } from 'react'
 import { XCircleIcon } from '../Icons'
 import styles from './TagChip.module.css'
 import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '../../types'
@@ -60,3 +60,5 @@ export default function TagChip({
     </div>
   )
 }
+
+export const TagChipSkeleton = memo(() => <div className='w-16 h-8 rounded-lg skeleton'/>)

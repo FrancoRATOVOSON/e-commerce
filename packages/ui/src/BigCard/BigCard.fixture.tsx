@@ -1,4 +1,7 @@
 import { getProductPageInfos } from "utils/faker";
-import BigCard from "./BigCard";
+import BigCard, { BigCardSkeleton } from "./BigCard";
 
-export default <BigCard product={getProductPageInfos()}/>
+export default {
+  Component: <BigCard product={getProductPageInfos()}/>,
+  Skeleton: <BigCardSkeleton/>
+}

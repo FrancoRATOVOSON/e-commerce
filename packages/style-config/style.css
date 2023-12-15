@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .skeleton {
+    @apply bg-black-10 dark:bg-white-05 animate-pulse rounded;
+  }
+}
+
 html {
   @apply bg-light-bg-low text-light-text-high;
   @apply font-jost;

@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import TagsList from "./TagsList";
+import TagsList, { TagsListSkeleton } from "./TagsList";
 
 function getTagsList (count:number):Array<string> {
   let list:Array<string> = []
@@ -15,4 +15,7 @@ const TagsListContainer = ({count}:{count:number}) => (
   </div>
 )
 
-export default <TagsListContainer count={5}/>
+export default {
+  Component: <TagsListContainer count={5}/>,
+  Skeleton: <TagsListSkeleton/>
+}

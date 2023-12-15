@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { ProductCardInfos } from 'utils'
 import Card from '../Card/Card'
 import Button from '../Button'
@@ -34,3 +34,15 @@ export default function InteractiveCard({
     </div>
   )
 }
+
+export const InteractiveCardSkeleton = memo(() => {
+
+  return (
+    <div className='flex flex-col items-start justify-between w-72 h-[312px]'>
+      <div className={`w-full h-52 skeleton`}/>
+      <div className={`w-2/3 h-6 skeleton`}/>
+      <div className={`w-1/2 h-4 skeleton`}/>
+      <div  className={`w-full h-10 skeleton`}/>
+    </div>
+  )
+})

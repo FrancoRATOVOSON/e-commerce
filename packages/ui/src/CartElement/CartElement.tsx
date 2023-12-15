@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { ProductCardInfos } from 'utils'
 import Card from '../Card'
 import { TrashIcon } from '../Icons'
@@ -52,3 +52,21 @@ export default function CartElement({
     </div>
   )
 }
+
+export const CartElementSkeleton = memo(() => {
+  return (
+    <div className='flex flex-row items-stretch justify-between h-32 w-128'>
+      <div className='flex flex-row items-stretch justify-start h-full gap-4 w-fit'>
+        <div className='skeleton w-36'/>
+        <div className='flex flex-col items-start justify-between'>
+          <div className='w-32 h-6 skeleton'/>
+          <div className='w-24 h-4 skeleton'/>
+        </div>
+      </div>
+      <div className='flex flex-col items-end justify-between w-full'>
+        <div className='w-3/4 h-6 skeleton'/>
+        <div className='w-24 h-4 skeleton'/>
+      </div>
+    </div>
+  )
+})

@@ -3,7 +3,10 @@ import {
   getProductPageInfosFrom, getTagsList, getProductList as productList
 } from 'utils/faker'
 
-export const getProductList = async(n:number=10) => productList(n)
+export const getProductList = async(n:number=10) => {
+  await new Promise(resolve => { setTimeout(resolve,5000) })
+  return productList(n)
+}
 
 export const getProductDetails = async(product:ProductCardInfos) => getProductPageInfosFrom(product)
 

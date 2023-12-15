@@ -1,4 +1,4 @@
-import TagChip from "./TagChip";
+import TagChip, { TagChipSkeleton } from "./TagChip";
 
 const TAG_LABEL = 'Label'
 
@@ -10,4 +10,5 @@ export default {
   'Warning': <TagChip label={TAG_LABEL} size="Normal" theme="Warning"/>,
   'Error': <TagChip label={TAG_LABEL} size="Normal" theme="Error"/>,
   'Infos': <TagChip label={TAG_LABEL} size="Normal" theme="Infos"/>,
+  Skeleton: <TagChipSkeleton/>
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { ImageDetails, ProductPageInfos } from 'utils'
 import Price from '../Price'
 import TagChip from '../TagChip'
@@ -42,3 +42,21 @@ export default function BigCard({
     </div>
   )
 }
+
+export const BigCardSkeleton = memo(() => {
+  return (
+    <div className='flex flex-row items-stretch justify-between gap-8 h-128 w-fit'>
+      <div className='h-full skeleton w-128'/>
+      <div className='flex flex-col items-start justify-between h-full w-96'>
+        <div className='flex flex-col items-start justify-start w-full gap-2 h-fit'>
+          <div className='w-full h-10 skeleton'/>
+          <div className='w-2/5 h-6 skeleton'/>
+          <div className='w-3/5 h-6 skeleton'/>
+          <div className='w-full h-32 skeleton'/>
+          <div className='w-1/5 h-6 skeleton'/>
+        </div>
+        <div className='w-full h-10 skeleton'/>
+      </div>
+    </div>
+  )
+})
