@@ -1,15 +1,16 @@
 import React from 'react'
-import { generateRandom, getProductList } from 'utils/faker'
+import { generateRandom } from 'utils/faker'
 import CartElement from './cartElement'
+import { getProductList } from '@/lib'
 
 interface CartElementListProps {
   className?: string
 }
 
-export default function CartElementList({
+export default async function CartElementList({
   className='',
 }:CartElementListProps) {
-  const productList = getProductList(5)
+  const productList = await getProductList(5)
 
   return (
     <div className={`

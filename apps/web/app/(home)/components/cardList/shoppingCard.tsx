@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { Suspense, useRef } from 'react'
 import { InteractiveCard } from 'ui'
 import { ProductCardInfos } from 'utils/types'
-import { getProductPageInfosFrom } from 'utils/faker'
 import ProductModal from './productModal'
 
 interface ShoppingCardProps {
@@ -25,7 +24,9 @@ export default function ShoppingCard({
       product={product}
       onClickAction={() => modal.current?.showModal()}
       />
-      <ProductModal product={getProductPageInfosFrom(product)} modalRef={modal}/>
+      <Suspense>
+        <ProductModal product={product} modalRef={modal}/>
+      </Suspense>
     </>
   )
 }

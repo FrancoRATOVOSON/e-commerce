@@ -1,16 +1,19 @@
 import React from 'react'
 import { BigCard, Button, Modal } from 'ui'
-import { ProductPageInfos } from 'utils'
+import { ProductCardInfos, ProductPageInfos } from 'utils'
+import { getProductDetails } from '@/lib'
 
 interface ProductModalProps {
-  product: ProductPageInfos
+  product: ProductCardInfos
   modalRef: React.RefObject<HTMLDialogElement>
 }
 
-export default function ProductModal({product, modalRef}:ProductModalProps) {
+export default async function ProductModal({product, modalRef}:ProductModalProps) {
+  const detailedProduct:ProductPageInfos = await getProductDetails(product)
+
   return (
     <Modal ref={modalRef}>
-      <BigCard product={product}>
+      <BigCard product={detailedProduct}>
         <div className='flex flex-row items-end justify-between w-full h-full gap-4'>
           <Button
           type='Secondary'

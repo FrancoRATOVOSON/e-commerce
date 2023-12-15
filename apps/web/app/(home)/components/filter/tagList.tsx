@@ -2,12 +2,16 @@
 
 import React from 'react'
 import { TagsList } from 'ui'
-import { getTagsList } from 'utils/faker'
 
-export default function TagList() {
+interface TagListProps {
+  tags: string[]
+}
+
+export default function TagList({tags}:TagListProps) {
+  
   return (
     <div className='w-full'>
-      <TagsList tags={getTagsList(6)} tagsSize='Small' tagsType='Toggle' />
+      <TagsList tags={tags} tagsSize='Small' tagsType='Toggle' />
     </div>
   )
 }
