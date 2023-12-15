@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../../../dev.db"
+}
+
+model Shopper {
+  id Int @id @default(autoincrement())
+  login String @unique
+  password String
+  orders Order[]
+  @@map("shoppers")
+}
+
+model Admin {
+  id Int @id @default(autoincrement())
+  login String @unique
+  password String
+  @@map("admins")
+}
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  price Decimal
+  currency String @default("MGA")
+  categoryName String @map("category_name")
+  tags ProductTags[]
+  discount Int @default(0)
+  description String
+  category Category @relation(fields: [categoryName], references: [name])
+  orders OrderProduct[]
+  @@map("products")
+}
+
+model Category {
+  name String @id
+  products Product[]
+  tags Tag[]
+  @@map("categories")
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  label String
+  categoryName String @map("category_name")
+  products ProductTags[]
+  category Category @relation(fields: [categoryName], references: [name])
+  @@map("tags")
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  facture String?
+  shopperId Int @map("shopper_id")
+  validatedAt DateTime? @map("validated_at")
+  status String
+  products OrderProduct[]
+  shopper Shopper @relation(fields: [shopperId], references: [id])
+  @@map("orders")
+}
+
+model ProductTags {
+  id Int @id @default(autoincrement())
+  productId String @map("Product_id")
+  tagId Int @map("tag_id")
+  product Product @relation(fields: [productId], references: [id])
+  tag Tag @relation(fields: [tagId], references: [id])
+  @@map("product_tags")
+}
+
+model OrderProduct {
+  id Int @id @default(autoincrement())
+  productId String @map("Product_id")
+  orderId Int @map("order_id")
+  product Product @relation(fields: [productId], references: [id])
+  order Order @relation(fields: [orderId], references: [id])
+  @@map("product_orders")
+}

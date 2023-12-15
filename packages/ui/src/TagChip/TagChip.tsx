@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useState } from 'react'
 import { XCircleIcon } from '../Icons'
 import styles from './TagChip.module.css'
-import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '../../types'
+import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '../types'
 
 interface TagChipProps {
   label: string

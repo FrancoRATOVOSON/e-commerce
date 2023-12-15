@@ -1,5 +1,5 @@
-export {type CartElementProps} from './src/CartElement'
-export {type AppLogoProps} from './src/AppLogo'
+export {type CartElementProps} from './CartElement'
+export {type AppLogoProps} from './AppLogo'
 
 export type TagChipSizeType = 'Normal' | 'Small'
 

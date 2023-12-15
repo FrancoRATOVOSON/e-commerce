@@ -6,13 +6,18 @@
     "apps/*",
     "packages/*"
   ],
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma"
+  },
   "scripts": {
     "build": "turbo run build",
     "cosmos": "yarn workspace ui cosmos",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "web": "turbo run dev --filter=web"
+    "web": "turbo run dev --filter=web",
+    "db:run": "turso dev --db-file ./dev.db",
+    "db:migrate": "turbo run db:migrate:dev"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

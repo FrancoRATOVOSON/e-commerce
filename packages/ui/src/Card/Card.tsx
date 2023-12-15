@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import Price from '../Price'
 import { ImageDetails, ProductCardInfos } from 'utils'
-import { TagChipSizeType } from '../../types'
+import { TagChipSizeType } from '../types'
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductCardInfos
