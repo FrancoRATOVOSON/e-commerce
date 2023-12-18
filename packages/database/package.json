@@ -1,9 +1,12 @@
 {
   "name": "database",
-  "main": ".index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "version": "0.0.0",
   "scripts": {
-    "db:migrate:dev": "prisma migrate dev"
+    "db:migrate:dev": "prisma migrate dev",
+    "db:seed": "tsx src/seed/index.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.4.0-pre.5",
@@ -20,6 +23,7 @@
     "prettier": "^3.1.1",
     "prisma": "^5.7.0",
     "tsconfig": "workspace:*",
+    "tsx": "^4.6.2",
     "typescript": "^5.3.3"
   }
 }

@@ -7,7 +7,8 @@
     "packages/*"
   ],
   "prisma": {
-    "schema": "packages/database/prisma/schema.prisma"
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed/index.ts"
   },
   "scripts": {
     "build": "turbo run build",
@@ -17,7 +18,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web": "turbo run dev --filter=web",
     "db:run": "turso dev --db-file ./dev.db",
-    "db:migrate": "turbo run db:migrate:dev"
+    "db:seed": "turbo run db:seed"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
