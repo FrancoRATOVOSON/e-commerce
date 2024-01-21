@@ -1,3 +1,6 @@
+export type NonEmptyArrayOf<T> = [T, ...T[]]
+export type FunctionOf<T> = () => T
+
 export interface ImageDetails {
   src: string
   alt: string

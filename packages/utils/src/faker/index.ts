@@ -1,28 +1,8 @@
 import { faker } from '@faker-js/faker'
-import { ProductCardInfos, ProductPageInfos } from './types'
+import { ProductCardInfos, ProductPageInfos } from '../types'
+import { generateRandom, getAnArrayOf } from '..'
 
-type NonEmptyArrayOf<T> = [T, ...T[]]
-type FunctionOf<T> = () => T
-
-function getRandomElementOf<T>(array: Array<T>):T {
-  return  array[Math.floor(Math.random() * array.length)]
-}
-
-function getAnArrayOf<T>(
-  pattern: NonEmptyArrayOf<FunctionOf<T>> | FunctionOf<T>, length: number
-): T[] {
-  const list:Array<T> = []
-  for (let index = 0; index < length; index+=1)
-    list.push(Array.isArray(pattern) ? getRandomElementOf(pattern)() : pattern())
-  return list
-}
-
-export function generateRandom(min=0, max=10) {
-  const diff = max - min
-  const rand = Math.random()
-
-  return Math.floor(rand * diff) + min
-}
+export * from './datas'
 
 export function getProductCardInfos():ProductCardInfos {
   const productName = faker.commerce.productName()

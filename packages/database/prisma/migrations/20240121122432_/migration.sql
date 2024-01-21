@@ -26,15 +26,18 @@ CREATE TABLE "products" (
 
 -- CreateTable
 CREATE TABLE "categories" (
-    "name" TEXT NOT NULL PRIMARY KEY
+    "slug" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "tags" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "slug" TEXT NOT NULL,
     "label" TEXT NOT NULL,
-    "category_name" TEXT NOT NULL,
-    CONSTRAINT "tags_category_name_fkey" FOREIGN KEY ("category_name") REFERENCES "categories" ("name") ON DELETE RESTRICT ON UPDATE CASCADE
+    "category_slug" TEXT NOT NULL,
+
+    PRIMARY KEY ("slug", "category_slug"),
+    CONSTRAINT "tags_category_slug_fkey" FOREIGN KEY ("category_slug") REFERENCES "categories" ("slug") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -49,19 +52,21 @@ CREATE TABLE "orders" (
 
 -- CreateTable
 CREATE TABLE "product_tags" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "Product_id" TEXT NOT NULL,
-    "tag_id" INTEGER NOT NULL,
-    CONSTRAINT "product_tags_Product_id_fkey" FOREIGN KEY ("Product_id") REFERENCES "products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "product_tags_tag_id_fkey" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "product_id" TEXT NOT NULL,
+    "tag_id" TEXT NOT NULL,
+    "category_slug" TEXT NOT NULL,
+
+    PRIMARY KEY ("product_id", "tag_id"),
+    CONSTRAINT "product_tags_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "product_tags_tag_id_category_slug_fkey" FOREIGN KEY ("tag_id", "category_slug") REFERENCES "tags" ("slug", "category_slug") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "product_orders" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "Product_id" TEXT NOT NULL,
+    "product_id" TEXT NOT NULL,
     "order_id" INTEGER NOT NULL,
-    CONSTRAINT "product_orders_Product_id_fkey" FOREIGN KEY ("Product_id") REFERENCES "products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "product_orders_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "product_orders_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "orders" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -70,3 +75,6 @@ CREATE UNIQUE INDEX "shoppers_login_key" ON "shoppers"("login");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "admins_login_key" ON "admins"("login");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "categories_name_key" ON "categories"("name");

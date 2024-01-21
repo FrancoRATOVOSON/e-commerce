@@ -29,30 +29,33 @@ model Admin {
 model Product {
   id String @id @default(uuid())
   name String
+  image String
   price Decimal
   currency String @default("MGA")
-  categoryName String @map("category_name")
+  categorySlug String @map("category_slug")
   tags ProductTags[]
   discount Int @default(0)
   description String
-  category Category @relation(fields: [categoryName], references: [name])
+  category Category @relation(fields: [categorySlug], references: [slug])
   orders OrderProduct[]
   @@map("products")
 }
 
 model Category {
-  name String @id
+  slug String @id
+  name String @unique
   products Product[]
   tags Tag[]
   @@map("categories")
 }
 
 model Tag {
-  id Int @id @default(autoincrement())
+  slug String
   label String
-  categoryName String @map("category_name")
+  categorySlug String @map("category_slug")
   products ProductTags[]
-  category Category @relation(fields: [categoryName], references: [name])
+  category Category @relation(fields: [categorySlug], references: [slug])
+  @@id([slug, categorySlug])
   @@map("tags")
 }
 
@@ -68,17 +71,18 @@ model Order {
 }
 
 model ProductTags {
-  id Int @id @default(autoincrement())
-  productId String @map("Product_id")
-  tagId Int @map("tag_id")
+  productId String @map("product_id")
+  tagSlug String @map("tag_id")
+  categorySlug String @map("category_slug")
   product Product @relation(fields: [productId], references: [id])
-  tag Tag @relation(fields: [tagId], references: [id])
+  tag Tag @relation(fields: [tagSlug, categorySlug], references: [slug, categorySlug])
+  @@id([productId, tagSlug])
   @@map("product_tags")
 }
 
 model OrderProduct {
   id Int @id @default(autoincrement())
-  productId String @map("Product_id")
+  productId String @map("product_id")
   orderId Int @map("order_id")
   product Product @relation(fields: [productId], references: [id])
   order Order @relation(fields: [orderId], references: [id])

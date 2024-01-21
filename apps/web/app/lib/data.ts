@@ -1,6 +1,6 @@
 'use server'
 
-import { ProductCardInfos } from 'utils'
+import { ProductCardInfos } from 'utils/types'
 import {
   getProductPageInfosFrom, getTagsList, getProductList as productList
 } from 'utils/faker'
