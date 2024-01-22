@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, BigCard as Card } from 'ui'
-import { ProductCardInfos, ProductPageInfos } from 'utils'
+import { ProductCardInfos, ProductPageInfos } from 'utils/types'
 import { getProductDetails } from '@/lib'
 
 interface ProductModalProps {

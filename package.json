@@ -17,7 +17,6 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web": "turbo run dev --filter=web",
-    "db:run": "turso dev --db-file ./dev.db",
     "db:seed": "turbo run db:seed",
     "db:push": "turbo run db:push",
     "db:migrate:dev": "turbo run db:migrate:dev"

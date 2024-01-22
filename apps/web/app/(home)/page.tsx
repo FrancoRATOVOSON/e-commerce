@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { CardList, Filter } from "./components"
+import { ProductModal } from "@/components";
 
 export const metadata:Metadata = {
   title: 'YShop',
@@ -11,6 +12,7 @@ export default function Web() {
     <div className="z-10 flex flex-row items-stretch justify-between px-6 gap-x-10">
       <Filter/>
       <CardList/>
+      <ProductModal />
     </div>
   );
 }

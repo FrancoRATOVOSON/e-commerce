@@ -3,43 +3,6 @@ import { DATA_CATEGORIES, getProductList, getProductPageInfosFrom } from 'utils/
 import { generateRandom } from 'utils'
 import prisma from '../client'
 
-// interface ProductTagConnect {
-//   tag: {
-//     slug: string
-//     categorySlug: string 
-//   }
-//   productId_tagSlug: {
-//     productId: string,
-//     tagSlug: string
-//   }
-// }
-
-// function getArrayOfTagConnect (tags:TagType[], categorySlug:string, productId:string):ProductTagConnect[] {
-//   return getAnArrayOf<ProductTagConnect>(
-//     tags.map<FunctionOf<ProductTagConnect>>(
-//       tag => (() => ({
-//         productId_tagSlug: { productId, tagSlug: tag.slug },
-//         tag: { slug: tag.slug, categorySlug },
-//       }))
-//     ) as NonEmptyArrayOf<FunctionOf<ProductTagConnect>>,
-//     generateRandom(0,tags.length)
-//   )
-// }
-
-/**
-getProductList().map<Prisma.ProductCreateWithoutCategoryInput>(
-            product => {
-              const {name: pName, description, price: {value, currency}, productId: id } = getProductPageInfosFrom(product)
-              return {
-                id ,name: pName, description, price: value, currency,
-                tags: {
-                  connectOrCreate: getArrayOfTagConnect(tags, slug, id)
-                },
-              }
-            }
-          )
- */
-
 async function seed() {
   DATA_CATEGORIES.forEach(async ({name, slug, tags: cTags}) => {
     // First create a set of tags for the category
@@ -50,8 +13,8 @@ async function seed() {
     })
     const tags = await prisma.tag.findMany({ where: { categorySlug: category.slug } })
 
-    // Then generate random a list of 1 to 3 products
-    getProductList(generateRandom(1,3)).forEach(async (product) => {
+    // Then generate random a list of 2 to 5 products
+    getProductList(generateRandom(2,5)).forEach(async (product) => {
       const {name: pName, description, image, price: {value, currency}, productId: id} = getProductPageInfosFrom(product)
 
       // For each product generated, add it manualy to the database
@@ -89,28 +52,6 @@ async function seed() {
       })
 
     })
-
-    // await prisma.category.upsert({
-    //   where: { slug },
-    //   update: {},
-    //   create: {
-    //     name, slug,
-    //     tags: {
-    //       create: tags
-    //     },
-    //     products: {
-    //       create: getProductList().map<Prisma.ProductCreateWithoutCategoryInput>(product => {
-    //         const {name: pName, description, price: {value, currency}, productId: id } = getProductPageInfosFrom(product)
-    //         return {
-    //           id ,name: pName, description, price: value, currency,
-    //           tags: {
-    //             connect: getArrayOfTagConnect(tags, slug, id)
-    //           },
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
   })
 }
 

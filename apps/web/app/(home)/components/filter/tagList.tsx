@@ -2,9 +2,10 @@
 
 import React from 'react'
 import { TagsList } from 'ui'
+import { TagType } from 'utils/types'
 
 interface TagListProps {
-  tags: string[]
+  tags: string[] | TagType[]
 }
 
 export default function TagList({tags}:TagListProps) {

@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { InteractiveCard } from 'ui'
 import { ProductCardInfos } from 'utils/types'
-import ProductModal from './productModal'
+import { useOpenProductModal } from '@/stores'
 
 interface ShoppingCardProps {
   product: ProductCardInfos
@@ -14,29 +14,14 @@ export default function ShoppingCard({
   className='',
   product
 }:ShoppingCardProps) {
-  const [isOpen, setOpen] = useState(false)
-  const productModalRef = useRef<HTMLDialogElement>(null)
-
-  useEffect(() => {
-    if(isOpen) productModalRef.current?.showModal()
-  },[isOpen,product])
+  const { modalRef, openModal } = useOpenProductModal()
 
   return (
-    <>
-      <InteractiveCard
-      className={className}
-      actionLabel='Ajouter au panier'
-      product={product}
-      onClickAction={() => setOpen(true)}
-      />
-      {
-        isOpen && (
-          <ProductModal
-          modalRef={productModalRef}
-          product={product}
-          onClose={() => setOpen(false)}/>
-        )
-      }
-    </>
+    <InteractiveCard
+    className={className}
+    actionLabel='Ajouter au panier'
+    product={product}
+    onClickAction={() => openModal(product, () => modalRef.current?.show())}
+    />
   )
 }

@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "database": "workspace:*",
+    "jotai": "^2.6.2",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "style-config": "workspace:*",
     "ui": "workspace:*",
-    "utils": "workspace:*"
+    "utils": "workspace:*",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",

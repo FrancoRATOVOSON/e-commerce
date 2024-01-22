@@ -3740,7 +3740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"database@workspace:packages/database":
+"database@workspace:*, database@workspace:packages/database":
   version: 0.0.0-use.local
   resolution: "database@workspace:packages/database"
   dependencies:
@@ -6333,6 +6333,21 @@ __metadata:
   bin:
     jiti: bin/jiti.js
   checksum: a7bd5d63921c170eaec91eecd686388181c7828e1fa0657ab374b9372bfc1f383cf4b039e6b272383d5cb25607509880af814a39abdff967322459cca41f2961
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "jotai@npm:2.6.2"
+  peerDependencies:
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: c7c7a13a45598a727506947ff782780e51449f6bb5f95a1a5a611728032b3e4de87e66e113d08339d3ddcbae9a1cb1ff5a24dd113c212b4581a291ad8b860a60
   languageName: node
   linkType: hard
 
@@ -10147,6 +10162,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -10298,9 +10322,11 @@ __metadata:
     "@types/react": ^18.2.43
     "@types/react-dom": ^18.2.17
     autoprefixer: ^10.4.16
+    database: "workspace:*"
     eslint: ^8.55.0
     eslint-config-custom: "workspace:*"
     eslint-config-next: ^14.0.3
+    jotai: ^2.6.2
     next: ^14.0.4
     postcss: ^8.4.31
     react: ^18.2.0
@@ -10311,6 +10337,7 @@ __metadata:
     typescript: ^5.3.2
     ui: "workspace:*"
     utils: "workspace:*"
+    zustand: ^4.5.0
   languageName: unknown
   linkType: soft
 
@@ -10541,5 +10568,25 @@ __metadata:
     compress-commons: ^4.1.2
     readable-stream: ^3.6.0
   checksum: 33bd5ee7017656c2ad728b5d4ba510e15bd65ce1ec180c5bbdc7a5f063256353ec482e6a2bc74de7515219d8494147924b9aae16e63fdaaf37cdf7d1ee8df125
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "zustand@npm:4.5.0"
+  dependencies:
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    "@types/react": ">=16.8"
+    immer: ">=9.0.6"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 91685492ab33bb656b98e07d8fff2be1794d8e68ac5dc546ec457f4ae3d709f0c19de9e93045b9ee5d6b704f64503d9e085ffe1f600f6ade0459e572d1cf5c0d
   languageName: node
   linkType: hard

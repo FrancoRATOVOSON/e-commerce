@@ -17,5 +17,6 @@ const TagsListContainer = ({count}:{count:number}) => (
 
 export default {
   Component: <TagsListContainer count={5}/>,
-  Skeleton: <TagsListSkeleton/>
+  Empty: <TagsListContainer count={0}/>,
+  Skeleton: <TagsListSkeleton/>,
 }

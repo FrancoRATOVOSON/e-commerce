@@ -1,14 +1,17 @@
-'use server'
+// 'use server'
 
-import { ProductCardInfos } from 'utils/types'
 import {
-  getProductPageInfosFrom, getTagsList, getProductList as productList
-} from 'utils/faker'
+  getProductList as getProducts,
+  getProductDetails as getDetails,
+  getCategories as getCats,
+  getTags as getCategoryTags
+} from 'database'
+import { Category, ProductCardInfos } from 'utils/types'
 
-export const getProductList = async(n:number=10) => productList(n)
+export const getProductList = () => getProducts()
 
-export const getProductDetails = async(product:ProductCardInfos) => getProductPageInfosFrom(product)
+export const getProductDetails = (product:ProductCardInfos) => getDetails(product)
 
-export const getCategories = async() => getTagsList(4)
+export const getCategories = () => getCats()
 
-export const getTags = async() => getTagsList(5)
+export const getTags = (category:Category) => getCategoryTags(category)
