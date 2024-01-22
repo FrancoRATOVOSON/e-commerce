@@ -11,7 +11,7 @@ function getTagsList (count:number):Array<string> {
 
 const TagsListContainer = ({count}:{count:number}) => (
   <div className="w-64">
-    <TagsList tags={getTagsList(count)}/>
+    <TagsList tags={getTagsList(count).map(tag => ({id: tag, value: tag}))}/>
   </div>
 )
 

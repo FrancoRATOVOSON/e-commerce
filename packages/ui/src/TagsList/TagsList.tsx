@@ -12,6 +12,7 @@ interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {
   tagsType?: TagChipActionType
   tagsSize?: TagChipSizeType
   onEmptyMessage?: string
+  initialState?: (current:string | TagType) => boolean
 }
 
 export default function TagsList({
@@ -19,6 +20,7 @@ export default function TagsList({
   className='',
   onToggle,
   onRemove,
+  initialState,
   tagsType='None',
   tagsSize='Small',
   onEmptyMessage='No item found',
@@ -37,7 +39,7 @@ export default function TagsList({
               <TagChip
               label={typeof tag === "string" ? tag : tag.value}
               key={typeof tag === "string" ? tag : tag.id}
-              initialState={false}
+              initialState={initialState ? initialState(tag) : false}
               action={tagsType}
               size={tagsSize}
               theme='Base'

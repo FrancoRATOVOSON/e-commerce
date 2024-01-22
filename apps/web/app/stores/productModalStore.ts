@@ -37,7 +37,7 @@ const useProductModalStore = create<ProductModalState & ProductModalAction>(set 
   }
 }))
 
-export const useProductModal = () => {
+export function useProductModal(){
   const isOpen = useProductModalStore(state => state.isOpen)
   const product = useProductModalStore(state => state.product)
   const closeModal = useProductModalStore(state => state.closeModal)
@@ -46,7 +46,7 @@ export const useProductModal = () => {
   return { isOpen, product, closeModal, modalRef }
 }
 
-export const useOpenProductModal = () => {
+export function useOpenProductModal() {
   const openModal = useProductModalStore(state => state.openModal)
   const modalRef = useProductModalStore(state => state.modalRef)
   

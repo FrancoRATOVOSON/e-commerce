@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const libsql = createClient({
-  url: `${process.env.TURSO_DATABASE_URL}`,
+  url: `${process.env.DATABASE_URL}`,
   authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
 

@@ -4,8 +4,11 @@ import FilterSection from './filterSection'
 import CategoriesList from './categoriesList'
 import TagsList from './tagsList'
 
+interface FilterProps {
+  category?: string | string[]
+}
 
-export default function Filter() {
+export default function Filter({category}:FilterProps) {
   
   return (
     <div
@@ -21,7 +24,7 @@ export default function Filter() {
           <CategoriesList/>
         </Suspense>
         <Suspense>
-          <TagsList/>
+          <TagsList category={category}/>
         </Suspense>
         <FilterSection label='Par réductions :'><PercentageSlider/></FilterSection>
       </div>
