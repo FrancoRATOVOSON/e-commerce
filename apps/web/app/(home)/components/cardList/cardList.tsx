@@ -15,7 +15,7 @@ export default async function CardList({category, tag}:CardListProps) {
   
   return (
     <div
-    className={`flex flex-row flex-wrap gap-x-0 gap-y-10 justify-between pb-6 z-10 w-full`}>
+    className={`flex flex-row flex-wrap gap-x-9 gap-y-9 justify-start pb-6 z-10 w-full`}>
       {
         productList.map(product => (
           <ShoppingCard
