@@ -1,6 +1,5 @@
-export {default as Hello} from './Hello'
+export * from './components'
 export {default as Card} from './Card'
-export {default as Button} from './Button'
 export {default as Search} from './Search'
 export {default as Slider} from './Slider'
 export {default as Price} from './Price'

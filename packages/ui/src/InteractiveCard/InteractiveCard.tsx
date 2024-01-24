@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { ProductCardInfos } from 'utils/types'
 import Card from '../Card/Card'
-import Button from '../Button'
+import Button from '../components/Button'
 
 interface InteractiveCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductCardInfos

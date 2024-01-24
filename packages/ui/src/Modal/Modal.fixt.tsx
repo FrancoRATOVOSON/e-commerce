@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Modal from "./Modal";
-import Button from "../Button";
+import Button from "../components/Button";
 
 interface ModalFixtureProps {
   closeOnClickOutside:boolean
