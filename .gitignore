@@ -47,3 +47,7 @@ yarn-error.log*
 #test db
 dev.db
 dev.db-*
+
+# parcel
+.parcel-cache
+.parcel-cachee/

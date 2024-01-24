@@ -1,6 +1,6 @@
 {
-  "extends": "tsconfig/react-library.json",
-  "include": [".", "tailwind.config.cjs"],
+  "extends": ["tsconfig/react-library.json", "./tsconfig.base.json"],
+  "include": [".", "tailwind.config.js"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
