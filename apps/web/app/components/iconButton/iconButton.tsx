@@ -1,11 +1,12 @@
 import React from "react"
 
-const IconButton = ({
+const IconButton = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(({
     children,
     className,
     ...props
-  }:React.HTMLAttributes<HTMLButtonElement>) => (
+  },ref) => (
   <button
+  ref={ref}
   className={`
   ${className ?? ''}
   text-inherit hover:text-sld-base w-fit h-fit transition
@@ -13,6 +14,8 @@ const IconButton = ({
   {...props}>
     {children}
   </button>
-)
+))
+
+IconButton.displayName = 'IconButton'
 
 export default IconButton

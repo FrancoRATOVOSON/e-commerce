@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { ImageDetails, ProductPageInfos } from 'utils'
+import { ImageDetails, ProductPageInfos } from 'utils/types'
 import Price from '../Price'
 import TagChip from '../TagChip'
 import TagsList from '../TagsList'

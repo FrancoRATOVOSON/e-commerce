@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react'
+import React, { forwardRef } from 'react'
 
 interface ModalProps {
   children: React.ReactNode
@@ -7,15 +7,15 @@ interface ModalProps {
   onModalClose?: () => void
 }
 
-const Modal = forwardRef(function({
+const Modal = forwardRef<HTMLDialogElement, ModalProps>(function({
   className='',
   childrenClassName='',
   children,
   onModalClose=()=>{}
-}:ModalProps, modalRef:React.ForwardedRef<HTMLDialogElement>) {
+}, ref) {
   return (
     <dialog
-    ref={modalRef}
+    ref={ref}
     className={`${className} 
     bg-light-bg-low text-light-text-high backdrop:bg-black-30 dark:backdrop:bg-black-60
     dark:bg-dark-bg-low dark:text-dark-text-high`}

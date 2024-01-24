@@ -31,7 +31,8 @@ async function getProductListFromTags(
 ):ProductListType {
   const products:PrismaProductCardInfos[] = await prisma.product.findMany({
     where: {
-      AND: [{ category: { slug: { in: category }}}, { tags: { some: { tagSlug: { in: tags} }}}]
+      category: { slug: { in: category }},
+      tags: { some: { tagSlug: { in: tags} }}
     }
   })
 

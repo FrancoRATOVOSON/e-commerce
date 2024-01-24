@@ -4,7 +4,7 @@ export default function Form({
   className='',
   children,
   ...props
-}:React.HTMLAttributes<HTMLFormElement>) {
+}:React.FormHTMLAttributes<HTMLFormElement>) {
   return (
     <form
     className={`${className} 

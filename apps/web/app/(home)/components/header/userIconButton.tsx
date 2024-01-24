@@ -4,11 +4,15 @@ import React, { useState } from 'react'
 import { Button } from 'ui'
 import { UserIcon } from 'ui/icons'
 import { IconButton } from '@/components'
+import { logOut } from '@/lib'
 
-interface UserIconButtonProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserIconButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+  onLogOut?: () => void
+}
 
 export default function UserIconButton({
   className='',
+  onLogOut,
   ...props
 }:UserIconButtonProps) {
   const [clicked, setClicked] = useState<boolean>(false)
@@ -26,7 +30,10 @@ export default function UserIconButton({
       shadow-md shadow-black-40 rounded-lg dark:shadow-sm
       ${clicked ? 'flex' : 'hidden'}
       `}>
-        <Button type='Secondary' className='w-fit'>Se déconnecter</Button>
+        <Button variant='Secondary' className='w-fit' onClick={async () => {
+          await logOut()
+          onLogOut && onLogOut()
+        }}>Se déconnecter</Button>
       </div>
     </div>
   )

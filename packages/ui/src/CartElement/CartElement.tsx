@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { ProductCardInfos } from 'utils'
+import { ProductCardInfos } from 'utils/types'
 import Card from '../Card'
 import { TrashIcon } from '../Icons'
 import Price from '../Price'

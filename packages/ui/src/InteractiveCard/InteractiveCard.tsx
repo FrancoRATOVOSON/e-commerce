@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { ProductCardInfos } from 'utils'
+import { ProductCardInfos } from 'utils/types'
 import Card from '../Card/Card'
 import Button from '../Button'
 
@@ -25,7 +25,7 @@ export default function InteractiveCard({
       </button>
       <div>
         <Button
-        type='Primary'
+        variant='Primary'
         className={`w-full`}
         onClick={() => primaryAction && primaryAction(product.productId)}>
           {actionLabel}

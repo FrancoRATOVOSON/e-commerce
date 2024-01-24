@@ -11,11 +11,11 @@ const ModalFixture = ({closeOnClickOutside}:ModalFixtureProps) => {
 
   return (
     <div>
-      <Button type="Primary" onClick={() => modal.current?.showModal()}>Open Modal</Button>
+      <Button variant="Primary" onClick={() => modal.current?.showModal()}>Open Modal</Button>
       <Modal ref={modal}>
         <div className="flex flex-col gap-6">
           <p>This is the dialog</p>
-          <Button type="Secondary" onClick={() => modal.current?.close()}>Close Modal</Button>
+          <Button variant="Secondary" onClick={() => modal.current?.close()}>Close Modal</Button>
         </div>
       </Modal>
     </div>

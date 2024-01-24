@@ -4,7 +4,11 @@ import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '../types'
 import { VariantProps, cva } from 'class-variance-authority'
 
 const tagChipStyle = cva(
-  'py-1 px-3 rounded-lg font-medium flex flex-row justify-between items-center gap-2 whitespace-nowrap text-nowrap',
+  [
+    'font-medium whitespace-nowrap text-nowrap text-light-text-high',
+    'flex flex-row justify-between items-center gap-2',
+    'py-1 px-3 rounded-lg'
+  ],
   {
     variants: {
       action: {

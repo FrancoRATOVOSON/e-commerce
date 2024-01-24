@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Button,
   Search
@@ -11,16 +11,27 @@ import { ThemeProvider } from 'next-themes'
 import ToggleTheme from './toggleTheme'
 import UserIconButton from './userIconButton'
 import { AppLogo, Link } from '@/components'
+import { getUserState } from '@/lib'
 
 export default function Header() {
   const pathName = usePathname()
   const router = useRouter()
+  const [isConnected, setIsConnected] = useState(false)
 
   const MiddleElement = () => {
     if (pathName === '/') return <Search className='w-96' placeholder='Recherche...'/>
     if (pathName === '/cart') return <h1 className='text-2xl font-medium'>Votre panier</h1>
     return null
   }
+
+  useEffect(() => {
+    const setUserState = async () => {
+      const userState = await getUserState()
+      setIsConnected(userState)
+    }
+
+    setUserState()
+  },[])
 
   return (
     <ThemeProvider attribute='class'>
@@ -37,10 +48,13 @@ export default function Header() {
         className={
           `flex flex-row justify-end gap-6 items-center`
         }>
-          <Button type='Secondary' onClick={() => router.push('/login')}>
-            Se connecter
-          </Button>
-          <UserIconButton className='hidden'/>
+          {
+            !isConnected
+            ? <Button variant='Secondary' onClick={() => router.push('/login')}>
+              Se connecter
+            </Button>
+            : <UserIconButton onLogOut={() => setIsConnected(false)}/>
+          }
           <ToggleTheme/>
           {pathName !== '/cart' && (
             <Link
