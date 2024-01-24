@@ -9,12 +9,12 @@
     --dark-color: 222.2 84% 4.9%;
     --white: 0 0% 100%;
     --light-foreground-color: 210 40% 98%;
-    --primary-color: 222.2 47.4% 11.2%,
+    --primary-color: 222.2 47.4% 11.2%;
     --secondary-light-color: 210 40% 96.1%;
     --secondary-dark-color: 217.2 32.6% 17.5%;
     --action-color: 322 65% 55%;
     --border-light-color: 214.3 31.8% 91.4%;
-    --border-dark-color: 217.2 32.6% 17.5%
+    --border-dark-color: 217.2 32.6% 17.5%;
 
     --background: var(--white);
     --foreground: var(--dark-color);
