@@ -1,6 +1,7 @@
 {
   "name": "ui",
   "version": "0.0.0",
+  "type": "module",
   "source": "public/index.html",
   "exports": {
     ".": "./src/index.ts",
@@ -13,7 +14,9 @@
     "lint": "TIMING=1 eslint \"./src/**/*.ts*\"",
     "cosmos:start": "cosmos --expose-imports \"./public/cosmos.imports.js\"",
     "parcel": "parcel serve public/index.html",
-    "cosmos": "yarn cosmos:start & yarn parcel"
+    "cosmos": "yarn cosmos:start & yarn parcel",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
@@ -28,6 +31,15 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/addon-themes": "^7.6.10",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-vite": "^7.6.10",
+    "@storybook/test": "^7.6.10",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
@@ -41,14 +53,18 @@
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "react": "^18.2.0",
-    "react-cosmos": "next",
+    "react-cosmos": "^6.0.0",
     "react-cosmos-dom": "^6.0.0-alpha.0",
+    "react-cosmos-renderer": "^6.0.0",
     "react-dom": "^18.2.0",
     "shadcn-ui": "latest",
+    "storybook": "^7.6.10",
     "style-config": "workspace:*",
     "tailwindcss": "^3.2.6",
     "tsconfig": "workspace:*",
     "typescript": "^5.3.2",
-    "utils": "workspace:*"
+    "utils": "workspace:*",
+    "vite": "^5.0.12",
+    "vite-tsconfig-paths": "^4.3.1"
   }
 }

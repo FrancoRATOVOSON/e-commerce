@@ -24,10 +24,10 @@
   "devDependencies": {
     "eslint-config-custom": "*",
     "prettier": "^3.1.0",
-    "turbo": "^1.11.0"
+    "turbo": "^1.11.3"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@4.0.2"
 }
