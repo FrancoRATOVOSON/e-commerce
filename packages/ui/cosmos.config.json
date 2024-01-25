@@ -1,4 +1,3 @@
 {
-  "port": 5000,
-  "rendererUrl": "http://localhost:1234"
+  "plugins": ["react-cosmos-plugin-vite"]
 }
