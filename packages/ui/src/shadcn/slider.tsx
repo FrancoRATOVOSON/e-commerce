@@ -2,8 +2,9 @@
 
 import * as React from 'react'
 
-import { cn } from '@/utils'
 import * as SliderPrimitive from '@radix-ui/react-slider'
+
+import { cn } from '../utils'
 
 const thumbStyle = cn([
   'block h-5 w-5 rounded-full border-2 border-primary bg-background',
@@ -30,8 +31,10 @@ const Slider = React.forwardRef<
     </SliderPrimitive.Track>
     <SliderPrimitive.Thumb className={thumbStyle} />
     {defaultValue.length > 1 &&
-      defaultValue.map((_, index) =>
-        index === 0 ? null : <SliderPrimitive.Thumb className={thumbStyle} />
+      defaultValue.map((value, index) =>
+        index === 0 ? null : (
+          <SliderPrimitive.Thumb className={thumbStyle} key={value} />
+        )
       )}
   </SliderPrimitive.Root>
 ))

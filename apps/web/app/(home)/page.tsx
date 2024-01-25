@@ -1,10 +1,11 @@
-import { Metadata } from "next"
-import { CardList, Filter } from "./components"
-import { ProductModal } from "@/components";
+import { ProductModal } from '@/components'
+import { Metadata } from 'next'
 
-export const metadata:Metadata = {
-  title: 'YShop',
-  description: 'Shop better'
+import { CardList, Filter } from './components'
+
+export const metadata: Metadata = {
+  description: 'Shop better',
+  title: 'YShop'
 }
 
 interface PageSearchParams {
@@ -12,14 +13,18 @@ interface PageSearchParams {
   tag?: string | string[]
 }
 
-export default function Web({searchParams}:{searchParams:PageSearchParams}) {
+export default function Web({
+  searchParams
+}: {
+  searchParams: PageSearchParams
+}) {
   const { category, tag } = searchParams
 
   return (
     <div className="z-10 flex flex-row items-stretch justify-between px-6 gap-x-10">
-      <Filter category={category}/>
-      <CardList category={category} tag={tag}/>
+      <Filter category={category} />
+      <CardList category={category} tag={tag} />
       <ProductModal />
     </div>
-  );
+  )
 }

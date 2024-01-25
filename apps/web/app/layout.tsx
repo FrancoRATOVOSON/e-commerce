@@ -1,20 +1,20 @@
 import * as React from 'react'
-import {Themer} from './components';
+
+import { Themer } from './components'
 
 import 'style-config/style.css'
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-
   return (
     <html lang="fr">
       <body>
-        <Themer/>
+        <Themer />
         {children}
       </body>
     </html>
-  );
+  )
 }

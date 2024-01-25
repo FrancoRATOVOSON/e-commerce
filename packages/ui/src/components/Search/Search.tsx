@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { MagnifyingGlassIcon } from '@/Icons'
+import { SearchIcon } from 'lucide-react'
 
 interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   placeholder?: string
@@ -26,7 +26,7 @@ export default function Search({
       text-light-text-low on-dark:border-dark-text-low
       `}
       >
-        <MagnifyingGlassIcon
+        <SearchIcon
           className={`
         group-focus-within/search:text-light-text-high
         dark:group-focus-within/search:text-dark-text-high

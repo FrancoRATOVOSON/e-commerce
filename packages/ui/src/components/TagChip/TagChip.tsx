@@ -1,9 +1,10 @@
 import React, { memo, useState } from 'react'
 
-import { XCircleIcon } from '@/Icons'
-import Skeleton from '@/shadcn/skeleton'
 import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '@/types'
 import { VariantProps, cva } from 'class-variance-authority'
+import { XIcon } from 'lucide-react'
+
+import Skeleton from '../shadcn/skeleton'
 
 const tagChipStyle = cva(
   [
@@ -108,7 +109,7 @@ export default function TagChip({
             }
           }}
         >
-          <XCircleIcon
+          <XIcon
             className={`
           pointer-events-auto cursor-pointer 
           hover:text-light-text-low dark:hover:text-dark-text-low

@@ -1,5 +1,5 @@
 {
-  "extends": ["tsconfig/react-library.json", "./tsconfig.base.json"],
+  "extends": "tsconfig/react-library.json",
   "include": [".", "tailwind.config.cjs"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {

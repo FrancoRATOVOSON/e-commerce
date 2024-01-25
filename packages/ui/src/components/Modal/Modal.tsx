@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react'
 
+import { cn } from '@/utils'
+
 interface ModalProps {
   children: React.ReactNode
   childrenClassName?: string
@@ -18,9 +20,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
     ref
   ) => (
     <dialog
-      className={`${className} 
-    bg-light-bg-low text-light-text-high backdrop:bg-black-30 dark:backdrop:bg-black-60
-    dark:bg-dark-bg-low dark:text-dark-text-high`}
+      className={cn(['text-foreground bg-accent'], className)}
       onClose={() => onModalClose()}
       ref={ref}
     >

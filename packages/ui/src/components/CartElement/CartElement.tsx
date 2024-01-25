@@ -1,10 +1,10 @@
 import React, { memo, useState } from 'react'
 
-import { TrashIcon } from '@/Icons'
-import Skeleton from '@/shadcn/skeleton'
+import { Trash2Icon as TrashIcon } from 'lucide-react'
 import { ProductCardInfos } from 'utils/types'
 
 import { Card, Price } from '..'
+import Skeleton from '../shadcn/skeleton'
 
 export interface CartElementProps {
   className?: string

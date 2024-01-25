@@ -1,28 +1,31 @@
 import React from 'react'
+
+import { getProductDetails } from '@/lib'
 import { Button, BigCard as Card } from 'ui'
 import { ProductCardInfos, ProductPageInfos } from 'utils/types'
-import { getProductDetails } from '@/lib'
 
 interface ProductModalProps {
-  product: ProductCardInfos
   modalRef: React.RefObject<HTMLDialogElement>
+  product: ProductCardInfos
 }
 
-export default async function BigCard({product, modalRef}:ProductModalProps) {
-  const detailedProduct:ProductPageInfos = await getProductDetails(product)
-  
+export default async function BigCard({
+  modalRef,
+  product
+}: ProductModalProps) {
+  const detailedProduct: ProductPageInfos = await getProductDetails(product)
+
   return (
     <Card product={detailedProduct}>
-      <div className='flex flex-row items-end justify-between w-full h-full gap-4'>
+      <div className="flex flex-row items-end justify-between w-full h-full gap-4">
         <Button
-        variant='Secondary'
-        className='w-full'
-        onClick={() => modalRef.current?.close()}>
+          className="w-full"
+          onClick={() => modalRef.current?.close()}
+          variant="secondary"
+        >
           Fermer
         </Button>
-        <Button
-        className='w-full'
-        variant='Primary'>
+        <Button className="w-full" variant="primary">
           Ajouter au panier
         </Button>
       </div>

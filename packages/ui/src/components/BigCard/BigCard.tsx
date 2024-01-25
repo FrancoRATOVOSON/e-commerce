@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
-import Skeleton from '@/shadcn/skeleton'
 import { ImageDetails, ProductPageInfos } from 'utils/types'
 
 import { Price, TagChip, TagsList } from '..'
+import Skeleton from '../shadcn/skeleton'
 
 interface BigCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductPageInfos

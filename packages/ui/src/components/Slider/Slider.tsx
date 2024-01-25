@@ -1,3 +1,3 @@
-import Slider from '@/shadcn/slider'
+import Slider from '../shadcn/slider'
 
 export default Slider
