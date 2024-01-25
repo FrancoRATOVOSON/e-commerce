@@ -1,22 +1,25 @@
 import React, { memo, useState } from 'react'
-import { ProductCardInfos } from 'utils/types'
-import { Card, Price } from '..'
+
 import { TrashIcon } from '@/Icons'
+import Skeleton from '@/shadcn/skeleton'
+import { ProductCardInfos } from 'utils/types'
+
+import { Card, Price } from '..'
 
 export interface CartElementProps {
   className?: string
+  onQuantityChange?: (quantity: number) => void
+  onRemove?: (id: string) => void
   product: ProductCardInfos
   quantity: number
-  onRemove?: (id: string) => void
-  onQuantityChange?: (quantity: number) => void
 }
 
 export default function CartElement({
   className = '',
-  product,
-  quantity: qtt,
+  onQuantityChange = () => {},
   onRemove = () => {},
-  onQuantityChange = () => {}
+  product,
+  quantity: qtt
 }: CartElementProps) {
   const [quantity, setQuantity] = useState<number>(qtt)
 
@@ -28,20 +31,20 @@ export default function CartElement({
       <div className="flex flex-col items-end justify-between w-32 text-right">
         <div className="flex flex-row items-center justify-end w-full gap-2">
           <input
-            type="number"
-            min={1}
-            defaultValue={quantity}
             className={`
           w-full px-0 py-1 ml-4 text-right bg-inherit text-inherit focus:outline-none 
           border-b border-light-bd-base focus:border-light-bd-active
           dark:border-dark-bd-base dark:focus:border-dark-bd-active
           `}
+            defaultValue={quantity}
+            min={1}
             onChange={e => {
               const parsedValue = Number.parseInt(e.target.value, 10)
               const value = Number.isNaN(parsedValue) ? 0 : parsedValue
               onQuantityChange && onQuantityChange(value)
               setQuantity(value)
             }}
+            type="number"
           />
           <button
             onClick={() => {
@@ -53,8 +56,8 @@ export default function CartElement({
         </div>
         <p className="w-full">
           <Price
-            value={product.price.value * quantity}
             currency={product.price.currency}
+            value={product.price.value * quantity}
           />
         </p>
       </div>
@@ -67,13 +70,13 @@ export const CartElementSkeleton = memo(() => (
     <div className="flex flex-row items-stretch justify-start h-full gap-4 w-fit">
       <div className="skeleton w-36" />
       <div className="flex flex-col items-start justify-between">
-        <div className="w-32 h-6 skeleton" />
-        <div className="w-24 h-4 skeleton" />
+        <Skeleton className="w-32 h-6" />
+        <Skeleton className="w-24 h-4" />
       </div>
     </div>
     <div className="flex flex-col items-end justify-between w-full">
-      <div className="w-3/4 h-6 skeleton" />
-      <div className="w-24 h-4 skeleton" />
+      <Skeleton className="w-3/4 h-6" />
+      <Skeleton className="w-24 h-4" />
     </div>
   </div>
 ))

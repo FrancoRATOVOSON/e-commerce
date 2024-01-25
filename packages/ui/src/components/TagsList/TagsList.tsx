@@ -1,27 +1,29 @@
 import React, { memo } from 'react'
-import { TagType } from 'utils/types'
-import TagChip, { TagChipSkeleton } from '../TagChip'
+
 import { TagChipActionType, TagChipSizeType } from '@/types'
+import { TagType } from 'utils/types'
+
+import TagChip, { TagChipSkeleton } from '../TagChip'
 
 interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {
-  tags: Array<string> | Array<TagType>
-  onToggle?: (tag: string | TagType, state: boolean) => void
-  onRemove?: (tag: string | TagType) => void
-  tagsType?: TagChipActionType
-  tagsSize?: TagChipSizeType
+  initialState?: (current: TagType | string) => boolean
   onEmptyMessage?: string
-  initialState?: (current: string | TagType) => boolean
+  onRemove?: (tag: TagType | string) => void
+  onToggle?: (tag: TagType | string, state: boolean) => void
+  tags: Array<TagType> | Array<string>
+  tagsSize?: TagChipSizeType
+  tagsType?: TagChipActionType
 }
 
 export default function TagsList({
-  tags,
   className = '',
-  onToggle,
-  onRemove,
   initialState,
-  tagsType = 'None',
-  tagsSize = 'Small',
   onEmptyMessage = 'No item found',
+  onRemove,
+  onToggle,
+  tags,
+  tagsSize = 'Small',
+  tagsType = 'None',
   ...props
 }: TagsListProps) {
   return (
@@ -34,18 +36,18 @@ export default function TagsList({
       {tags.length > 0 ? (
         tags.map(tag => (
           <TagChip
-            label={typeof tag === 'string' ? tag : tag.value}
-            key={typeof tag === 'string' ? tag : tag.id}
-            initialState={initialState ? initialState(tag) : false}
             action={tagsType}
-            size={tagsSize}
-            theme="Base"
+            initialState={initialState ? initialState(tag) : false}
+            key={typeof tag === 'string' ? tag : tag.id}
+            label={typeof tag === 'string' ? tag : tag.value}
             onClick={state => onToggle && onToggle(tag, state)}
             onRemove={() => onRemove && onRemove(tag)}
+            size={tagsSize}
+            theme="Base"
           />
         ))
       ) : (
-        <span className="font-medium italic text-light-text-low dark:text-dark-text-low">
+        <span className="font-medium italic text-secondary-foreground/50">
           {onEmptyMessage}
         </span>
       )}

@@ -1,20 +1,22 @@
 import React, { memo } from 'react'
+
 import { ProductCardInfos } from 'utils/types'
+
 import { Button, Card } from '..'
 
 interface InteractiveCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  product: ProductCardInfos
   actionLabel: string
-  primaryAction?: (id: string) => void
   onClickAction?: (id: string) => void
+  primaryAction?: (id: string) => void
+  product: ProductCardInfos
 }
 
 export default function InteractiveCard({
-  product,
-  primaryAction,
-  onClickAction,
   actionLabel,
-  className = ''
+  className = '',
+  onClickAction,
+  primaryAction,
+  product
 }: InteractiveCardProps) {
   return (
     <div className={`${className} flex flex-col gap-2 group/icard`}>
@@ -23,9 +25,9 @@ export default function InteractiveCard({
       </button>
       <div>
         <Button
-          variant="Primary"
           className={`w-full`}
           onClick={() => primaryAction && primaryAction(product.productId)}
+          variant="action"
         >
           {actionLabel}
         </Button>

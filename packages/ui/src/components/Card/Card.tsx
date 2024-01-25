@@ -1,7 +1,9 @@
 import React, { memo } from 'react'
-import { ImageDetails, ProductCardInfos } from 'utils/types'
-import Price from '../Price'
+
 import { TagChipSizeType } from '@/types'
+import { ImageDetails, ProductCardInfos } from 'utils/types'
+
+import Price from '../Price'
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: ProductCardInfos
@@ -9,10 +11,10 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = memo(
-  ({ product, className = '', size = 'Normal', ...props }: CardProps) => {
-    const { name, price, image: img } = product
+  ({ className = '', product, size = 'Normal', ...props }: CardProps) => {
+    const { image: img, name, price } = product
     const image: ImageDetails =
-      typeof img === 'string' ? { src: img, alt: name } : img
+      typeof img === 'string' ? { alt: name, src: img } : img
 
     return (
       <div
@@ -22,9 +24,9 @@ const Card = memo(
       >
         <div className={`rounded-md overflow-clip relative`}>
           <img
+            alt={image.alt}
             className={`${size === 'Normal' ? 'w-full h-52' : 'h-32'}`}
             src={image.src}
-            alt={image.alt}
           />
           <div
             className={`

@@ -1,20 +1,21 @@
 import { useState } from 'react'
+
 import { Slider } from '@/components'
 
 interface SliderContainerProps {
-  min?: number
-  max?: number
   defaultValues?: [number, number]
-  step?: number
+  max?: number
+  min?: number
   minStepsBetweenThumbs?: number
+  step?: number
 }
 
 const SliderContainer = ({
   defaultValues = [25, 75],
-  min = 0,
   max = 100,
-  step = 1,
-  minStepsBetweenThumbs = 1
+  min = 0,
+  minStepsBetweenThumbs = 1,
+  step = 1
 }: SliderContainerProps) => {
   const [values, setValues] = useState<[number, number]>(defaultValues)
 
@@ -22,12 +23,12 @@ const SliderContainer = ({
     <div className="flex flex-col items-stretch w-full gap-1 mx-40">
       <Slider
         defaultValue={defaultValues}
-        min={min}
         max={max}
-        step={step}
-        onValueChange={value => setValues(value)}
-        value={values}
+        min={min}
         minStepsBetweenThumbs={minStepsBetweenThumbs}
+        onValueChange={value => setValues(value as [number, number])}
+        step={step}
+        value={values}
       />
       <div className="flex flex-row justify-between">
         <p>{values[0]}</p>
@@ -39,10 +40,10 @@ const SliderContainer = ({
 
 export default (
   <SliderContainer
-    min={10_000}
-    max={2_000_000}
     defaultValues={[100_000, 1_000_000]}
-    step={1000}
+    max={2_000_000}
+    min={10_000}
     minStepsBetweenThumbs={5}
+    step={1000}
   />
 )

@@ -1,7 +1,9 @@
 import React, { memo, useState } from 'react'
-import { VariantProps, cva } from 'class-variance-authority'
+
 import { XCircleIcon } from '@/Icons'
+import Skeleton from '@/shadcn/skeleton'
 import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '@/types'
+import { VariantProps, cva } from 'class-variance-authority'
 
 const tagChipStyle = cva(
   [
@@ -10,11 +12,22 @@ const tagChipStyle = cva(
     'py-1 px-3 rounded-lg'
   ],
   {
+    compoundVariants: [
+      {
+        action: ['None', 'Removable'],
+        class: 'pointer-events-none hover:pointer-events-none'
+      }
+    ],
+    defaultVariants: {
+      action: 'None',
+      size: 'Normal',
+      theme: 'Base'
+    },
     variants: {
       action: {
-        Toggle: 'cursor-pointer',
         None: '',
-        Removable: ''
+        Removable: '',
+        Toggle: 'cursor-pointer'
       },
       size: {
         Normal: 'text-base',
@@ -26,16 +39,6 @@ const tagChipStyle = cva(
           'hover:bg-light-cp-hover dark-hover:bg-dark-cp-hover',
           'aria-selected:bg-light-cp-active on-dark:aria-selected:bg-dark-cp-active'
         ],
-        Success: [
-          'bg-light-sucs-cp-base on-dark:bg-dark-sucs-cp-base',
-          'hover:bg-light-sucs-cp-hover dark-hover:bg-dark-sucs-cp-hover',
-          'aria-selected:bg-light-sucs-cp-active on-dark:aria-selected:bg-dark-sucs-cp-active'
-        ],
-        Warning: [
-          'bg-light-warn-cp-base on-dark:bg-dark-warn-cp-base',
-          'hover:bg-light-warn-cp-hover dark-hover:bg-dark-warn-cp-hover',
-          'aria-selected:bg-light-warn-cp-active on-dark:aria-selected:bg-dark-warn-cp-active'
-        ],
         Error: [
           'bg-light-err-cp-base on-dark:bg-dark-err-cp-base',
           'hover:bg-light-err-cp-hover dark-hover:bg-dark-err-cp-hover',
@@ -45,56 +48,55 @@ const tagChipStyle = cva(
           'bg-light-info-cp-base on-dark:bg-dark-info-cp-base',
           'hover:bg-light-info-cp-hover dark-hover:bg-dark-info-cp-hover',
           'aria-selected:bg-light-info-cp-active on-dark:aria-selected:bg-dark-info-cp-active'
+        ],
+        Success: [
+          'bg-light-sucs-cp-base on-dark:bg-dark-sucs-cp-base',
+          'hover:bg-light-sucs-cp-hover dark-hover:bg-dark-sucs-cp-hover',
+          'aria-selected:bg-light-sucs-cp-active on-dark:aria-selected:bg-dark-sucs-cp-active'
+        ],
+        Warning: [
+          'bg-light-warn-cp-base on-dark:bg-dark-warn-cp-base',
+          'hover:bg-light-warn-cp-hover dark-hover:bg-dark-warn-cp-hover',
+          'aria-selected:bg-light-warn-cp-active on-dark:aria-selected:bg-dark-warn-cp-active'
         ]
       }
-    },
-    defaultVariants: {
-      action: 'None',
-      theme: 'Base',
-      size: 'Normal'
-    },
-    compoundVariants: [
-      {
-        action: ['None', 'Removable'],
-        class: 'pointer-events-none hover:pointer-events-none'
-      }
-    ]
+    }
   }
 )
 
 interface TagChipProps extends VariantProps<typeof tagChipStyle> {
-  label: string
   action?: TagChipActionType
-  theme?: TagChipThemeType
-  size?: TagChipSizeType
   className?: string
   initialState?: boolean
+  label: string
   onClick?: (state: boolean) => void
   onRemove?: () => void
+  size?: TagChipSizeType
+  theme?: TagChipThemeType
 }
 
 export default function TagChip({
-  label,
   action = 'None',
-  theme = 'Base',
-  size = 'Normal',
   className = '',
   initialState = false,
+  label,
   onClick = () => {},
-  onRemove = () => {}
+  onRemove = () => {},
+  size = 'Normal',
+  theme = 'Base'
 }: TagChipProps) {
   const [state, setState] = useState<boolean>(initialState)
 
   return (
     <div
-      className={tagChipStyle({ action, theme, size, className })}
+      aria-selected={state}
+      className={tagChipStyle({ action, className, size, theme })}
       onClick={() => {
         if (action === 'Toggle') {
           onClick(state)
           setState(!state)
         }
       }}
-      aria-selected={state}
     >
       <span>{label}</span>
       {action === 'Removable' && (
@@ -120,5 +122,5 @@ export default function TagChip({
 }
 
 export const TagChipSkeleton = memo(() => (
-  <div className="w-16 h-8 rounded-lg skeleton" />
+  <Skeleton className="w-16 h-8 rounded-lg" />
 ))

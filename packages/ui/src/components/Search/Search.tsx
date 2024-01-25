@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { MagnifyingGlassIcon } from '@/Icons'
 
 interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
@@ -6,8 +7,8 @@ interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
 }
 
 export default function Search({
-  placeholder = 'Search...',
   className,
+  placeholder = 'Search...',
   ...props
 }: SearchProps) {
   return (

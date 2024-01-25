@@ -30,6 +30,7 @@ module.exports = {
       }
     ],
     'import/no-unresolved': 'off',
+    'import/order': 'off',
     'no-unused-expressions': ['error', { allowShortCircuit: true }],
     'perfectionist/sort-imports': [
       'error',

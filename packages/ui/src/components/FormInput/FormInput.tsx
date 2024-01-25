@@ -1,7 +1,8 @@
-import { cva } from 'class-variance-authority'
 import React from 'react'
 
-const styledInput = cva([
+import { cn } from '@/utils'
+
+const styledInput = cn([
   'h-10 px-2 box-border w-full',
   'bg-light-bg-lower dark:bg-dark-bg-lower',
   'dark:focus:bg-dark-bg-low focus:bg-light-bg-low',
@@ -11,28 +12,28 @@ const styledInput = cva([
 ])
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string
-  type: 'text' | 'email' | 'password'
   ErrorMessage?: React.ReactNode
+  label: string
+  type: 'email' | 'password' | 'text'
 }
 
 const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-  ({ label, type, name, className = '', ErrorMessage, ...props }, ref) => (
+  ({ ErrorMessage, className = '', label, name, type, ...props }, ref) => (
     <div
       className={`
     ${className} flex flex-col gap-1 justify-start items-start
     `}
     >
-      <label htmlFor={name || label} className="font-medium">
+      <label className="font-medium" htmlFor={name || label}>
         {label}
       </label>
       <div className="flex flex-col gap-1 justify-start items-start w-full">
         <input
-          type={type}
-          name={name || label}
+          className={styledInput}
           id={name || label}
-          className={styledInput()}
+          name={name || label}
           ref={ref}
+          type={type}
           {...props}
         />
         {ErrorMessage || null}

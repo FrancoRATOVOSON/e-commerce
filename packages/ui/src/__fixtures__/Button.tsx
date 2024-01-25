@@ -1,9 +1,10 @@
+/* eslint-disable perfectionist/sort-objects */
 import { Button } from '@/components'
 
 const text = 'Action Button'
 
 export default {
-  Primary: <Button variant="Primary">{text}</Button>,
-  Secondary: <Button variant="Secondary">{text}</Button>,
-  Glass: <Button variant="Glass">{text}</Button>
+  Action: <Button variant="action">{text}</Button>,
+  Primary: <Button variant="primary">{text}</Button>,
+  Secondary: <Button variant="secondary">{text}</Button>
 }
