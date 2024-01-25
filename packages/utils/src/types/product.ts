@@ -1,23 +1,23 @@
 export interface ImageDetails {
-  src: string
   alt: string
+  src: string
 }
 
 export interface PriceDetails {
-  value: number
   currency: string
+  value: number
 }
 
 export interface ProductCardInfos {
-  productId: string
+  image: ImageDetails | string
   name: string
   price: PriceDetails
-  image: string | ImageDetails
+  productId: string
 }
 
 export interface ProductPageInfos extends ProductCardInfos {
-  description: string
   category: string
+  description: string
   tags?: Array<string>
 }
 

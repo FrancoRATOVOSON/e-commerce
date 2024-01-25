@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "TIMING=1 eslint \"./src/**/*.ts*\"",
     "cosmos": "cosmos",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "dev": "yarn cosmos & yarn storybook",
     "build-storybook": "storybook build"
   },

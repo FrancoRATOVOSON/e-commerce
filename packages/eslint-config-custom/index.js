@@ -1,32 +1,88 @@
 module.exports = {
-  extends: ['airbnb-base', 'turbo', 'prettier'],
+  extends: [
+    'airbnb-base',
+    'turbo',
+    'plugin:perfectionist/recommended-natural',
+    'prettier'
+  ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'perfectionist', 'prettier'],
   rules: {
-    'prettier/prettier': 'warn',
     '@next/next/no-html-link-for-pages': 'off',
-    'react/jsx-key': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
     ],
-    'import/no-unresolved': 'off',
     'import/extensions': [
       'error',
       {
         js: 'never',
-        ts: 'never',
         jsx: 'never',
+        ts: 'never',
         tsx: 'never'
       }
     ],
     'import/no-extraneous-dependencies': [
       'error',
       {
-        peerDependencies: true,
-        devDependencies: ['**/*.test.js', '**/*.spec.js', '**/*.config.ts']
+        devDependencies: ['**/*.test.js', '**/*.spec.js', '**/*.config.ts'],
+        peerDependencies: true
       }
     ],
-    'no-unused-expressions': ['error', { allowShortCircuit: true }]
+    'import/no-unresolved': 'off',
+    'no-unused-expressions': ['error', { allowShortCircuit: true }],
+    'perfectionist/sort-imports': [
+      'error',
+      {
+        'custom-groups': {
+          type: {
+            react: 'react'
+          },
+          value: {
+            react: ['react', 'react-*']
+          }
+        },
+        groups: [
+          'react',
+          'type',
+          ['builtin', 'external'],
+          'internal-type',
+          'internal',
+          ['parent-type', 'sibling-type', 'index-type'],
+          ['parent', 'sibling', 'index'],
+          'side-effect',
+          'style',
+          'object',
+          'unknown'
+        ],
+        'internal-pattern': [
+          '@/stores/**',
+          '@stores/**',
+          '@/lib/**',
+          '@lib/**',
+          '@/components/**',
+          '@components/**',
+          '@/pages/**'
+        ],
+        'newlines-between': 'always',
+        order: 'asc',
+        type: 'natural'
+      }
+    ],
+    'perfectionist/sort-interfaces': [
+      'error',
+      {
+        'custom-groups': {
+          actions: '**:*(**)*=>**',
+          id: 'id',
+          key: '\\[**\\]:**'
+        },
+        groups: ['key', 'id', 'actions', 'unknown', 'multiline'],
+        order: 'asc',
+        type: 'natural'
+      }
+    ],
+    'prettier/prettier': 'warn',
+    'sort-imports': 'off'
   }
 }

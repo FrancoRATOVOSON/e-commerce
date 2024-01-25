@@ -1,16 +1,16 @@
 export interface TagType {
   id: string
+  [key: string]: string
   value: string
-  [key:string]: string
 }
 
 export interface Category {
-  slug: string
   name: string
+  slug: string
 }
 
 export interface Tag {
-  slug: string
-  label: string
   category: string
+  label: string
+  slug: string
 }
