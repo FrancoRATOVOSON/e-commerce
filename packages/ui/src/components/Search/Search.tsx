@@ -2,44 +2,26 @@ import React from 'react'
 
 import { SearchIcon } from 'lucide-react'
 
+import Input from '../../shadcn/input'
+import { cn } from '../../utils'
+
 interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   placeholder?: string
 }
 
-export default function Search({
-  className,
-  placeholder = 'Search...',
-  ...props
-}: SearchProps) {
-  return (
-    <div
-      className={`
-    flex flex-row justify-start items-center gap-1 h-10 rounded overflow-clip
-    border border-light-text-low dark:border-dark-text-low
-    focus-within:border-2 focus-within:border-light-text-high
-    dark:focus-within:border-dark-text-high group/search
-    ${className ?? ''}`}
-    >
-      <div
-        className={`
-      flex items-center justify-center w-10 h-10 
-      text-light-text-low on-dark:border-dark-text-low
-      `}
-      >
-        <SearchIcon
-          className={`
-        group-focus-within/search:text-light-text-high
-        dark:group-focus-within/search:text-dark-text-high
-        `}
-          size={20}
-        />
-      </div>
-      <input
-        className="w-full h-full my-1 outline-none bg-inherit"
+const Search = React.forwardRef<HTMLInputElement, SearchProps>(
+  ({ className, placeholder = 'Search...', ...props }, ref) => (
+    <div className={cn(className, 'relative')}>
+      <SearchIcon className={cn('absolute left-2 top-2.5 h-4 w-4')} />
+      <Input
+        className="pl-8"
         placeholder={placeholder}
+        ref={ref}
         type="search"
         {...props}
       />
     </div>
   )
-}
+)
+
+export default Search

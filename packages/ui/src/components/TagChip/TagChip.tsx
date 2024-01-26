@@ -1,10 +1,14 @@
 import React, { memo, useState } from 'react'
 
-import { TagChipActionType, TagChipSizeType, TagChipThemeType } from '@/types'
 import { VariantProps, cva } from 'class-variance-authority'
 import { XIcon } from 'lucide-react'
 
-import Skeleton from '../shadcn/skeleton'
+import Skeleton from '../../shadcn/skeleton'
+import {
+  TagChipActionType,
+  TagChipSizeType,
+  TagChipThemeType
+} from '../../types'
 
 const tagChipStyle = cva(
   [

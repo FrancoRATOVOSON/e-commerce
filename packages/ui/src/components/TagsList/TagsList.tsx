@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 
-import { TagChipActionType, TagChipSizeType } from '@/types'
 import { TagType } from 'utils/types'
 
+import { TagChipActionType, TagChipSizeType } from '../../types'
 import TagChip, { TagChipSkeleton } from '../TagChip'
 
 interface TagsListProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { MoonIcon, SunIcon } from '@/Icons'
+import { MoonIcon, SunIcon } from '../Icons'
 
 import 'style-config/style.css'
 

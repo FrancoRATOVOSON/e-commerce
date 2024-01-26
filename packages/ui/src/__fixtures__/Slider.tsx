@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Slider } from '@/components'
+import { Slider } from '../components'
 
 interface SliderContainerProps {
   defaultValues?: [number, number]

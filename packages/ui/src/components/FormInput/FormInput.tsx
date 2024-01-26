@@ -1,15 +1,6 @@
 import React from 'react'
 
-import { cn } from '@/utils'
-
-const styledInput = cn([
-  'h-10 px-2 box-border w-full',
-  'bg-light-bg-lower dark:bg-dark-bg-lower',
-  'dark:focus:bg-dark-bg-low focus:bg-light-bg-low',
-  'border rounded border-light-bd-base',
-  'focus:border-light-bd-active focus:outline-none focus:border-2',
-  'dark:focus:border'
-])
+import Input from '../../shadcn/input'
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   ErrorMessage?: React.ReactNode
@@ -28,8 +19,7 @@ const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
         {label}
       </label>
       <div className="flex flex-col gap-1 justify-start items-start w-full">
-        <input
-          className={styledInput}
+        <Input
           id={name || label}
           name={name || label}
           ref={ref}

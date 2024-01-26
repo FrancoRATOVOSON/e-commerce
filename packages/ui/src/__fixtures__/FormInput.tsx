@@ -1,5 +1,5 @@
-import { FormInput } from '@/components'
+import { FormInput } from '../components'
 
 export default (
-  <FormInput label="Form Label" type="text" name="input" className="w-32" />
+  <FormInput className="w-52" label="Form Label" name="input" type="text" />
 )

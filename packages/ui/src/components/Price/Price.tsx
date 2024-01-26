@@ -8,8 +8,8 @@ interface PriceProps {
 const Price = memo(({ currency = 'MGA', value }: PriceProps) => (
   <>
     {new Intl.NumberFormat('fr-FR', {
-      style: 'currency',
-      currency
+      currency,
+      style: 'currency'
     }).format(value)}
   </>
 ))

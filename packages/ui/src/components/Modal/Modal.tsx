@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import { cn } from '@/utils'
+import { cn } from '../../utils'
 
 interface ModalProps {
   children: React.ReactNode
@@ -20,14 +20,33 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
     ref
   ) => (
     <dialog
-      className={cn(['text-foreground bg-accent'], className)}
+      className={cn(
+        [
+          'bg-transparent text-foreground',
+          'h-screen w-screen z-50 fixed top-0 right-0 bottom-0 left-0'
+        ],
+        className
+      )}
       onClose={() => onModalClose()}
       ref={ref}
     >
       <div
-        className={`${childrenClassName} w-fit h-fit flex justify-center items-center p-8`}
+        className={cn([
+          'w-full h-full flex justify-center items-center',
+          'bg-primary/10 relative top-0 bottom-0 left-0 right-0'
+        ])}
       >
-        {children}
+        <div
+          className={cn(
+            [
+              'w-fit h-fit flex justify-center items-center p-8',
+              'border border-border rounded-md bg-background'
+            ],
+            childrenClassName
+          )}
+        >
+          {children}
+        </div>
       </div>
     </dialog>
   )

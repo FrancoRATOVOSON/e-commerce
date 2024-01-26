@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { Button, Modal } from '@/components'
+
+import { Button, Modal } from '../components'
 
 interface ModalFixtureProps {
   closeOnClickOutside: boolean
@@ -11,13 +12,13 @@ const ModalFixture = ({ closeOnClickOutside }: ModalFixtureProps) => {
 
   return (
     <div>
-      <Button variant="Primary" onClick={() => modal.current?.showModal()}>
+      <Button onClick={() => modal.current?.showModal()} variant="primary">
         Open Modal
       </Button>
       <Modal ref={modal}>
         <div className="flex flex-col gap-6">
           <p>This is the dialog</p>
-          <Button variant="Secondary" onClick={() => modal.current?.close()}>
+          <Button onClick={() => modal.current?.close()} variant="secondary">
             Close Modal
           </Button>
         </div>

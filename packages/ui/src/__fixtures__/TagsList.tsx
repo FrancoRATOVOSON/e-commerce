@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { TagsList, TagsListSkeleton } from '@/components'
+
+import { TagsList, TagsListSkeleton } from '../components'
 
 function getTagsList(count: number): Array<string> {
   const list: Array<string> = []

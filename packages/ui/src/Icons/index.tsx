@@ -1,67 +1,10 @@
-import React from 'react'
-import {
-  MagnifyingGlassIcon as MGlass,
-  AdjustmentsHorizontalIcon as AdjustmentsH,
-  UserIcon as Usr,
-  ShoppingCartIcon as ShoppingCart,
-  SunIcon as Sun,
-  MoonIcon as Moon,
-  XCircleIcon as XCircle,
-  XMarkIcon as XMark,
-  TrashIcon as Trash
-} from '@heroicons/react/24/solid'
+import { MoonStar, Trash2Icon, UserIcon, UserRoundIcon } from 'lucide-react'
 
-type IconType = typeof MGlass
+export * from 'lucide-react'
 
-interface IconProps {
-  size?: number
-  className?: string
+export {
+  MoonStar as MoonIcon,
+  Trash2Icon as TrashIcon,
+  UserIcon as _,
+  UserRoundIcon as UserIcon
 }
-
-interface IconTemplateProps {
-  size?: number
-  className?: string
-  Icon: IconType
-}
-
-const IconTemplate = ({
-  Icon,
-  size=24,
-  className=''
-}:IconTemplateProps) => <Icon height={size} width={size} className={className}/>
-
-export const MagnifyingGlassIcon = (props:IconProps) => (
-  <IconTemplate Icon={MGlass} {...props}/>
-)
-
-export const AdjustmentsHorizontalIcon = (props:IconProps) => (
-  <IconTemplate Icon={AdjustmentsH} {...props}/>
-)
-
-export const UserIcon = (props:IconProps) => (
-  <IconTemplate Icon={Usr} {...props}/>
-)
-
-export const ShoppingCartIcon = (props:IconProps) => (
-  <IconTemplate Icon={ShoppingCart} {...props}/>
-)
-
-export const SunIcon = (props:IconProps) => (
-  <IconTemplate Icon={Sun} {...props}/>
-)
-
-export const MoonIcon = (props:IconProps) => (
-  <IconTemplate Icon={Moon} {...props}/>
-)
-
-export const XCircleIcon = (props:IconProps) => (
-  <IconTemplate Icon={XCircle} {...props}/>
-)
-
-export const XMarkIcon = (props:IconProps) => (
-  <IconTemplate Icon={XMark} {...props}/>
-)
-
-export const TrashIcon = (props:IconProps) => (
-  <IconTemplate Icon={Trash} {...props}/>
-)

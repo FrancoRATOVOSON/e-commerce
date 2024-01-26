@@ -1,6 +1,6 @@
 export { default as AppLogo } from './AppLogo'
 export { BigCardSkeleton, default as BigCard } from './BigCard'
-export { default as Button } from './Button'
+export { buttonVariants, default as Button } from './Button'
 export { default as Card } from './Card'
 export { CartElementSkeleton, default as CartElement } from './CartElement'
 export { default as FormInput } from './FormInput'

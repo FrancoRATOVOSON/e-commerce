@@ -1,16 +1,13 @@
-import { TagChip, TagChipSkeleton } from '@/components'
+import { TagChip, TagChipSkeleton } from '../components'
 
-const TAG_LABEL = 'Label'
+const TAG_LABEL = 'Badge'
 
 export default {
   'Base - No Action': <TagChip label={TAG_LABEL} size="Normal" />,
-  'Base - Toggle': <TagChip label={TAG_LABEL} action="Toggle" size="Normal" />,
   'Base - Removable': (
-    <TagChip label={TAG_LABEL} action="Removable" size="Normal" />
+    <TagChip action="Removable" label={TAG_LABEL} size="Normal" />
   ),
-  Success: <TagChip label={TAG_LABEL} size="Normal" theme="Success" />,
-  Warning: <TagChip label={TAG_LABEL} size="Normal" theme="Warning" />,
-  Error: <TagChip label={TAG_LABEL} size="Normal" theme="Error" />,
-  Infos: <TagChip label={TAG_LABEL} size="Normal" theme="Infos" />,
-  Skeleton: <TagChipSkeleton />
+  'Base - Toggle': <TagChip action="Toggle" label={TAG_LABEL} size="Normal" />,
+  Skeleton: <TagChipSkeleton />,
+  Success: <TagChip label={TAG_LABEL} size="Normal" theme="Success" />
 }

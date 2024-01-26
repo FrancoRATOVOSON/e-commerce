@@ -3,8 +3,9 @@ import React, { memo, useState } from 'react'
 import { Trash2Icon as TrashIcon } from 'lucide-react'
 import { ProductCardInfos } from 'utils/types'
 
-import { Card, Price } from '..'
-import Skeleton from '../shadcn/skeleton'
+import { Button, Card, Price } from '..'
+import Skeleton from '../../shadcn/skeleton'
+import { cn } from '../../utils'
 
 export interface CartElementProps {
   className?: string
@@ -31,28 +32,30 @@ export default function CartElement({
       <div className="flex flex-col items-end justify-between w-32 text-right">
         <div className="flex flex-row items-center justify-end w-full gap-2">
           <input
-            className={`
-          w-full px-0 py-1 ml-4 text-right bg-inherit text-inherit focus:outline-none 
-          border-b border-light-bd-base focus:border-light-bd-active
-          dark:border-dark-bd-base dark:focus:border-dark-bd-active
-          `}
+            className={cn(
+              'w-20 px-2 py-1 text-right bg-inherit text-inherit focus:outline-none',
+              'border-b border-light-bd-base focus:border-light-bd-active',
+              'dark:border-dark-bd-base dark:focus:border-dark-bd-active'
+            )}
             defaultValue={quantity}
             min={1}
             onChange={e => {
-              const parsedValue = Number.parseInt(e.target.value, 10)
+              const parsedValue = e.target.valueAsNumber
               const value = Number.isNaN(parsedValue) ? 0 : parsedValue
               onQuantityChange && onQuantityChange(value)
               setQuantity(value)
             }}
             type="number"
           />
-          <button
+          <Button
             onClick={() => {
               onRemove && onRemove(product.productId)
             }}
+            size="icon"
+            variant="destructive"
           >
-            <TrashIcon className="hover:text-sld-base" size={24} />
-          </button>
+            <TrashIcon />
+          </Button>
         </div>
         <p className="w-full">
           <Price

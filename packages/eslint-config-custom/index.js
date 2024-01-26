@@ -5,6 +5,14 @@ module.exports = {
     'plugin:perfectionist/recommended-natural',
     'prettier'
   ],
+  overrides: [
+    {
+      files: ['**/index.ts'],
+      rules: {
+        'import/prefer-default-export': 'off'
+      }
+    }
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'perfectionist', 'prettier'],
   rules: {
