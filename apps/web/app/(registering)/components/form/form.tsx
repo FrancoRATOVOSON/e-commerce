@@ -1,16 +1,21 @@
+'use client'
+
 import React from 'react'
 
-export default function Form({
-  className='',
-  children,
-  ...props
-}:React.FormHTMLAttributes<HTMLFormElement>) {
-  return (
-    <form
-    className={`${className} 
-    flex flex-col items-center justify-start gap-6 w-72`}
-    {...props}>
-      {children}
-    </form>
-  )
-}
+import { Form as FormContainer } from 'ui'
+import { cn } from 'ui/utils'
+
+const Form = React.forwardRef<
+  HTMLFormElement,
+  React.FormHTMLAttributes<HTMLFormElement>
+>(({ className, ...props }, ref) => (
+  <FormContainer
+    className={cn('space-y-7 w-72', className)}
+    ref={ref}
+    {...props}
+  />
+))
+
+Form.displayName = 'FormContainer'
+
+export default Form

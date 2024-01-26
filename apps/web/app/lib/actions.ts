@@ -2,7 +2,7 @@
 
 import { addShopper, getShopper } from 'database'
 import { revalidatePath } from 'next/cache'
-import { cookies} from 'next/headers'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { isUserCredentialValid, userLoginSchema, userSignupSchema } from 'utils'
 import { LoginFormData, SignupFormData } from 'utils/types'
@@ -14,14 +14,14 @@ export const logOut = async () => {
   revalidatePath('/')
 }
 
-export const signup = async (signupData:SignupFormData):Promise<string> => {
+export const signup = async (signupData: SignupFormData): Promise<string> => {
   try {
-    isUserCredentialValid(userSignupSchema,signupData)
+    isUserCredentialValid(userSignupSchema, signupData)
     const { id, login } = await addShopper(signupData)
     cookies().set({
+      httpOnly: true,
       name: 'session',
-      value: `${id}|${login}`,
-      httpOnly: true
+      value: `${id}|${login}`
     })
     return redirect('/')
   } catch (err) {
@@ -30,19 +30,19 @@ export const signup = async (signupData:SignupFormData):Promise<string> => {
   }
 }
 
-export const login = async (loginData:LoginFormData) => {
+export const login = async (loginData: LoginFormData) => {
   try {
-    isUserCredentialValid(userLoginSchema,loginData)
+    isUserCredentialValid(userLoginSchema, loginData)
     const user = await getShopper(loginData)
     if (user) {
       cookies().set({
+        httpOnly: true,
         name: 'session',
-        value: `${user.id}|${user.login}`,
-        httpOnly: true
+        value: `${user.id}|${user.login}`
       })
       return redirect('/')
     }
-    return "Email or Password invalid."
+    return 'Email or Password invalid.'
   } catch (err) {
     if (err instanceof Error) return err.message
     return String(err)

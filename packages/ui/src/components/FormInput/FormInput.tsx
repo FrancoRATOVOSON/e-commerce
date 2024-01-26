@@ -1,34 +1,27 @@
 import React from 'react'
 
+import { FormDescription, FormInputContainer, FormLabel, FormMessage } from '..'
 import Input from '../../shadcn/input'
+import { cn } from '../../utils'
 
-interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  ErrorMessage?: React.ReactNode
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  description?: string
   label: string
-  type: 'email' | 'password' | 'text'
+  error?: {
+    message?: string
+  }
 }
 
-const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-  ({ ErrorMessage, className = '', label, name, type, ...props }, ref) => (
-    <div
-      className={`
-    ${className} flex flex-col gap-1 justify-start items-start
-    `}
-    >
-      <label className="font-medium" htmlFor={name || label}>
-        {label}
-      </label>
-      <div className="flex flex-col gap-1 justify-start items-start w-full">
-        <Input
-          id={name || label}
-          name={name || label}
-          ref={ref}
-          type={type}
-          {...props}
-        />
-        {ErrorMessage || null}
+const FormInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  ({ className, description, error, id, label, ...props }, ref) => (
+    <FormInputContainer className={cn(className)}>
+      <FormLabel htmlFor={id}>{label}</FormLabel>
+      <div className="space-y-0">
+        <Input {...props} ref={ref} />
+        {error?.message && <FormMessage>{error.message}</FormMessage>}
       </div>
-    </div>
+      {description && <FormDescription>{description}</FormDescription>}
+    </FormInputContainer>
   )
 )
 
