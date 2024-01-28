@@ -1,10 +1,11 @@
 import { faker } from '@faker-js/faker'
-import { ProductCardInfos, ProductPageInfos } from '../types'
+
 import { generateRandom, getAnArrayOf } from '..'
+import { ProductCardInfos, ProductPageInfos } from '../types'
 
 export * from './datas'
 
-export function getProductCardInfos():ProductCardInfos {
+export function getProductCardInfos(): ProductCardInfos {
   const productName = faker.commerce.productName()
   const productImage = faker.image.urlLoremFlickr({
     height: 250,
@@ -12,34 +13,46 @@ export function getProductCardInfos():ProductCardInfos {
   })
 
   return {
-    productId: faker.string.uuid(),
+    image: productImage,
     name: productName,
     price: {
-      value: faker.number.int({
-        min: 1,
-        max: 1_000
-      }) * 1_000,
-      currency: 'MGA'
+      currency: 'MGA',
+      value:
+        faker.number.int({
+          max: 1_000,
+          min: 1
+        }) * 1_000
     },
-    image: productImage
+    productId: faker.string.uuid()
   }
 }
 
-export function getProductPageInfosFrom(product:ProductCardInfos):ProductPageInfos {
+export function getProductPageInfosFrom(
+  product: ProductCardInfos
+): ProductPageInfos {
   return {
     ...product,
-    description: faker.commerce.productDescription(),
     category: faker.commerce.department(),
-    tags: getAnArrayOf([
-      faker.commerce.product, faker.commerce.productAdjective, faker.commerce.productMaterial
-    ],generateRandom(0,5))
+    description: faker.commerce.productDescription(),
+    tags: getAnArrayOf(
+      [
+        faker.commerce.product,
+        faker.commerce.productAdjective,
+        faker.commerce.productMaterial
+      ],
+      generateRandom(0, 5)
+    )
   }
 }
 
-export const getProductList = (n:number=10) => getAnArrayOf(getProductCardInfos,n)
+export const getProductList = (n: number = 10) =>
+  getAnArrayOf(getProductCardInfos, n)
 
-export const getTagsList = (n:number=5) => getAnArrayOf(faker.commerce.product, n)
+export const getTagsList = (n: number = 5) =>
+  getAnArrayOf(faker.commerce.product, n)
 
-export const getProductPageInfos = () => getProductPageInfosFrom(getProductCardInfos())
+export const getProductPageInfos = () =>
+  getProductPageInfosFrom(getProductCardInfos())
 
-export const getRandomPrice = () => (faker.number.int({min: 1, max: 1_000}) * 1_000)
+export const getRandomPrice = () =>
+  faker.number.int({ max: 1_000, min: 1 }) * 1_000

@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-import { IconButton } from '@/components'
 import { useTheme } from 'next-themes'
+import { Button } from 'ui'
 import { MoonIcon, SunIcon } from 'ui/icons'
 
 export default function ToggleTheme() {
@@ -15,11 +15,8 @@ export default function ToggleTheme() {
   }
 
   return (
-    <IconButton
-      className="flex items-center justify-center w-10 h-10"
-      onClick={() => toggleTheme()}
-    >
+    <Button onClick={() => toggleTheme()} size="icon" variant={'ghost'}>
       {!theme || theme !== 'dark' ? <SunIcon /> : <MoonIcon />}
-    </IconButton>
+    </Button>
   )
 }

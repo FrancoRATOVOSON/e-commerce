@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 
-import { IconButton } from '@/components'
 import { logOut } from '@/lib'
 import { Button } from 'ui'
 import { UserIcon } from 'ui/icons'
@@ -23,9 +22,13 @@ export default function UserIconButton({
       className={`${className} relative flex items-center justify-center`}
       {...props}
     >
-      <IconButton onClick={() => setClicked(!clicked)}>
+      <Button
+        onClick={() => setClicked(!clicked)}
+        size={'icon'}
+        variant={'ghost'}
+      >
         <UserIcon />
-      </IconButton>
+      </Button>
       <div
         className={`
       absolute z-10 top-12 w-48 h-24

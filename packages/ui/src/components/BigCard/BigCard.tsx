@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 import { ImageDetails, ProductPageInfos } from 'utils/types'
 
-import { Price, TagChip, TagsList } from '..'
+import { Badge, BadgeList, Price } from '..'
 import Skeleton from '../../shadcn/skeleton'
 
 interface BigCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,17 +25,19 @@ export default function BigCard({
       <div className={`w-128 h-128 rounded-md overflow-clip`}>
         <img alt={image.alt} className={`w-full h-full`} src={image.src} />
       </div>
-      <div className={`flex flex-col justify-between items-stretch gap-8 w-96`}>
-        <div className={`flex flex-col`}>
+      <div
+        className={`flex flex-col justify-between items-stretch space-y-8 w-96`}
+      >
+        <div className={`flex flex-col space-y-1`}>
           <h1 className={`font-semibold text-4xl`}>{name}</h1>
-          <TagChip className="w-fit" label={category} size="Normal" />
+          <Badge className="w-fit" label={category} size="large" />
           <p className={`font-light text-lg`}>
             <Price currency={price.currency} value={price.value} />
           </p>
-          <p className={`text-base font-normal mt-4`}>{description}</p>
-          {tags && tags.length > 0 && (
-            <TagsList tags={tags} tagsSize="Small" tagsType="None" />
-          )}
+          <div>
+            <p className={`text-base font-normal mt-4`}>{description}</p>
+            {tags && tags.length > 0 && <BadgeList labels={tags} size="sm" />}
+          </div>
         </div>
         <div className={`h-full`}>{children}</div>
       </div>

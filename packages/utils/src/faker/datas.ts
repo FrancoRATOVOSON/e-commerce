@@ -1,128 +1,128 @@
-import { NonEmptyArrayOf } from "../types"
+import { NonEmptyArrayOf } from '../types'
 
 export interface TagType {
-  slug: string
   label: string
+  slug: string
 }
 
 interface DataCategoryType {
-  slug: string
   name: string
+  slug: string
   tags: NonEmptyArrayOf<TagType>
 }
 
-export const DATA_CATEGORIES:Array<DataCategoryType> = [
+export const DATA_CATEGORIES: Array<DataCategoryType> = [
   {
-    slug: "informatique",
-    name: "Informatique",
+    name: 'Informatique',
+    slug: 'informatique',
     tags: [
       {
-        slug: "ecrans",
-        label: "Écran"
+        label: 'Écran',
+        slug: 'ecrans'
       },
       {
-        slug: "laptop",
-        label: "Laptop"
+        label: 'Laptop',
+        slug: 'laptop'
       },
       {
-        slug: "gpu",
-        label: "Carte Graphique"
+        label: 'Carte Graphique',
+        slug: 'gpu'
       },
       {
-        slug: "cpu",
-        label: "Processeur"
+        label: 'Processeur',
+        slug: 'cpu'
       },
       {
-        slug: "phone",
-        label: "Téléphone"
+        label: 'Téléphone',
+        slug: 'phone'
       }
     ]
   },
   {
-    slug: "mode",
-    name: "Mode",
+    name: 'Mode',
+    slug: 'mode',
     tags: [
       {
-        slug: "haut",
-        label: "Haut"
+        label: 'Haut',
+        slug: 'haut'
       },
       {
-        slug: "robe",
-        label: "Robe"
+        label: 'Robe',
+        slug: 'robe'
       },
       {
-        slug: "homme",
-        label: "Homme"
+        label: 'Homme',
+        slug: 'homme'
       },
       {
-        slug: "femme",
-        label: "Femme"
+        label: 'Femme',
+        slug: 'femme'
       }
     ]
   },
   {
-    slug: "electromenagers",
-    name: "Éléctroménagers",
+    name: 'Éléctroménagers',
+    slug: 'electromenagers',
     tags: [
       {
-        slug: "aspirateur",
-        label: "Asppirateur"
+        label: 'Asppirateur',
+        slug: 'aspirateur'
       },
       {
-        slug: "cuisine",
-        label: "Cuisine"
+        label: 'Cuisine',
+        slug: 'cuisine'
       },
       {
-        slug: "menage",
-        label: "Ménage"
+        label: 'Ménage',
+        slug: 'menage'
       },
       {
-        slug: "frigo",
-        label: "Frigo"
+        label: 'Frigo',
+        slug: 'frigo'
       }
     ]
   },
   {
-    slug: "bricolage",
-    name: "Bricolage",
+    name: 'Bricolage',
+    slug: 'bricolage',
     tags: [
       {
-        slug: "tournevis",
-        label: "Tournevis"
+        label: 'Tournevis',
+        slug: 'tournevis'
       },
       {
-        slug: "cle",
-        label: "Clé"
+        label: 'Clé',
+        slug: 'cle'
       },
       {
-        slug: "construction",
-        label: "Construction"
+        label: 'Construction',
+        slug: 'construction'
       },
       {
-        slug: "plomberie",
-        label: "Plomberie"
+        label: 'Plomberie',
+        slug: 'plomberie'
       }
     ]
   },
   {
-    slug: "meubles-&-deco",
-    name: "Meubles & Déco",
+    name: 'Meubles & Déco',
+    slug: 'meubles-&-deco',
     tags: [
       {
-        slug: "salon",
-        label: "Salon"
+        label: 'Salon',
+        slug: 'salon'
       },
       {
-        slug: "chambre",
-        label: "Chambre"
+        label: 'Chambre',
+        slug: 'chambre'
       },
       {
-        slug: "vase",
-        label: "Vase"
+        label: 'Vase',
+        slug: 'vase'
       },
       {
-        slug: "lumière",
-        label: "Lumière"
+        label: 'Lumière',
+        slug: 'lumière'
       }
     ]
   }

@@ -14,7 +14,7 @@ export default function Filter({ category }: FilterProps) {
     <div
       className={`
     flex flex-col gap-6 basis-72 grow-0 shrink-0 max-w-xs
-    p-4 rounded-md h-fit border border-light-bg-lower bg-primary/[.03] dark:border-none sticky top-32
+    p-4 rounded-md h-fit border border-border sticky top-32
     `}
     >
       <p className="text-2xl font-semibold">Filtrer</p>

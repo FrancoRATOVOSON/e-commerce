@@ -25,7 +25,7 @@ export default async function BigCard({
         >
           Fermer
         </Button>
-        <Button className="w-full" variant="primary">
+        <Button className="w-full" variant="action">
           Ajouter au panier
         </Button>
       </div>

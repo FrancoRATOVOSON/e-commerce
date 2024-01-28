@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react'
 
 import { AppLogo, Link } from '@/components'
 import { getUserState } from '@/lib'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { ThemeProvider } from 'next-themes'
-import { Button, Search } from 'ui'
+import { Search } from 'ui'
 import { ShoppingCartIcon } from 'ui/icons'
 import { cn } from 'ui/utils'
 
@@ -15,7 +15,6 @@ import UserIconButton from './userIconButton'
 
 export default function Header() {
   const pathName = usePathname()
-  const router = useRouter()
   const [isConnected, setIsConnected] = useState(false)
 
   const MiddleElement = () => {
@@ -47,17 +46,17 @@ export default function Header() {
           <AppLogo />
         </div>
         <MiddleElement />
-        <div className={`flex flex-row justify-end gap-6 items-center`}>
+        <div className={`flex flex-row justify-end space-x-3 items-center`}>
           {!isConnected ? (
-            <Button onClick={() => router.push('/login')} variant="primary">
+            <Link href={'/login'} variant={'button'}>
               Se connecter
-            </Button>
+            </Link>
           ) : (
             <UserIconButton onLogOut={() => setIsConnected(false)} />
           )}
           <ToggleTheme />
           {pathName !== '/cart' && (
-            <Link contentType="icon" href="/cart">
+            <Link href="/cart" variant="icon">
               <ShoppingCartIcon />
             </Link>
           )}
