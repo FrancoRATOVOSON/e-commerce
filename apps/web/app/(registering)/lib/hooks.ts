@@ -6,8 +6,10 @@ import {
   useForm
 } from 'react-hook-form'
 
-import { login, signup } from '@/lib'
+import { ServerActionReturnType, login, signup } from '@/lib'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { toast } from 'ui/utils'
 import { userLoginSchema, userSignupSchema } from 'utils'
 import { LoginFormData, SignupFormData } from 'utils/types'
 
@@ -18,7 +20,7 @@ interface UseRegisterHooksParams<T extends FieldValues> {
 
 interface UseRegisterParams<T extends FieldValues>
   extends UseRegisterHooksParams<T> {
-  action: (data: T) => void
+  action: (data: T) => Promise<ServerActionReturnType>
   resolver: Resolver<T, any>
 }
 
@@ -33,10 +35,34 @@ function useRegister<T extends FieldValues>({
     handleSubmit,
     register
   } = useForm<T>({ defaultValues, mode: 'onChange', resolver })
+  const router = useRouter()
 
   return {
     errors,
-    handleSubmit: handleSubmit(action, e => onError && onError(e)),
+    handleSubmit: handleSubmit(
+      async data => {
+        const toastId = toast.loading('Registering...')
+        const result = await action(data)
+
+        if (result.state === 'success') {
+          toast.success('Connecté', {
+            description: 'Vous êtes maintenant connecté.',
+            id: toastId
+          })
+          router.push('/')
+        } else
+          toast.error('Erreur', { description: result.message, id: toastId })
+      },
+      e => {
+        if (e.root || e['']) {
+          const message = e.root?.message || e['']?.message
+          toast.error('Pas si vite!', {
+            description: message?.toString()
+          })
+        }
+        onError && onError(e)
+      }
+    ),
     isSubmitting,
     register
   }

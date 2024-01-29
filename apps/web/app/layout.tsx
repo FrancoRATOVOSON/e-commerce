@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Themer } from './components'
+import { Themer, Toaster } from './components'
 
 import 'style-config/style.css'
 
@@ -12,8 +12,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <Themer />
-        {children}
+        <Themer>
+          <Toaster />
+          {children}
+        </Themer>
       </body>
     </html>
   )

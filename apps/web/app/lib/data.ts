@@ -1,19 +1,20 @@
 'use server'
 
 import {
-  getProductList as getProducts,
-  getProductDetails as getDetails,
+  getTags as getCategoryTags,
   getCategories as getCats,
-  getTags as getCategoryTags
+  getProductDetails as getDetails,
+  getProductList as getProducts
 } from 'database'
 import { GetProductListParams, ProductCardInfos } from 'utils/types'
 
+export const getProductList = (params?: GetProductListParams) =>
+  getProducts(params)
 
-
-export const getProductList = (params?:GetProductListParams) => getProducts(params)
-
-export const getProductDetails = (product:ProductCardInfos) => getDetails(product)
+export const getProductDetails = (product: ProductCardInfos) =>
+  getDetails(product)
 
 export const getCategories = () => getCats()
 
-export const getTags = (category?:string|string[]) => getCategoryTags(category)
+export const getTags = (category?: string | string[]) =>
+  getCategoryTags(category)

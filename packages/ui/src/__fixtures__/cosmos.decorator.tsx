@@ -1,37 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { MoonIcon, SunIcon } from '../Icons'
+import { ThemeProvider, useTheme } from '../utils'
 
 import 'style-config/style.css'
 
-export default ({ children }: { children: React.ReactNode }) => {
-  const [dark, toggleDark] = useState<boolean>(
-    document.documentElement.classList.contains('dark')
-  )
+const ThemeButton = () => {
+  const { setTheme, theme } = useTheme()
 
   const toggleTheme = () => {
-    if (!dark) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.remove('dark')
-    toggleDark(!dark)
+    console.log(theme)
+    if (!theme || theme !== 'dark') setTheme('dark')
+    else setTheme('light')
   }
-
   return (
+    <button
+      className="flex items-center justify-center w-10 h-10"
+      onClick={() => toggleTheme()}
+    >
+      {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+    </button>
+  )
+}
+
+export default ({ children }: { children: React.ReactNode }) => (
+  <ThemeProvider attribute="class">
     <div
       className={`
     flex flex-col w-screen h-screen gap-8
     `}
     >
       <div>
-        <button
-          className="flex items-center justify-center w-10 h-10"
-          onClick={() => toggleTheme()}
-        >
-          {dark ? <MoonIcon /> : <SunIcon />}
-        </button>
+        <ThemeButton />
       </div>
       <div className="flex items-center justify-center w-full h-full">
         {children}
       </div>
     </div>
-  )
-}
+  </ThemeProvider>
+)

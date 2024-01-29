@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 import { AppLogo, Link } from '@/components'
 import { getUserState } from '@/lib'
-import { usePathname } from 'next/navigation'
-import { ThemeProvider } from 'next-themes'
+import { usePathname, useRouter } from 'next/navigation'
 import { Search } from 'ui'
 import { ShoppingCartIcon } from 'ui/icons'
 import { cn } from 'ui/utils'
@@ -16,6 +15,7 @@ import UserIconButton from './userIconButton'
 export default function Header() {
   const pathName = usePathname()
   const [isConnected, setIsConnected] = useState(false)
+  const router = useRouter()
 
   const MiddleElement = () => {
     if (pathName === '/')
@@ -29,39 +29,38 @@ export default function Header() {
     const setUserState = async () => {
       const userState = await getUserState()
       setIsConnected(userState)
+      router.refresh()
     }
 
     setUserState()
-  }, [])
+  }, [router])
 
   return (
-    <ThemeProvider attribute="class">
-      <header
-        className={cn([
-          'flex flex-row justify-between items-center py-6 px-6 sticky top-0 z-50 mb-6',
-          'bg-background'
-        ])}
-      >
-        <div>
-          <AppLogo />
-        </div>
-        <MiddleElement />
-        <div className={`flex flex-row justify-end space-x-3 items-center`}>
-          {!isConnected ? (
-            <Link href={'/login'} variant={'button'}>
-              Se connecter
-            </Link>
-          ) : (
-            <UserIconButton onLogOut={() => setIsConnected(false)} />
-          )}
-          <ToggleTheme />
-          {pathName !== '/cart' && (
-            <Link href="/cart" variant="icon">
-              <ShoppingCartIcon />
-            </Link>
-          )}
-        </div>
-      </header>
-    </ThemeProvider>
+    <header
+      className={cn([
+        'flex flex-row justify-between items-center py-6 px-6 sticky top-0 z-50 mb-6',
+        'bg-background'
+      ])}
+    >
+      <div>
+        <AppLogo />
+      </div>
+      <MiddleElement />
+      <div className={`flex flex-row justify-end space-x-3 items-center`}>
+        {!isConnected ? (
+          <Link href={'/login'} variant={'button'}>
+            Se connecter
+          </Link>
+        ) : (
+          <UserIconButton onLogOut={() => setIsConnected(false)} />
+        )}
+        <ToggleTheme />
+        {pathName !== '/cart' && (
+          <Link href="/cart" variant="icon">
+            <ShoppingCartIcon />
+          </Link>
+        )}
+      </div>
+    </header>
   )
 }

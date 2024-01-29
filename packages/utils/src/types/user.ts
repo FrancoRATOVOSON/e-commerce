@@ -15,4 +15,5 @@ export interface ShopperCredentials {
 export interface LogedShopper {
   id: number
   login: string
+  password: string
 }
