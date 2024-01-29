@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 
 import { logOut } from '@/lib'
+import { useUserConnectionState } from '@/stores'
+import { useRouter } from 'next/navigation'
 import { Button } from 'ui'
 import { UserIcon } from 'ui/icons'
 
@@ -16,6 +18,8 @@ export default function UserIconButton({
   ...props
 }: UserIconButtonProps) {
   const [clicked, setClicked] = useState<boolean>(false)
+  const router = useRouter()
+  const { logout: setLogOut } = useUserConnectionState()
 
   return (
     <div
@@ -42,6 +46,8 @@ export default function UserIconButton({
           className="w-fit"
           onClick={async () => {
             await logOut()
+            setLogOut()
+            router.refresh()
             onLogOut && onLogOut()
           }}
           variant="secondary"

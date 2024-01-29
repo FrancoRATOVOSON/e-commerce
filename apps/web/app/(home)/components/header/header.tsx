@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { AppLogo, Link } from '@/components'
-import { getUserState } from '@/lib'
-import { usePathname, useRouter } from 'next/navigation'
+import { useIsUserConnected } from '@/stores'
+import { usePathname } from 'next/navigation'
 import { Search } from 'ui'
 import { ShoppingCartIcon } from 'ui/icons'
 import { cn } from 'ui/utils'
@@ -14,8 +14,7 @@ import UserIconButton from './userIconButton'
 
 export default function Header() {
   const pathName = usePathname()
-  const [isConnected, setIsConnected] = useState(false)
-  const router = useRouter()
+  const isConnected = useIsUserConnected()
 
   const MiddleElement = () => {
     if (pathName === '/')
@@ -24,16 +23,6 @@ export default function Header() {
       return <h1 className="text-2xl font-medium">Votre panier</h1>
     return null
   }
-
-  useEffect(() => {
-    const setUserState = async () => {
-      const userState = await getUserState()
-      setIsConnected(userState)
-      router.refresh()
-    }
-
-    setUserState()
-  }, [router])
 
   return (
     <header
@@ -52,7 +41,7 @@ export default function Header() {
             Se connecter
           </Link>
         ) : (
-          <UserIconButton onLogOut={() => setIsConnected(false)} />
+          <UserIconButton />
         )}
         <ToggleTheme />
         {pathName !== '/cart' && (

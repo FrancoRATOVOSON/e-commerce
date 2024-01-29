@@ -7,6 +7,7 @@ import {
 } from 'react-hook-form'
 
 import { ServerActionReturnType, login, signup } from '@/lib'
+import { useUserConnectionState } from '@/stores'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { toast } from 'ui/utils'
@@ -36,6 +37,7 @@ function useRegister<T extends FieldValues>({
     register
   } = useForm<T>({ defaultValues, mode: 'onChange', resolver })
   const router = useRouter()
+  const { login: setLogIn } = useUserConnectionState()
 
   return {
     errors,
@@ -49,6 +51,7 @@ function useRegister<T extends FieldValues>({
             description: 'Vous êtes maintenant connecté.',
             id: toastId
           })
+          setLogIn()
           router.push('/')
         } else
           toast.error('Erreur', { description: result.message, id: toastId })
