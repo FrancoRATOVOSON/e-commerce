@@ -1,3 +1,4 @@
+export { alertStyle, default as Alert } from './Alert'
 export { default as AppLogo } from './AppLogo'
 export { BigCardSkeleton, default as BigCard } from './BigCard'
 export { buttonVariants, default as Button } from './Button'

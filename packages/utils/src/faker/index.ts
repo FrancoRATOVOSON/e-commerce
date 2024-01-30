@@ -7,6 +7,10 @@ export * from './datas'
 
 export { generateRandom }
 
+export function getRandomDescription() {
+  return faker.lorem.paragraph(2)
+}
+
 export function getProductCardInfos(): ProductCardInfos {
   const productName = faker.commerce.productName()
   const productImage = faker.image.urlLoremFlickr({

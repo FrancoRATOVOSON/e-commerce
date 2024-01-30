@@ -95,7 +95,7 @@ function DialogConainer({
     <div
       className={cn(
         'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-        'w-fit h-fit flex justify-center items-center p-8',
+        'w-fit h-fit flex justify-center items-center p-3',
         'border border-border rounded-md bg-background z-50 shadow-xl',
         className
       )}

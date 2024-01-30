@@ -29,7 +29,8 @@ export const buttonVariants = cva(
     variants: {
       size: {
         icon: 'w-9 h-9',
-        normal: 'px-3 h-9'
+        normal: 'px-3 h-9',
+        'small-icon': 'w-6 h-6'
       },
       variant: {
         action: 'hover:bg-sld-base',
