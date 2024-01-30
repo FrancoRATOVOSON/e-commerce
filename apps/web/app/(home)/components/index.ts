@@ -1,4 +1,5 @@
 export * from './cardList'
+export { default as AlertModal } from './alertModal'
 export { default as Filter } from './filter'
 export { default as Global } from './global'
 export { default as Header } from './header'

@@ -2,7 +2,7 @@ import { useCloseDialog, useShowDialog } from 'ui'
 import { ProductCardInfos } from 'utils/types'
 import { create } from 'zustand'
 
-import { productModal } from './contexts'
+import { alertModal, productModal } from './contexts'
 
 interface ProductModalState {
   product: ProductCardInfos
@@ -51,4 +51,16 @@ export function useCloseProductModal() {
   const closeModal = useCloseDialog(productModal)
 
   return closeModal
+}
+
+export function useCloseAlertModal() {
+  const closeModal = useCloseDialog(alertModal)
+
+  return closeModal
+}
+
+export function useOpenAlertModal() {
+  const openModal = useShowDialog(alertModal)
+
+  return openModal
 }

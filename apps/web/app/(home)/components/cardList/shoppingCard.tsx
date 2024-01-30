@@ -2,7 +2,12 @@
 
 import React from 'react'
 
-import { productModal, useProductModalStore } from '@/(home)/lib'
+import {
+  productModal,
+  useOpenAlertModal,
+  useProductModalStore
+} from '@/(home)/lib'
+import { useIsUserConnected } from '@/stores'
 import { InteractiveCard, useShowDialog } from 'ui'
 import { ProductCardInfos } from 'utils/types'
 
@@ -17,6 +22,12 @@ export default function ShoppingCard({
 }: ShoppingCardProps) {
   const openModal = useShowDialog(productModal)
   const setOpenModal = useProductModalStore(state => state.openModal)
+  const openAlertModal = useOpenAlertModal()
+  const isConnected = useIsUserConnected()
+
+  const handleValidation = () => {
+    if (!isConnected) openAlertModal()
+  }
 
   return (
     <InteractiveCard
@@ -26,6 +37,7 @@ export default function ShoppingCard({
         openModal()
         setOpenModal(product)
       }}
+      primaryAction={handleValidation}
       product={product}
     />
   )

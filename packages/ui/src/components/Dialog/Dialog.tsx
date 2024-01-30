@@ -80,7 +80,7 @@ function DialogOverlay() {
   return (
     <div
       className={cn(
-        'fixed top-0 left-0 w-screen h-screen bg-primary opacity-5 transition-opacity z-40'
+        'fixed top-0 left-0 w-screen h-screen bg-primary opacity-30 transition-opacity z-40'
       )}
     />
   )
