@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <header
       className={cn([
-        'flex flex-row justify-between items-center py-6 px-6 sticky top-0 z-50 mb-6',
+        'flex flex-row justify-between items-center py-6 px-6 sticky top-0 z-10 mb-6',
         'bg-background'
       ])}
     >

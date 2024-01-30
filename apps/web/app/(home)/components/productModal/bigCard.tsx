@@ -5,12 +5,12 @@ import { Button, BigCard as Card } from 'ui'
 import { ProductCardInfos, ProductPageInfos } from 'utils/types'
 
 interface ProductModalProps {
-  modalRef: React.RefObject<HTMLDialogElement>
+  onCloseAction: () => void
   product: ProductCardInfos
 }
 
 export default async function BigCard({
-  modalRef,
+  onCloseAction,
   product
 }: ProductModalProps) {
   const detailedProduct: ProductPageInfos = await getProductDetails(product)
@@ -20,7 +20,7 @@ export default async function BigCard({
       <div className="flex flex-row items-end justify-between w-full h-full gap-4">
         <Button
           className="w-full"
-          onClick={() => modalRef.current?.close()}
+          onClick={() => onCloseAction()}
           variant="secondary"
         >
           Fermer

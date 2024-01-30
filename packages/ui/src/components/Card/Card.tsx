@@ -35,7 +35,7 @@ const Card = memo(
           />
           <div
             className={cn(
-              'absolute w-full h-full z-50 top-0 right-0 bottom-0 left-0 transition',
+              'absolute w-full h-full top-0 right-0 bottom-0 left-0 transition',
               'group-hover/icard:bg-opacity-100 group-hover/icard:bg-white-10'
             )}
           />

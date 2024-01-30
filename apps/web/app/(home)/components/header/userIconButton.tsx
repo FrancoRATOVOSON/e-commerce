@@ -35,7 +35,7 @@ export default function UserIconButton({
       </Button>
       <div
         className={`
-      absolute z-10 top-12 w-48 h-24
+      absolute top-12 w-48 h-24
       items-center justify-center p-3
       bg-light-bg-low dark:bg-dark-bg-lower
       shadow-md shadow-black-40 rounded-lg dark:shadow-sm

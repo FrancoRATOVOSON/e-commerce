@@ -1,7 +1,6 @@
-import { ProductModal } from '@/components'
 import { Metadata } from 'next'
 
-import { CardList, Filter } from './components'
+import { CardList, CardListWrapper, Filter } from './components'
 
 export const metadata: Metadata = {
   description: 'Shop better',
@@ -21,10 +20,11 @@ export default function Web({
   const { category, tag } = searchParams
 
   return (
-    <div className="z-10 flex flex-row items-stretch justify-between px-6 gap-x-10">
+    <div className="flex flex-row items-stretch justify-between px-6 gap-x-10">
       <Filter category={category} />
-      <CardList category={category} tag={tag} />
-      <ProductModal />
+      <CardListWrapper>
+        <CardList category={category} tag={tag} />
+      </CardListWrapper>
     </div>
   )
 }

@@ -1,5 +1,6 @@
-import CardList from "./cardList"
+import CardList from './cardList'
+import CardListWrapper from './cardListWrapper'
 
-export {default as CardListSkeleton} from './cardListSkeleton'
+export { default as CardListSkeleton } from './cardListSkeleton'
 
-export default CardList
+export { CardList, CardListWrapper }

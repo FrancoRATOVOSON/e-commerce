@@ -1,8 +1,14 @@
 import * as React from 'react'
 
 import { AppLogo } from '@/components'
+import { Metadata } from 'next'
 
 import { Decorator } from './components'
+
+export const metadata: Metadata = {
+  description: 'Login/Signup to YShop e-commerce',
+  title: 'YShop - Registering'
+}
 
 export default function RegisteringLayout({
   children

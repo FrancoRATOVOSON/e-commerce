@@ -8,7 +8,6 @@ export {
   InteractiveCardSkeleton,
   default as InteractiveCard
 } from './InteractiveCard'
-export { default as Modal } from './Modal'
 export { default as Price } from './Price'
 export { default as Search } from './Search'
 export { default as Slider } from './Slider'
@@ -18,3 +17,4 @@ export * from './Form'
 export * from './Badge'
 export * from './Toggle'
 export { default as Toaster } from './Toast'
+export * from './Dialog'
