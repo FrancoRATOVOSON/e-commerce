@@ -9,11 +9,9 @@ import Header from './header'
 
 export default function Global({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <DialogContextProvider context={alertModal}>
       <Header />
-      <DialogContextProvider context={alertModal}>
-        {children}
-      </DialogContextProvider>
-    </>
+      {children}
+    </DialogContextProvider>
   )
 }

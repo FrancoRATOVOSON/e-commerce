@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-import { useTheme } from 'next-themes'
 import { Button } from 'ui'
 import { MoonIcon, SunIcon } from 'ui/icons'
+import { useTheme } from 'ui/utils'
 
 export default function ToggleTheme() {
   const { setTheme, theme } = useTheme()

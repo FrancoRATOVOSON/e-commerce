@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { MoonIcon, SunIcon } from '../Icons'
-import { ThemeProvider, useTheme } from '../utils'
+import { Theme, useTheme } from '../utils'
 
 import 'style-config/style.css'
 
@@ -24,7 +24,7 @@ const ThemeButton = () => {
 }
 
 export default ({ children }: { children: React.ReactNode }) => (
-  <ThemeProvider attribute="class">
+  <Theme>
     <div
       className={`
     flex flex-col w-screen h-screen gap-8
@@ -37,5 +37,5 @@ export default ({ children }: { children: React.ReactNode }) => (
         {children}
       </div>
     </div>
-  </ThemeProvider>
+  </Theme>
 )

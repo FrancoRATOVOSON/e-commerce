@@ -1,6 +1,6 @@
 import { LogedShopper, ShopperCredentials } from 'utils/types'
 
-import prisma from './client'
+import prisma from '../client'
 
 export async function addShopper({
   email,

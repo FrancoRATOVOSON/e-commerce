@@ -1,11 +1,20 @@
 import React from 'react'
-import { CartFooter, CartList } from './components'
+
+import { Metadata } from 'next'
+
+import { CartContent, CartFooter, CartList } from './components'
+
+export const metadata: Metadata = {
+  description: 'Votre panier',
+  title: 'YShop - Panier'
+}
 
 export default function Cart() {
   return (
-    <div className='mb-36'>
-      <CartList/>
-      <CartFooter/>
+    <div className="mb-36">
+      <CartContent />
+      {/* <CartList /> */}
+      {/* <CartFooter /> */}
     </div>
   )
 }

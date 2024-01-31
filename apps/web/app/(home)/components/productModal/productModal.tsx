@@ -8,6 +8,7 @@ import {
   useOpenAlertModal,
   useProductModal
 } from '@/(home)/lib'
+import { addToCart } from '@/lib'
 import { useIsUserConnected } from '@/stores'
 import { BigCardSkeleton, Dialog } from 'ui'
 
@@ -19,11 +20,11 @@ export default function ProductModal() {
   const openAlertModal = useOpenAlertModal()
   const isConnected = useIsUserConnected()
 
-  const handleValidation = () => {
+  const handleValidation = (id: string) => {
     if (!isConnected) {
       closeProductModal()
       openAlertModal()
-    }
+    } else addToCart(id)
   }
 
   return (

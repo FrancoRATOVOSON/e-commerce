@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { getProductList } from '@/lib'
+import { getUserCart } from '@/lib'
 import { cn } from 'ui/utils'
-import { generateRandom } from 'utils/faker'
 
 import CartElement from './cartElement'
 
@@ -10,10 +9,33 @@ interface CartElementListProps {
   className?: string
 }
 
+function ErrorState({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="w-full h-full flex flex-col justify-center items-center">
+      {children}
+    </div>
+  )
+}
+
 export default async function CartElementList({
   className = ''
 }: CartElementListProps) {
-  const productList = await getProductList()
+  const result = await getUserCart()
+
+  if (result.state === 'error')
+    return (
+      <ErrorState>
+        <p className="text-destructive-foreground">{result.message}</p>
+      </ErrorState>
+    )
+
+  const products = result.payload
+  if (!products || products.length === 0)
+    return (
+      <ErrorState>
+        <p className="text-muted-foreground">Votre panier est encore vide</p>
+      </ErrorState>
+    )
 
   return (
     <div
@@ -22,7 +44,9 @@ export default async function CartElementList({
         className
       )}
     >
-      {productList.map(() => null)}
+      {products.map(product => (
+        <CartElement key={product.productId} product={product} quantity={1} />
+      ))}
     </div>
   )
 }

@@ -2,10 +2,11 @@
 
 import React from 'react'
 
+import { useOpenAlertModal } from '@/(home)/lib'
 import { AppLogo, Link } from '@/components'
 import { useIsUserConnected } from '@/stores'
-import { usePathname } from 'next/navigation'
-import { Search } from 'ui'
+import { usePathname, useRouter } from 'next/navigation'
+import { Button, Search } from 'ui'
 import { ShoppingCartIcon } from 'ui/icons'
 import { cn } from 'ui/utils'
 
@@ -15,6 +16,8 @@ import UserIconButton from './userIconButton'
 export default function Header() {
   const pathName = usePathname()
   const isConnected = useIsUserConnected()
+  const router = useRouter()
+  const openAlertModal = useOpenAlertModal()
 
   const MiddleElement = () => {
     if (pathName === '/')
@@ -45,9 +48,17 @@ export default function Header() {
         )}
         <ToggleTheme />
         {pathName !== '/cart' && (
-          <Link href="/cart" variant="icon">
+          <Button
+            onClick={() => {
+              console.log(isConnected)
+              if (!isConnected) openAlertModal()
+              else router.push('/cart')
+            }}
+            size={'icon'}
+            variant="ghost"
+          >
             <ShoppingCartIcon />
-          </Link>
+          </Button>
         )}
       </div>
     </header>

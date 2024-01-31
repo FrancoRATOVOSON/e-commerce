@@ -1,3 +1,5 @@
+'use client'
+
 import { Toaster as Sonner, ToasterProps } from '../../shadcn/sonner'
 
 export default function Toaster({
