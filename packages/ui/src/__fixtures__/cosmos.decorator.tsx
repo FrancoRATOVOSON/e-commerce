@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { MoonIcon, SunIcon } from '../Icons'
-import { Theme, useTheme } from '../utils'
+import { ThemeProvider as Theme, useTheme } from '../components'
 
 import 'style-config/style.css'
 

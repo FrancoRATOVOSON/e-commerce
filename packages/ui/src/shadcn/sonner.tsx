@@ -2,7 +2,8 @@ import * as React from 'react'
 
 import { Toaster as Sonner } from 'sonner'
 
-import { cn, useTheme } from '../utils'
+import { useTheme } from '../components'
+import { cn } from '../utils'
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 

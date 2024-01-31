@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-import { Theme } from 'ui/utils'
+import { ThemeProvider } from 'ui'
 
 export default function Themer({ children }: { children: React.ReactNode }) {
-  return <Theme>{children}</Theme>
+  return <ThemeProvider>{children}</ThemeProvider>
   // return <>{children}</>
 }

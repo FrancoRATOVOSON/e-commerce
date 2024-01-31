@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Metadata } from 'next'
 
-import { CartContent, CartFooter, CartList } from './components'
+import { CartFooter, CartList } from './components'
 
 export const metadata: Metadata = {
   description: 'Votre panier',
@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 export default function Cart() {
   return (
     <div className="mb-36">
-      <CartContent />
-      {/* <CartList /> */}
-      {/* <CartFooter /> */}
+      <CartList />
+      <CartFooter />
     </div>
   )
 }
