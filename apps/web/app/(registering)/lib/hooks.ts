@@ -6,13 +6,17 @@ import {
   useForm
 } from 'react-hook-form'
 
-import { ServerActionReturnType, login, signup } from '@/lib'
+import { handleServerAction, login, signup } from '@/lib'
 import { useUserConnectionState } from '@/stores'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { toast } from 'ui/utils'
 import { userLoginSchema, userSignupSchema } from 'utils'
-import { LoginFormData, SignupFormData } from 'utils/types'
+import {
+  LoginFormData,
+  ServerActionReturnType,
+  SignupFormData
+} from 'utils/types'
 
 interface UseRegisterHooksParams<T extends FieldValues> {
   defaultValues?: DefaultValues<T>
@@ -42,20 +46,18 @@ function useRegister<T extends FieldValues>({
   return {
     errors,
     handleSubmit: handleSubmit(
-      async data => {
-        const toastId = toast.loading('Registering...')
-        const result = await action(data)
-
-        if (result.state === 'success') {
-          toast.success('Connecté', {
-            description: 'Vous êtes maintenant connecté.',
-            id: toastId
-          })
-          setLogIn()
-          router.push('/')
-        } else
-          toast.error('Erreur', { description: result.message, id: toastId })
-      },
+      data =>
+        handleServerAction({
+          onSuccess: () => {
+            setLogIn()
+            router.push('/')
+          },
+          serverAction: () => action(data),
+          success: {
+            message: `Vous êtes maintenant connecté.`,
+            title: 'Connecté'
+          }
+        }),
       e => {
         if (e.root || e['']) {
           const message = e.root?.message || e['']?.message

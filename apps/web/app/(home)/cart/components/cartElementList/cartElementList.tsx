@@ -44,8 +44,12 @@ export default async function CartElementList({
         className
       )}
     >
-      {products.map(product => (
-        <CartElement key={product.productId} product={product} quantity={1} />
+      {products.map(({ quantity, ...product }) => (
+        <CartElement
+          key={product.productId}
+          product={product}
+          quantity={quantity || 1}
+        />
       ))}
     </div>
   )

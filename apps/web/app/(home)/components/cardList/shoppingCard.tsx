@@ -7,7 +7,7 @@ import {
   useOpenAlertModal,
   useProductModalStore
 } from '@/(home)/lib'
-import { addToCart } from '@/lib'
+import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
 import { InteractiveCard, useShowDialog } from 'ui'
 import { ProductCardInfos } from 'utils/types'
@@ -26,9 +26,16 @@ export default function ShoppingCard({
   const openAlertModal = useOpenAlertModal()
   const isConnected = useIsUserConnected()
 
-  const handleValidation = (id: string) => {
+  const handleValidation = async (id: string) => {
     if (!isConnected) openAlertModal()
-    else addToCart(id)
+    else
+      handleServerAction({
+        serverAction: () => addToCart(id),
+        success: {
+          message: `Vous avez ajouté ${product.name} à votre panier`,
+          title: 'Ajouté'
+        }
+      })
   }
 
   return (

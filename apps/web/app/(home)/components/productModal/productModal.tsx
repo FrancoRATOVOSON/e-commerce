@@ -8,7 +8,7 @@ import {
   useOpenAlertModal,
   useProductModal
 } from '@/(home)/lib'
-import { addToCart } from '@/lib'
+import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
 import { BigCardSkeleton, Dialog } from 'ui'
 
@@ -20,11 +20,18 @@ export default function ProductModal() {
   const openAlertModal = useOpenAlertModal()
   const isConnected = useIsUserConnected()
 
-  const handleValidation = (id: string) => {
+  const handleValidation = async (id: string) => {
     if (!isConnected) {
       closeProductModal()
       openAlertModal()
-    } else addToCart(id)
+    } else
+      handleServerAction({
+        serverAction: () => addToCart(id),
+        success: {
+          message: `Vous avez ajouté ${product.name} à votre panier`,
+          title: 'Ajouté'
+        }
+      })
   }
 
   return (

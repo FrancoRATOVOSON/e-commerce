@@ -8,11 +8,12 @@ export interface PriceDetails {
   value: number
 }
 
-export interface ProductCardInfos {
+export type ProductCardInfos = {
   image: ImageDetails | string
   name: string
   price: PriceDetails
   productId: string
+  quantity?: null | number
 }
 
 export interface ProductPageInfos extends ProductCardInfos {

@@ -15615,6 +15615,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-debounce@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "use-debounce@npm:10.0.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: b0fd28112aa3d7b5333f64e845aa1a4b5223bae7f0800fcb496d4796816bc9490bc3bb050c8c104d32262f7cffa06c6145455cc6054add4fdd8dccf2be52f0c9
+  languageName: node
+  linkType: hard
+
 "use-resize-observer@npm:^9.1.0":
   version: 9.1.0
   resolution: "use-resize-observer@npm:9.1.0"
@@ -15868,6 +15877,7 @@ __metadata:
     tsconfig: "workspace:*"
     typescript: "npm:^5.3.2"
     ui: "workspace:*"
+    use-debounce: "npm:^10.0.0"
     utils: "workspace:*"
     zustand: "npm:^4.5.0"
   languageName: unknown

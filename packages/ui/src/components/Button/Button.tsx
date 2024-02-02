@@ -35,7 +35,7 @@ export const buttonVariants = cva(
       variant: {
         action: 'hover:bg-sld-base',
         destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+          'bg-destructive text-destructive-foreground hover:bg-destructive/80',
         ghost: '',
         primary: 'hover:bg-primary/90',
         secondary:

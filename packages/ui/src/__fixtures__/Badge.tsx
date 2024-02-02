@@ -13,6 +13,7 @@ export default {
   'Default Normal': <Badge label="badge" />,
   'Default Small': <Badge label="badge" size="sm" />,
   Destructive: <Badge label="badge" variant={'destructive'} />,
+  Info: <Badge label="99" size={'xs'} variant={'default'} />,
   'List Empty': <BadgeListContainer labels={[]} />,
   'List Full': <BadgeListContainer labels={getTagsList()} />,
   Outline: <Badge label="badge" variant={'outline'} />,

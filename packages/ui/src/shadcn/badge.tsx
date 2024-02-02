@@ -5,8 +5,14 @@ import { type VariantProps, cva } from 'class-variance-authority'
 import { cn } from '../utils'
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-md border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  'inline-flex items-center border  font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
   {
+    compoundVariants: [
+      {
+        className: 'rounded-md px-2.5 py-0.5',
+        size: ['normal', 'large', 'sm']
+      }
+    ],
     defaultVariants: {
       size: 'normal',
       variant: 'default'
@@ -15,7 +21,8 @@ const badgeVariants = cva(
       size: {
         large: 'text-base',
         normal: 'text-sm',
-        sm: 'text-xs'
+        sm: 'text-xs',
+        xs: 'text-xs px-1 py-0 rounded-xl'
       },
       variant: {
         default:

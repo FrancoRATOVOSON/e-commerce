@@ -50,7 +50,6 @@ export default function Header() {
         {pathName !== '/cart' && (
           <Button
             onClick={() => {
-              console.log(isConnected)
               if (!isConnected) openAlertModal()
               else router.push('/cart')
             }}

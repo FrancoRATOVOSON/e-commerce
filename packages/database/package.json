@@ -1,7 +1,8 @@
 {
   "name": "database",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./types": "./src/types/index.ts"
   },
   "version": "0.0.0",
   "scripts": {

@@ -17,8 +17,8 @@ export interface CartElementProps {
 
 export default function CartElement({
   className = '',
-  onQuantityChange = () => {},
-  onRemove = () => {},
+  onQuantityChange,
+  onRemove,
   product,
   quantity: qtt
 }: CartElementProps) {

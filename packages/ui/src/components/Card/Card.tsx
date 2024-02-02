@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 
 import { ImageDetails, ProductCardInfos } from 'utils/types'
 
@@ -11,7 +11,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: TagChipSizeType
 }
 
-const Card = memo(
+const Card = React.memo(
   ({ className = '', product, size = 'Normal', ...props }: CardProps) => {
     const { image: img, name, price } = product
     const image: ImageDetails =
@@ -46,7 +46,9 @@ const Card = memo(
             size === 'Normal' && 'pt-2 w-full'
           )}
         >
-          <p className={`font-medium`}>{name}</p>
+          <div>
+            <p className={`font-medium`}>{name}</p>
+          </div>
           <p className={`font-light`}>
             <Price currency={price.currency} value={price.value} />
           </p>

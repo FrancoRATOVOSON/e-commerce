@@ -4,9 +4,12 @@ import React from 'react'
 
 import { Link } from '@/components'
 import { Button, Price } from 'ui'
-import { getRandomPrice } from 'utils/faker'
+
+import { useCartQuantityMap } from '../../lib'
 
 export default function CartFooter() {
+  const getCartQuantityMap = useCartQuantityMap()
+
   return (
     <footer
       className={`
@@ -19,7 +22,12 @@ export default function CartFooter() {
         <div className="flex flex-row items-center justify-between w-full">
           <p>Votre total:</p>
           <p>
-            <Price value={getRandomPrice()} />
+            <Price
+              value={Object.values(getCartQuantityMap).reduce(
+                (prev, qty) => prev + qty,
+                0
+              )}
+            />
           </p>
         </div>
         <div className="flex flex-col w-full gap-2 px-10 text-center">
