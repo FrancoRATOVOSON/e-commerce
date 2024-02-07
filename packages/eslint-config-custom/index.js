@@ -1,28 +1,97 @@
 module.exports = {
-  extends: ["airbnb-base", "turbo", "prettier"],
-  parser: "@typescript-eslint/parser",
-  plugins: [
-        "@typescript-eslint",
-        "prettier"
-    ],
+  extends: [
+    'airbnb-base',
+    'turbo',
+    'plugin:perfectionist/recommended-natural',
+    'prettier'
+  ],
+  overrides: [
+    {
+      files: ['**/index.ts'],
+      rules: {
+        'import/prefer-default-export': 'off'
+      }
+    }
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'perfectionist', 'prettier'],
   rules: {
-    "@next/next/no-html-link-for-pages": "off",
-    "react/jsx-key": "off",
-    "@typescript-eslint/no-unused-vars": ["warn",{ "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
-    "import/no-unresolved": "off",
-    "import/extensions": ["error", {
-      "js": "never",
-      "ts": "never",
-      "jsx": "never",
-      "tsx": "never",
-    }],
-    "import/no-extraneous-dependencies": [
-      "error",
+    '@next/next/no-html-link-for-pages': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+    ],
+    'import/extensions': [
+      'error',
       {
-        "peerDependencies": true,
-        "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/*.config.ts"]
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
       }
     ],
-    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
-  },
-};
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.test.js', '**/*.spec.js', '**/*.config.ts'],
+        peerDependencies: true
+      }
+    ],
+    'import/no-unresolved': 'off',
+    'import/order': 'off',
+    'no-unused-expressions': ['error', { allowShortCircuit: true }],
+    'perfectionist/sort-imports': [
+      'error',
+      {
+        'custom-groups': {
+          type: {
+            react: 'react'
+          },
+          value: {
+            react: ['react', 'react-*']
+          }
+        },
+        groups: [
+          'react',
+          'type',
+          ['builtin', 'external'],
+          'internal-type',
+          'internal',
+          ['parent-type', 'sibling-type', 'index-type'],
+          ['parent', 'sibling', 'index'],
+          'side-effect',
+          'style',
+          'object',
+          'unknown'
+        ],
+        'internal-pattern': [
+          '@/stores/**',
+          '@stores/**',
+          '@/lib/**',
+          '@lib/**',
+          '@/components/**',
+          '@components/**',
+          '@/pages/**'
+        ],
+        'newlines-between': 'always',
+        order: 'asc',
+        type: 'natural'
+      }
+    ],
+    'perfectionist/sort-interfaces': [
+      'error',
+      {
+        'custom-groups': {
+          actions: '**:*(**)*=>**',
+          id: 'id',
+          key: '\\[**\\]:**'
+        },
+        groups: ['key', 'id', 'actions', 'unknown', 'multiline'],
+        order: 'asc',
+        type: 'natural'
+      }
+    ],
+    'prettier/prettier': 'warn',
+    'sort-imports': 'off'
+  }
+}

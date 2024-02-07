@@ -1,31 +1,21 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+
+import { Button, useTheme } from 'ui'
 import { MoonIcon, SunIcon } from 'ui/icons'
-import { IconButton } from '@/components'
 
 export default function ToggleTheme() {
-  const [dark, toggleDark] = useState<boolean>(false)
-
-  useEffect(() => {
-    if(document.documentElement.classList.contains('dark')) toggleDark(true)
-  }, [])
+  const { setTheme, theme } = useTheme()
 
   const toggleTheme = () => {
-    if (!dark)
-      document.documentElement.classList.add('dark')
-    else
-      document.documentElement.classList.remove('dark')
-    toggleDark(!dark)
+    if (!theme || theme !== 'dark') setTheme('dark')
+    else setTheme('light')
   }
 
   return (
-    <IconButton
-    className="flex items-center justify-center w-10 h-10"
-    onClick={() => toggleTheme()}>
-      {
-        dark ? <MoonIcon /> : <SunIcon />
-      }
-    </IconButton>
+    <Button onClick={() => toggleTheme()} size="icon" variant={'ghost'}>
+      {!theme || theme !== 'dark' ? <SunIcon /> : <MoonIcon />}
+    </Button>
   )
 }

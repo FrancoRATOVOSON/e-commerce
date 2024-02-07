@@ -1,20 +1,22 @@
 import * as React from 'react'
-import {Themer} from './components';
+
+import { Global } from './components'
+import { getUserState } from './lib'
 
 import 'style-config/style.css'
 
-export default function RootLayout({
-  children,
+export default async function RootLayout({
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
+  const userState = await getUserState()
 
   return (
     <html lang="fr">
       <body>
-        <Themer/>
-        {children}
+        <Global isUserConnected={userState}>{children}</Global>
       </body>
     </html>
-  );
+  )
 }

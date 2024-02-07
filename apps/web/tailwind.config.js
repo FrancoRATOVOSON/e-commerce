@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-const base = require("style-config")
-const path = require("path")
+const base = require('style-config')
+const path = require('path')
 
 module.exports = {
   content: [

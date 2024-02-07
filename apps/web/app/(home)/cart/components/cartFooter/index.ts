@@ -1,3 +1,3 @@
-import CartFooter from "./cartFooter"
+import CartFooter from './cartFooter'
 
 export default CartFooter

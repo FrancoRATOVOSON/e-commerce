@@ -1,5 +1,5 @@
 module.exports = {
-  'html' : {
+  html: {
     fontSize: '16px'
   }
 }

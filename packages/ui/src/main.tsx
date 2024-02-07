@@ -1,16 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 
-const rootElement = document.getElementById('root')
+export default function App() {
+  return <div></div>
+}
 
-if (rootElement)
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <div>
-        Hello World
-      </div>
-    </React.StrictMode>,
-  )
-else
-  throw new Error("No root element found");
+const container = document.getElementById('app')
+if (!container) throw Error('No root element')
 
+const root = createRoot(container)
+root.render(<App />)

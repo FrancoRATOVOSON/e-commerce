@@ -1,16 +1,18 @@
 import * as React from 'react'
-import { Header } from './components';
+
+import { Metadata } from 'next/types'
+
+import { Global } from './components'
+
+export const metadata: Metadata = {
+  description: 'Shop better',
+  title: 'YShop'
+}
 
 export default function MainLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-
-  return (
-    <>
-      <Header/>
-      {children}
-    </>
-  );
+  return <Global>{children}</Global>
 }

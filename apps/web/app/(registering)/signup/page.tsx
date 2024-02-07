@@ -1,17 +1,42 @@
 'use client'
 
 import React from 'react'
+
 import { Button, FormInput } from 'ui'
+
 import { Form } from '../components'
+import { useSignup } from '../lib'
 
 export default function Signup() {
+  const { errors, handleSubmit, isSubmitting, register } = useSignup()
+
   return (
-    <Form>
-      <FormInput label='Email' type='email' className='w-full'/>
-      <FormInput label='Mot de passe' type='password' name='password' className='w-full'/>
-      <FormInput label='Confirmer le mot de passe' type='password' name='confPassword' className='w-full'/>
-      <div className='flex items-center justify-center w-full mx-4'>
-        <Button type='Primary' buttonType='submit'>{`S'inscrire`}</Button>
+    <Form action={() => handleSubmit()}>
+      <FormInput
+        className="w-full"
+        error={errors.email}
+        label="Email"
+        type="email"
+        {...register('email')}
+      />
+      <FormInput
+        className="w-full"
+        error={errors.password}
+        label="Mot de passe"
+        type="password"
+        {...register('password')}
+      />
+      <FormInput
+        className="w-full"
+        error={errors.confPassword}
+        label="Confirmer le mot de passe"
+        type="password"
+        {...register('confPassword')}
+      />
+      <div className="flex items-center justify-center w-full mx-4">
+        <Button aria-disabled={isSubmitting} type="submit" variant="primary">
+          {`S'inscrire`}
+        </Button>
       </div>
     </Form>
   )

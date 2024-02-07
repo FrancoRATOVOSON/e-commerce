@@ -1,3 +1,3 @@
-import CartElementList from "./cartElementList"
+import CartElementList from './cartElementList'
 
 export default CartElementList

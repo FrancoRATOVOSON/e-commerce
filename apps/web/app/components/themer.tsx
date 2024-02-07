@@ -1,14 +1,10 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 
-export default function Themer() {
-  useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-      document.documentElement.classList.add('dark')
-    else
-      document.documentElement.classList.remove('dark')
-  },[])
+import { ThemeProvider } from 'ui'
 
-  return (<></>)
+export default function Themer({ children }: { children: React.ReactNode }) {
+  return <ThemeProvider>{children}</ThemeProvider>
+  // return <>{children}</>
 }

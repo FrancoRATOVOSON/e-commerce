@@ -1,5 +1,38 @@
 {
   "name": "database",
-  "main": "./src/index.ts",
-  "version": "0.0.0"
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "version": "0.0.0",
+  "scripts": {
+    "db:migrate:dev": "prisma migrate dev",
+    "db:seed": "tsx src/seed/index.ts",
+    "db:push": "prisma db push",
+    "db:doc": "yarn prisma-docs-generator serve",
+    "db:generate": "yarn prisma generate"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.4.0-pre.5",
+    "@prisma/adapter-libsql": "^5.7.0",
+    "@prisma/client": "5.7.0",
+    "dotenv": "^16.3.1",
+    "utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "@types/node": "^20.10.4",
+    "eslint": "^8.55.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.1.1",
+    "prisma": "^5.7.0",
+    "prisma-dbml-generator": "^0.10.0",
+    "prisma-docs-generator": "^0.8.0",
+    "prisma-generator-fake-data": "^0.13.0",
+    "tsconfig": "workspace:*",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
 }

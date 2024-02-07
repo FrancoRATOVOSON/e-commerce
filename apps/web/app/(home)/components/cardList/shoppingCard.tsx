@@ -1,31 +1,53 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { InteractiveCard } from 'ui'
+import React from 'react'
+
+import {
+  productModal,
+  useOpenAlertModal,
+  useProductModalStore
+} from '@/(home)/lib'
+import { addToCart, handleServerAction } from '@/lib'
+import { useIsUserConnected } from '@/stores'
+import { InteractiveCard, useShowDialog } from 'ui'
 import { ProductCardInfos } from 'utils/types'
-import { getProductPageInfosFrom } from 'utils/faker'
-import ProductModal from './productModal'
 
 interface ShoppingCardProps {
-  product: ProductCardInfos
   className?: string
+  product: ProductCardInfos
 }
 
 export default function ShoppingCard({
-  className='',
+  className = '',
   product
-}:ShoppingCardProps) {
-  const modal = useRef<HTMLDialogElement>(null)
+}: ShoppingCardProps) {
+  const openModal = useShowDialog(productModal)
+  const setOpenModal = useProductModalStore(state => state.openModal)
+  const openAlertModal = useOpenAlertModal()
+  const isConnected = useIsUserConnected()
+
+  const handleValidation = async (id: string) => {
+    if (!isConnected) openAlertModal()
+    else
+      handleServerAction({
+        serverAction: () => addToCart(id),
+        success: {
+          message: `Vous avez ajouté ${product.name} à votre panier`,
+          title: 'Ajouté'
+        }
+      })
+  }
 
   return (
-    <>
-      <InteractiveCard
+    <InteractiveCard
+      actionLabel="Ajouter au panier"
       className={className}
-      actionLabel='Ajouter au panier'
+      onClickAction={() => {
+        openModal()
+        setOpenModal(product)
+      }}
+      primaryAction={handleValidation}
       product={product}
-      onClickAction={() => modal.current?.showModal()}
-      />
-      <ProductModal product={getProductPageInfosFrom(product)} modalRef={modal}/>
-    </>
+    />
   )
 }

@@ -1,27 +1,42 @@
+'use client'
+
 import React from 'react'
+
 // eslint-disable-next-line import/no-named-default
-import {default as NextLink, LinkProps as NextLinkProps} from 'next/link'
+import { default as NextLink, LinkProps as NextLinkProps } from 'next/link'
+import { buttonVariants } from 'ui'
+import { VariantProps, cva } from 'ui/utils'
 
-interface LinkProps extends NextLinkProps {
-  children?: React.ReactNode
-  className?: string
-  contentType?: 'text' | 'icon'
-}
+const linkVariants = cva('transition', {
+  defaultVariants: {
+    variant: 'default'
+  },
+  variants: {
+    variant: {
+      button: buttonVariants({ variant: 'primary' }),
+      default:
+        ' text-sld-base hover:underline underline-offset-4 hover:text-dark-sld-hover',
+      icon: buttonVariants({ size: 'icon', variant: 'ghost' }),
+      logo: 'text-inherit h-fit'
+    }
+  }
+})
 
-export default function Link({
-  className='',
-  contentType='text',
-  children,
-  ...props
-}:LinkProps) {
-  return (
+interface LinkProps
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
+    NextLinkProps,
+    VariantProps<typeof linkVariants> {}
+
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+  ({ className, variant, ...props }, ref) => (
     <NextLink
-    className={`${className} 
-    hover:text-dark-sld-hover transition 
-    ${contentType === 'text' ? 'text-sld-base hover:underline underline-offset-4'
-    : 'text-inherit w-fit h-fit'}`}
-    {...props}>
-      {children}
-    </NextLink>
+      className={linkVariants({ className, variant })}
+      ref={ref}
+      {...props}
+    />
   )
-}
+)
+
+Link.displayName = 'Link'
+
+export default Link
