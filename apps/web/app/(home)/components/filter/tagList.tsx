@@ -19,18 +19,6 @@ export default function TagList({ searchKey, tags }: TagListProps) {
   const pathName = usePathname()
   const { replace } = useRouter()
 
-  // const onTagToggle = (tag: TagType | string, state: boolean) => {
-  //   if (typeof tag === 'string') return
-
-  //   if (tagList.has(tag.id) && state) tagList.delete(tag.id)
-  //   else tagList.add(tag.id)
-
-  //   params.delete(searchKey)
-  //   tagList.forEach(_tag => params.append(searchKey, _tag))
-
-  //   replace(`${pathName}?${params.toString()}`)
-  // }
-
   const onValueChange = (values: string[]) => {
     if (searchKey === 'category' && values.length === 0) params.delete('tag')
 
@@ -54,14 +42,6 @@ export default function TagList({ searchKey, tags }: TagListProps) {
         type="multiple"
         variant={'outline'}
       />
-      {/* <TagsList
-        initialState={initialState}
-        onEmptyMessage="No category found"
-        onToggle={onTagToggle}
-        tags={tags}
-        tagsSize="Small"
-        tagsType="Toggle"
-      /> */}
     </div>
   )
 }

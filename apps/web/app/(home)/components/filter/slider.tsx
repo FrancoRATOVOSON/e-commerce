@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react'
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Price, Slider as SliderComponent } from 'ui'
+import { useDebouncedCallback } from 'use-debounce'
 
 interface SliderComponentProps {
   defaultValue: [number, number]
@@ -16,6 +18,7 @@ interface SliderProps {
   Displayer: ({ value }: { value: number }) => React.ReactElement
   className?: string
   onChange?: (values: [number, number]) => void
+  paramsKey: string
   sliderValues: SliderComponentProps
 }
 
@@ -23,9 +26,31 @@ function Slider({
   Displayer,
   className = '',
   onChange,
+  paramsKey,
   sliderValues: { defaultValue, max, min, minStepsBetweenThumbs, step }
 }: SliderProps) {
   const [values, setValues] = useState<[number, number]>(defaultValue)
+
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams)
+
+  const pathName = usePathname()
+  const { replace } = useRouter()
+
+  const onValueChange = useDebouncedCallback((value: [number, number]) => {
+    const minKey = `${paramsKey}_min`
+    const maxKey = `${paramsKey}_max`
+
+    const [minValue, maxValue] = value
+
+    if (minValue === min) params.delete(minKey)
+    else params.set(minKey, minValue.toString())
+
+    if (maxValue === max) params.delete(maxKey)
+    else params.set(maxKey, maxValue.toString())
+
+    replace(`${pathName}?${params.toString()}`)
+  }, 300)
 
   return (
     <div className={`${className} flex flex-col w-full space-y-1`}>
@@ -37,6 +62,7 @@ function Slider({
         onValueChange={value => {
           setValues(value as [number, number])
           onChange && onChange(value as [number, number])
+          onValueChange(value as [number, number])
         }}
         step={step}
         value={values}
@@ -54,8 +80,8 @@ function Slider({
 }
 
 const PRICE_SLIDER_DEFAULT: SliderComponentProps = {
-  defaultValue: [10_000, 3_000_000],
-  max: 3_000_000,
+  defaultValue: [10_000, 1_000_000],
+  max: 1_000_000,
   min: 10_000,
   minStepsBetweenThumbs: 5,
   step: 1_000
@@ -71,6 +97,7 @@ export function PriceSlider({
       Displayer={({ value }) => <Price value={value} />}
       className={className}
       onChange={onChange}
+      paramsKey="price"
       sliderValues={sliderValues}
     />
   )
@@ -94,6 +121,7 @@ export function PercentageSlider({
       Displayer={({ value }) => <>{`${value} %`}</>}
       className={className}
       onChange={onChange}
+      paramsKey="discount"
       sliderValues={sliderValues}
     />
   )

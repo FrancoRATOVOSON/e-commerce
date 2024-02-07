@@ -25,4 +25,12 @@ export interface ProductPageInfos extends ProductCardInfos {
 export interface GetProductListParams {
   category: string | string[]
   tag?: string | string[]
+  discount?: {
+    max?: number
+    min?: number
+  }
+  price?: {
+    max?: number
+    min?: number
+  }
 }

@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers'
+import { stringToInt } from 'utils'
 
 function setCookie(name: string, value: string) {
   return cookies().set({
@@ -25,9 +26,9 @@ export function getUserSessionId(): number | undefined {
   if (!sessionCoockie) return undefined
 
   const idFromSession = sessionCoockie.value.split('|')[0]
-  const userId = Number.parseInt(idFromSession, 10)
+  const userId = stringToInt(idFromSession)
 
-  if (Number.isNaN(userId)) return undefined
+  if (!userId) return undefined
 
   return userId
 }
@@ -37,9 +38,9 @@ export function getUserSessionCartId(): number | undefined {
   if (!cartCookie) return undefined
 
   const userCartId = cartCookie.value
-  const cartId = Number.parseInt(userCartId, 10)
+  const cartId = stringToInt(userCartId)
 
-  return Number.isNaN(cartId) ? undefined : cartId
+  return cartId
 }
 
 export function deleteSession() {

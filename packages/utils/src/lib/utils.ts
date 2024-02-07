@@ -22,3 +22,13 @@ export function getAnArrayOf<T>(
     )
   return list
 }
+
+export function stringToInt(value?: string): number | undefined {
+  if (!value) return undefined
+
+  const parsedValue = Number.parseInt(value, 10)
+
+  if (Number.isNaN(parsedValue)) return undefined
+
+  return parsedValue
+}
