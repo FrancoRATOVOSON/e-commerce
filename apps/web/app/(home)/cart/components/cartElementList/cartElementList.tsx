@@ -1,8 +1,12 @@
-import React from 'react'
+'use client'
+
+import * as React from 'react'
 
 import { getUserCart } from '@/lib'
 import { cn } from 'ui/utils'
+import { ProductCardInfos, ServerActionReturnType } from 'utils/types'
 
+import { useProductList } from '../../lib'
 import CartElement from './cartElement'
 
 interface CartElementListProps {
@@ -17,20 +21,37 @@ function ErrorState({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default async function CartElementList({
+export default function CartElementList({
   className = ''
 }: CartElementListProps) {
-  const result = await getUserCart()
+  const { productList, setProductList } = useProductList()
+  const [result, setResult] = React.useState<
+    ServerActionReturnType<ProductCardInfos[]> | undefined
+  >()
+
+  React.useEffect(() => {
+    getUserCart().then(userCart => setResult(userCart))
+  }, [])
+
+  React.useEffect(() => {
+    if (result?.payload) setProductList(result.payload)
+  }, [result, setProductList])
+
+  if (!result)
+    return (
+      <ErrorState>
+        <p className="text-muted-foreground">Chargement de votre panier</p>
+      </ErrorState>
+    )
 
   if (result.state === 'error')
     return (
       <ErrorState>
-        <p className="text-destructive-foreground">{result.message}</p>
+        <p className="text-destructive">{result.message}</p>
       </ErrorState>
     )
 
-  const products = result.payload
-  if (!products || products.length === 0)
+  if (productList.length === 0)
     return (
       <ErrorState>
         <p className="text-muted-foreground">Votre panier est encore vide</p>
@@ -44,7 +65,7 @@ export default async function CartElementList({
         className
       )}
     >
-      {products.map(({ quantity, ...product }) => (
+      {productList.map(({ quantity, ...product }) => (
         <CartElement
           key={product.productId}
           product={product}

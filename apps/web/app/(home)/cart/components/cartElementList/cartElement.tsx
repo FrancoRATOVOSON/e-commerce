@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { handleServerAction, removeItemFromCart, setProductQty } from '@/lib'
 import { useRouter } from 'next/navigation'
@@ -19,11 +19,6 @@ export default function CartElement({
   const { remove: removeProduct, set: setProductInfos } =
     useProductQuantitySetter()
 
-  useEffect(() => {
-    setProductInfos(product.productId, product.price.value * quantity)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const handleRemove = () =>
     handleServerAction({
       onSuccess: () => {
@@ -41,8 +36,7 @@ export default function CartElement({
     (qty: number) =>
       handleServerAction({
         onSuccess: (newQty?: number) => {
-          if (newQty)
-            setProductInfos(product.productId, product.price.value * newQty)
+          if (newQty) setProductInfos(product.productId, newQty)
         },
         serverAction: () => setProductQty(product.productId, qty),
         success: {

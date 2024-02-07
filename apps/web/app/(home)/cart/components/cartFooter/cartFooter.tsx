@@ -3,12 +3,25 @@
 import React from 'react'
 
 import { Link } from '@/components'
+import { handleServerAction, validateCart } from '@/lib'
 import { Button, Price } from 'ui'
 
-import { useCartQuantityMap } from '../../lib'
+import { useClearProductCart, useProductTotal } from '../../lib'
 
 export default function CartFooter() {
-  const getCartQuantityMap = useCartQuantityMap()
+  const productTotal = useProductTotal()
+  const clearCart = useClearProductCart()
+
+  const handleValidateCart = () =>
+    handleServerAction({
+      onSuccess: () => clearCart(),
+      serverAction: validateCart,
+      success: {
+        message:
+          'Votre panier a été validé, vous recevrez la livraison bientôt.',
+        title: 'Validé'
+      }
+    })
 
   return (
     <footer
@@ -22,16 +35,13 @@ export default function CartFooter() {
         <div className="flex flex-row items-center justify-between w-full">
           <p>Votre total:</p>
           <p>
-            <Price
-              value={Object.values(getCartQuantityMap).reduce(
-                (prev, qty) => prev + qty,
-                0
-              )}
-            />
+            <Price value={productTotal} />
           </p>
         </div>
         <div className="flex flex-col w-full gap-2 px-10 text-center">
-          <Button className="w-full">Valider le panier</Button>
+          <Button className="w-full" onClick={handleValidateCart}>
+            Valider le panier
+          </Button>
           <p>
             Ou <Link href={'/'}>continuer le shopping</Link>
           </p>

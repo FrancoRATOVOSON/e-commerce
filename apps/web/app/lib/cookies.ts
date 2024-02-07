@@ -21,6 +21,10 @@ export function setCartCookie(id: number) {
   return setCookie('cart', `${id}`)
 }
 
+export function removeCartCookie() {
+  return deleteCookie('cart')
+}
+
 export function getUserSessionId(): number | undefined {
   const sessionCoockie = cookies().get('session')
   if (!sessionCoockie) return undefined

@@ -4,6 +4,7 @@ import {
   addItemToCart,
   getUserCartProducts,
   removeItemToCart as removeItem,
+  updateCartState,
   updateProductQty
 } from 'database'
 import { AuthorizationError, ExpiredActionError, UserInputError } from 'utils'
@@ -16,6 +17,7 @@ import {
 import {
   getUserSessionCartId,
   getUserSessionId,
+  removeCartCookie,
   setCartCookie
 } from '../cookies'
 import { SERVER_ERROR, getSuccessResponse } from './results'
@@ -70,7 +72,10 @@ export const getUserCart = async (): Promise<
     const userId = getUserSessionId()
     if (!userId) return USER_NOT_CONNECTED_ERROR
 
-    const products = await getUserCartProducts(userId)
+    const { cart, products } = await getUserCartProducts(userId)
+
+    if (cart) setCartCookie(cart)
+
     return getSuccessResponse(products)
   } catch (error) {
     return SERVER_ERROR
@@ -108,6 +113,23 @@ export const setProductQty = async (
     const { quantity } = await updateProductQty(productId, cartId, newQty)
     return getSuccessResponse(quantity)
   } catch (error) {
+    return SERVER_ERROR
+  }
+}
+
+export const validateCart = async (): Promise<ServerActionReturnType> => {
+  try {
+    const userId = getUserSessionId()
+    if (!userId) return USER_NOT_CONNECTED_ERROR
+
+    const cartId = getUserSessionCartId()
+    if (!cartId) return UNAUTHORIZED_ACTION_ERROR
+
+    await updateCartState(cartId)
+    removeCartCookie()
+    return getSuccessResponse()
+  } catch (error) {
+    if (error instanceof UserInputError) return ORDER_NOT_FOUND_ERROR
     return SERVER_ERROR
   }
 }

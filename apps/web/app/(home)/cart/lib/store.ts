@@ -1,60 +1,55 @@
+import { ProductCardInfos } from 'utils/types'
 import { create } from 'zustand'
 
-type ProductId = string
-
-type ProductList = Set<ProductId>
-
-type ProductQuantityMap = Record<ProductId, number>
-
-type ValidatedProductQuantityMap<S extends ProductList> = Record<
-  S extends Set<infer T> ? T : never,
-  number
->
+type ProductList = Array<ProductCardInfos & { total: number }>
 
 type CartStoreState = {
-  productQuantityMap: ProductQuantityMap
-  productSet: ProductList
+  productList: ProductList
 }
 
 type CartStoreActions = {
+  emptyList: () => void
   removeProduct: (productId: string) => void
-  setProductQuantity: (productId: ProductId, quantity: number) => void
+  setProductList: (list: ProductCardInfos[]) => void
+  setProductQuantity: (productId: string, quantity: number) => void
 }
 
 const useCartStore = create<CartStoreState & CartStoreActions>()(set => ({
-  productQuantityMap: {},
-  productSet: new Set([]),
+  emptyList: () => set(state => ({ ...state, productList: [] })),
+  productList: [],
   removeProduct: (productId: string) => {
-    set(state => {
-      if (!state.productSet.has(productId)) return { ...state }
-
-      const newProductSet = new Set(state.productSet)
-      newProductSet.delete(productId)
-      const { [productId]: _, ...newQuantityMap } = state.productQuantityMap
-
-      return {
-        ...state,
-        productQuantityMap: newQuantityMap,
-        productSet: newProductSet
-      }
-    })
+    set(state => ({
+      ...state,
+      productList: state.productList.filter(
+        product => product.productId !== productId
+      )
+    }))
   },
-  setProductQuantity: (productId: string, quantity: number) => {
-    set(state => {
-      const productSet = new Set(state.productSet)
-      productSet.add(productId)
+  setProductList: list =>
+    set(state => ({
+      ...state,
+      productList: list.map(product => ({
+        ...product,
+        total: product.price.value * (product.quantity || 1)
+      }))
+    })),
+  setProductQuantity: (productId: string, quantity: number) =>
+    set(state => ({
+      ...state,
+      productList: state.productList.map(product => {
+        if (product.productId !== productId) return product
 
-      const productQuantityMap: ValidatedProductQuantityMap<
-        typeof state.productSet
-      > = {
-        ...state.productQuantityMap
-      }
-      productQuantityMap[productId] = quantity
-
-      return { ...state, productQuantityMap, productSet }
-    })
-  }
+        return { ...product, quantity }
+      })
+    }))
 }))
+
+function useProductList() {
+  return useCartStore(store => ({
+    productList: store.productList,
+    setProductList: store.setProductList
+  }))
+}
 
 function useProductQuantitySetter() {
   return useCartStore(store => ({
@@ -63,8 +58,22 @@ function useProductQuantitySetter() {
   }))
 }
 
-function useCartQuantityMap() {
-  return useCartStore(store => store.productQuantityMap)
+function useProductTotal() {
+  const productList = useCartStore(store => store.productList)
+
+  return productList.reduce(
+    (prev, { price: { value }, quantity }) => prev + value * (quantity || 1),
+    0
+  )
 }
 
-export { useCartQuantityMap, useProductQuantitySetter }
+function useClearProductCart() {
+  return useCartStore(store => store.emptyList)
+}
+
+export {
+  useClearProductCart,
+  useProductList,
+  useProductQuantitySetter,
+  useProductTotal
+}

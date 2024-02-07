@@ -93,6 +93,7 @@ export function removeItemToCart(productId: string, orderId?: number) {
 export async function getUserCartProducts(shopperId: number) {
   const userOrders = await prisma.order.findMany({
     select: {
+      id: true,
       products: {
         select: {
           product: true,
@@ -103,10 +104,25 @@ export async function getUserCartProducts(shopperId: number) {
     where: { shopperId, status: OrderStatusType.CART }
   })
 
-  if (userOrders.length === 0) return []
+  if (userOrders.length === 0) return { id: undefined, products: [] }
 
-  return userOrders[0].products.map(({ product, quantity }) => ({
-    quantity,
-    ...productToProductCardInfo(product)
-  }))
+  return {
+    cart: userOrders[0].id,
+    products: userOrders[0].products.map(({ product, quantity }) => ({
+      quantity,
+      ...productToProductCardInfo(product)
+    }))
+  }
+}
+
+export async function updateCartState(
+  cartId?: number,
+  cartState: OrderStatusType = OrderStatusType.VALIDATED
+) {
+  if (!cartId) throw new UserInputError('Order not found')
+
+  return prisma.order.update({
+    data: { status: cartState },
+    where: { id: cartId }
+  })
 }
