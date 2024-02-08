@@ -50,5 +50,6 @@
     "**/.pnp.*": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cargo.automaticCheck": false
 }

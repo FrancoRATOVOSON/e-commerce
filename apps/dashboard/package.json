@@ -1,0 +1,23 @@
+{
+  "name": "dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.5.2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.8",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint-config-custom": "workspace:*",
+    "style-config": "workspace:*",
+    "tsconfig": "workspace:*",
+    "vite": "^5.0.0"
+  }
+}
