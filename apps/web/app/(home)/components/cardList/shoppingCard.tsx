@@ -9,6 +9,7 @@ import {
 } from '@/(home)/lib'
 import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
+import Image from 'next/image'
 import { InteractiveCard, useShowDialog } from 'ui'
 import { ProductCardInfos } from 'utils/types'
 
@@ -21,6 +22,7 @@ export default function ShoppingCard({
   className = '',
   product
 }: ShoppingCardProps) {
+  const { image, name } = product
   const openModal = useShowDialog(productModal)
   const setOpenModal = useProductModalStore(state => state.openModal)
   const openAlertModal = useOpenAlertModal()
@@ -32,7 +34,7 @@ export default function ShoppingCard({
       handleServerAction({
         serverAction: () => addToCart(id),
         success: {
-          message: `Vous avez ajouté ${product.name} à votre panier`,
+          message: `Vous avez ajouté ${name} à votre panier`,
           title: 'Ajouté'
         }
       })
@@ -48,6 +50,13 @@ export default function ShoppingCard({
       }}
       primaryAction={handleValidation}
       product={product}
-    />
+    >
+      <Image
+        alt={typeof image === 'string' ? name : image.alt}
+        height={208}
+        src={typeof image === 'string' ? image : image.src}
+        width={288}
+      />
+    </InteractiveCard>
   )
 }

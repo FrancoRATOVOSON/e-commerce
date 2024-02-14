@@ -7,12 +7,19 @@ import { cn } from '../../utils'
 import Price from '../Price'
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode
   product: ProductCardInfos
   size?: TagChipSizeType
 }
 
 const Card = React.memo(
-  ({ className = '', product, size = 'Normal', ...props }: CardProps) => {
+  ({
+    children,
+    className = '',
+    product,
+    size = 'Normal',
+    ...props
+  }: CardProps) => {
     const { image: img, name, price } = product
     const image: ImageDetails =
       typeof img === 'string' ? { alt: name, src: img } : img
@@ -28,11 +35,13 @@ const Card = React.memo(
         {...props}
       >
         <div className={`rounded-md overflow-clip relative`}>
-          <img
-            alt={image.alt}
-            className={size === 'Normal' ? 'w-full h-52' : 'h-32'}
-            src={image.src}
-          />
+          {children || (
+            <img
+              alt={image.alt}
+              className={size === 'Normal' ? 'w-full h-52' : 'h-32'}
+              src={image.src}
+            />
+          )}
           <div
             className={cn(
               'absolute w-full h-full top-0 right-0 bottom-0 left-0 transition',

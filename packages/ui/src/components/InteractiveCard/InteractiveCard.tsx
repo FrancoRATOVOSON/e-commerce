@@ -6,6 +6,7 @@ import { Button, Card } from '..'
 
 interface InteractiveCardProps extends React.HTMLAttributes<HTMLDivElement> {
   actionLabel: string
+  children?: React.ReactNode
   onClickAction?: (id: string) => void
   primaryAction?: (id: string) => void
   product: ProductCardInfos
@@ -13,6 +14,7 @@ interface InteractiveCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function InteractiveCard({
   actionLabel,
+  children,
   className = '',
   onClickAction,
   primaryAction,
@@ -21,7 +23,7 @@ export default function InteractiveCard({
   return (
     <div className={`${className} flex flex-col gap-2 group/icard`}>
       <button onClick={() => onClickAction && onClickAction(product.productId)}>
-        <Card product={product} />
+        <Card product={product}>{children}</Card>
       </button>
       <div>
         <Button
