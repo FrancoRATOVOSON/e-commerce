@@ -20,6 +20,7 @@
     "eslint-config-custom": "workspace:*",
     "style-config": "workspace:*",
     "tsconfig": "workspace:*",
+    "ui": "workspace:*",
     "vite": "^5.0.0"
   }
 }

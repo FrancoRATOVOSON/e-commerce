@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { buttonVariants } from '../../components'
 import { VariantProps, cn, cva } from '../../utils'
+import { buttonVariants } from '../Button'
 
 const linkVariants = cva('transition', {
   defaultVariants: {
@@ -40,4 +40,4 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 
 Link.displayName = 'Link'
 
-export default Link
+export { Link, type LinkProps, linkVariants }

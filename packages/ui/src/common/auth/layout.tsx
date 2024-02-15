@@ -1,14 +1,20 @@
 import * as React from 'react'
 
-import { AppLogo } from '@/components'
+import AppLogo from '../../components/AppLogo'
 
-import { Decorator } from './components'
-
-export default function RegisteringLayout({
-  children
-}: {
+interface AuthLayoutProps {
   children: React.ReactNode
-}) {
+  logoWrapper?: (props: {
+    [key: string]: any
+    children: React.ReactNode
+  }) => React.JSX.Element
+}
+
+export default function AuthLayout({ children, logoWrapper }: AuthLayoutProps) {
+  const Wrapper =
+    logoWrapper ||
+    (({ children: chld }: { children: React.ReactNode }) => <>{chld}</>)
+
   return (
     <div
       className={`
@@ -17,10 +23,12 @@ export default function RegisteringLayout({
     `}
     >
       <div className="flex items-center justify-center w-full">
-        <AppLogo />
+        <Wrapper>
+          <AppLogo />
+        </Wrapper>
       </div>
       <div className="flex items-center justify-center w-full h-full">
-        <Decorator>{children}</Decorator>
+        {children}
       </div>
     </div>
   )
