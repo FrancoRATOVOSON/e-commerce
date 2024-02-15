@@ -122,7 +122,11 @@ export async function updateCartState(
   if (!cartId) throw new UserInputError('Order not found')
 
   return prisma.order.update({
-    data: { status: cartState },
+    data: {
+      status: cartState,
+      validatedAt:
+        cartState === OrderStatusType.VALIDATED ? new Date() : undefined
+    },
     where: { id: cartId }
   })
 }

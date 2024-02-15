@@ -4,5 +4,7 @@ module.exports = {
   },
   extends: ['custom'],
   root: true,
-  rules: {}
+  rules: {
+    'import/no-extraneous-dependencies': 'off'
+  }
 }

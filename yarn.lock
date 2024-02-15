@@ -2031,6 +2031,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@generouted/react-router@npm:^1.18.2":
+  version: 1.18.2
+  resolution: "@generouted/react-router@npm:1.18.2"
+  dependencies:
+    fast-glob: "npm:^3.3.2"
+    generouted: "npm:^1.18.2"
+  peerDependencies:
+    react: ">=18"
+    react-router-dom: ">=6"
+    vite: ">=4"
+  checksum: 01df0a7c03e9b2536173e6fb8ebc5e27b57f679c1dd7bd8e0803b11e27a2e1cc20ff88fc6a261d3c36c46eea819a6bd124956b1c7b2f4a475a8c76880c10a5fa
+  languageName: node
+  linkType: hard
+
 "@heroicons/react@npm:^2.1.1":
   version: 2.1.1
   resolution: "@heroicons/react@npm:2.1.1"
@@ -3806,6 +3820,13 @@ __metadata:
   dependencies:
     "@babel/runtime": "npm:^7.13.10"
   checksum: e25492cb8a683246161d781f0f3205f79507280a60f50eb763f06e8b6fa211b940b784aa581131ed76695bd5df5d1033a6246b43a6996cf8959a326fe4d3eb00
+  languageName: node
+  linkType: hard
+
+"@remix-run/router@npm:1.15.0":
+  version: 1.15.0
+  resolution: "@remix-run/router@npm:1.15.0"
+  checksum: 5cadae0c90874966ebd6b1b202284a337da32a68fc95af502859cd6158d3c254fbb4f76fa1844c837205dbc8a8120223360b9287a3d6aa0c747d02767c4c072c
   languageName: node
   linkType: hard
 
@@ -7516,10 +7537,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dashboard@workspace:apps/dashboard"
   dependencies:
+    "@generouted/react-router": "npm:^1.18.2"
     "@tauri-apps/api": "npm:^1.5.2"
     "@tauri-apps/cli": "npm:^1.5.8"
     "@vitejs/plugin-react": "npm:^4.2.1"
     eslint-config-custom: "workspace:*"
+    react-router-dom: "npm:^6.22.0"
     style-config: "workspace:*"
     tsconfig: "workspace:*"
     vite: "npm:^5.0.0"
@@ -9456,6 +9479,15 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: 0ddfd3ed1066a55984aaecebf5419fbd9344a5c38dd120ffb0739fac4496758dcf371297440528b115e4367fc46e3abc86a2cc0ff44612181b175ae967a11a05
+  languageName: node
+  linkType: hard
+
+"generouted@npm:^1.18.2":
+  version: 1.18.2
+  resolution: "generouted@npm:1.18.2"
+  peerDependencies:
+    vite: ">=3"
+  checksum: a46b73e4ed4a2ced850bfe013bbee5b25acff0b0a54e6960dc5f90c0a776a8ee6b9eb6a14e73ba32d2dda5f2065d3c6e7e5c45527f4ca1291ac681ecdd51f16d
   languageName: node
   linkType: hard
 
@@ -13412,6 +13444,30 @@ __metadata:
     "@types/react":
       optional: true
   checksum: f0646ac384ce3852d1f41e30a9f9e251b11cf3b430d1d114c937c8fa7f90a895c06378d0d6b6ff0b2d00cbccf15e845921944fd6074ae67a0fb347a718106d88
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:^6.22.0":
+  version: 6.22.0
+  resolution: "react-router-dom@npm:6.22.0"
+  dependencies:
+    "@remix-run/router": "npm:1.15.0"
+    react-router: "npm:6.22.0"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 32ba0386d400354094116fa7dd98f1d23bc7cf683b0f4509694be5f730d4957fcb8cc73e35946576fc3f48b4d36743422f1b9bcdc37ad77f04bde0bde5d9102e
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.22.0":
+  version: 6.22.0
+  resolution: "react-router@npm:6.22.0"
+  dependencies:
+    "@remix-run/router": "npm:1.15.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 627c25533667da0c8008587208e0d5633409173969fd579de706cde355465f6d1245e2b1a7ca2adeb96201f2858932b59ce3402482786cd20c4bf278562976dd
   languageName: node
   linkType: hard
 
