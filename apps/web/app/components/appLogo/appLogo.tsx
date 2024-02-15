@@ -15,7 +15,7 @@ export default function AppLogo({
   return (
     <Link href={'/'} variant="logo">
       <Logo
-        className={`${className} fill-light-text-high dark:fill-dark-text-high`}
+        className={`${className} fill-foreground`}
         scale={scale}
         {...props}
       />
