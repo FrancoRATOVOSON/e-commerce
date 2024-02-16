@@ -1,6 +1,6 @@
 import { VariantProps } from 'class-variance-authority'
+import { getRandomDescription } from 'database/faker'
 import { RocketIcon } from 'lucide-react'
-import { getRandomDescription } from 'utils/faker'
 
 import {
   Alert,

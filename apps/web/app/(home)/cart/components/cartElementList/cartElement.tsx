@@ -18,14 +18,15 @@ export default function CartElement({
   const router = useRouter()
   const { remove: removeProduct, set: setProductInfos } =
     useProductQuantitySetter()
+  const { id } = product
 
   const handleRemove = () =>
     handleServerAction({
       onSuccess: () => {
-        removeProduct(product.productId)
+        removeProduct(id)
         router.refresh()
       },
-      serverAction: () => removeItemFromCart(product.productId),
+      serverAction: () => removeItemFromCart(id),
       success: {
         message: `Vous avez effacé ${product.name} de votre panier`,
         title: 'Effectué'
@@ -36,9 +37,9 @@ export default function CartElement({
     (qty: number) =>
       handleServerAction({
         onSuccess: (newQty?: number) => {
-          if (newQty) setProductInfos(product.productId, newQty)
+          if (newQty) setProductInfos(id, newQty)
         },
-        serverAction: () => setProductQty(product.productId, qty),
+        serverAction: () => setProductQty(id, qty),
         success: {
           message: `La quantité de ${product.name} est passé à ${qty}`,
           title: 'Effectué'

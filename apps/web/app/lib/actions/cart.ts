@@ -7,12 +7,9 @@ import {
   updateCartState,
   updateProductQty
 } from 'database'
+import { ProductCartData } from 'database/types'
 import { AuthorizationError, ExpiredActionError, UserInputError } from 'utils'
-import {
-  ErrorActionState,
-  ProductCardInfos,
-  ServerActionReturnType
-} from 'utils/types'
+import { ErrorActionState, ServerActionReturnType } from 'utils/types'
 
 import {
   getUserSessionCartId,
@@ -66,7 +63,7 @@ export const addToCart = async (
 }
 
 export const getUserCart = async (): Promise<
-  ServerActionReturnType<ProductCardInfos[]>
+  ServerActionReturnType<ProductCartData[]>
 > => {
   try {
     const userId = getUserSessionId()

@@ -3,14 +3,14 @@
 import {
   getTags as getCategoryTags,
   getCategories as getCats,
-  getProductDetails as getDetails,
+  getProduct,
   getProductList as getProducts
 } from 'database'
-import { GetProductListParams, ProductCardInfos } from 'utils/types'
+import { ProductParams } from 'database/types'
 
-export const getProductList = async (params?: GetProductListParams) => {
+export const getProductList = async (params?: ProductParams) => {
   const products = await getProducts(params)
-  let result: ProductCardInfos[] = [...products]
+  let result = [...products]
 
   const resultFilter = (param: { max?: number; min?: number }) => {
     const { max, min } = param
@@ -31,8 +31,7 @@ export const getProductList = async (params?: GetProductListParams) => {
   return result
 }
 
-export const getProductDetails = (product: ProductCardInfos) =>
-  getDetails(product)
+export const getProductDetails = (id: string) => getProduct(id)
 
 export const getCategories = () => getCats()
 

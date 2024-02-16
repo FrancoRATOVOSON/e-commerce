@@ -10,7 +10,7 @@ import {
 } from '@/(home)/lib'
 import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
-import { BigCardSkeleton, Dialog } from 'ui'
+import { Dialog, LargeProductSkeleton } from 'ui'
 
 import BigCard from './bigCard'
 
@@ -36,11 +36,11 @@ export default function ProductModal() {
 
   return (
     <Dialog context={productModal}>
-      <Suspense fallback={<BigCardSkeleton />}>
+      <Suspense fallback={<LargeProductSkeleton />}>
         <BigCard
+          id={product.id}
           onAddToCart={handleValidation}
           onCloseAction={closeProductModal}
-          product={product}
         />
       </Suspense>
     </Dialog>

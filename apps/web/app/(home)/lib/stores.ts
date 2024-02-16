@@ -1,25 +1,25 @@
+import { ProductData } from 'database/types'
 import { useCloseDialog, useShowDialog } from 'ui'
-import { ProductCardInfos } from 'utils/types'
 import { create } from 'zustand'
 
 import { alertModal, productModal } from './contexts'
 
 interface ProductModalState {
-  product: ProductCardInfos
+  product: ProductData
 }
 
 interface ProductModalAction {
-  openModal: (product: ProductCardInfos) => void
+  openModal: (product: ProductData) => void
 }
 
-const initialProduct: ProductCardInfos = {
-  image: '',
+const initialProduct: ProductData = {
+  id: '',
+  image: { alt: '', src: '' },
   name: '',
   price: {
     currency: 'MGA',
     value: 0
-  },
-  productId: ''
+  }
 }
 
 export const useProductModalStore = create<
@@ -35,16 +35,6 @@ export function useProductModal() {
   const { product } = useProductModalStore()
 
   return { product }
-}
-
-export function useOpenProductModal() {
-  const openModalAction = useProductModalStore(state => state.openModal)
-  const openModal = useShowDialog(productModal)
-
-  return (product: ProductCardInfos) => {
-    openModalAction(product)
-    openModal()
-  }
 }
 
 export function useCloseProductModal() {

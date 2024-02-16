@@ -50,7 +50,7 @@ export default async function CardList({
       className={`flex flex-row flex-wrap gap-x-9 gap-y-9 justify-start pb-6 w-full`}
     >
       {productList.map(product => (
-        <ShoppingCard className="" key={product.productId} product={product} />
+        <ShoppingCard className="" key={product.id} product={product} />
       ))}
     </div>
   )

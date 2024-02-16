@@ -1,4 +1,4 @@
-import { getTagsList } from 'utils/faker'
+import { getTagsList } from 'database/faker'
 
 import { Badge, BadgeList } from '../components'
 

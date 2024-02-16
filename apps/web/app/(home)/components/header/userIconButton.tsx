@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 import { logOut } from '@/lib'
 import { useUserConnectionState } from '@/stores'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Button } from 'ui'
 import { UserIcon } from 'ui/icons'
 
@@ -19,6 +19,7 @@ export default function UserIconButton({
 }: UserIconButtonProps) {
   const [clicked, setClicked] = useState<boolean>(false)
   const router = useRouter()
+  const pathName = usePathname()
   const { logout: setLogOut } = useUserConnectionState()
 
   return (
@@ -47,7 +48,8 @@ export default function UserIconButton({
           onClick={async () => {
             await logOut()
             setLogOut()
-            router.refresh()
+            if (pathName !== '/') router.push('/')
+            else router.refresh()
             onLogOut && onLogOut()
           }}
           variant="secondary"

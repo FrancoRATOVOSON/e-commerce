@@ -1,8 +1,9 @@
 import { AuthorizationError, ExpiredActionError, UserInputError } from 'utils'
 import { OrderStatusType } from 'utils/types'
 
-import { productToProductCardInfo } from '.'
+import { productToData } from '.'
 import prisma from '../client'
+import { ProductCartData } from '../types'
 
 function getOrder(id: number) {
   return prisma.order.findUnique({ where: { id } })
@@ -110,7 +111,7 @@ export async function getUserCartProducts(shopperId: number) {
     cart: userOrders[0].id,
     products: userOrders[0].products.map(({ product, quantity }) => ({
       quantity,
-      ...productToProductCardInfo(product)
+      ...(productToData(product) as ProductCartData)
     }))
   }
 }

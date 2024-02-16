@@ -1,4 +1,4 @@
-import { getTagsList } from 'utils/faker'
+import { getTagsList } from 'database/faker'
 
 import { Toggle, ToggleGroup } from '../components'
 

@@ -1,9 +1,9 @@
 import React, { memo, useState } from 'react'
 
+import { ProductData } from 'database/types'
 import { Trash2Icon as TrashIcon } from 'lucide-react'
-import { ProductCardInfos } from 'utils/types'
 
-import { Button, Card, Price } from '..'
+import { Button, Price, ProductCard } from '..'
 import Skeleton from '../../shadcn/skeleton'
 import { cn } from '../../utils'
 
@@ -11,7 +11,7 @@ export interface CartElementProps {
   className?: string
   onQuantityChange?: (quantity: number) => void
   onRemove?: (id: string) => void
-  product: ProductCardInfos
+  product: ProductData
   quantity: number
 }
 
@@ -28,7 +28,7 @@ export default function CartElement({
     <div
       className={`${className} flex flex-row justify-between items-stretch overflow-clip`}
     >
-      <Card product={product} size="Small" />
+      <ProductCard product={product} size={'sm'} />
       <div className="flex flex-col items-end justify-between w-32 text-right">
         <div className="flex flex-row items-center justify-end w-full gap-2">
           <input
@@ -49,7 +49,7 @@ export default function CartElement({
           />
           <Button
             onClick={() => {
-              onRemove && onRemove(product.productId)
+              onRemove && onRemove(product.id)
             }}
             size="icon"
             variant="destructive"

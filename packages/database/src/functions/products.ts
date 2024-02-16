@@ -1,70 +1,85 @@
+import { NonEmptyArrayOf } from 'utils/types'
+
+import prisma from '../client'
 import {
-  GetProductListParams,
-  NonEmptyArrayOf,
-  ProductCardInfos,
-  ProductPageInfos
-} from 'utils/types'
-
-import prisma, { Product } from '../client'
-
-type ProductListType = Promise<ProductCardInfos[]>
-
-type PrismaProductCardInfos = Pick<
   Product,
-  'currency' | 'id' | 'image' | 'name' | 'price'
->
+  ProductData,
+  ProductDetails,
+  ProductListType,
+  ProductParams,
+  ProductType
+} from '../types'
 
-export function productToProductCardInfo(
-  product: PrismaProductCardInfos
-): ProductCardInfos {
-  const { currency, id, image, name, price } = product
+const ProductSelect /*: Prisma.ProductSelect */ = {
+  category: {
+    select: {
+      name: true
+    }
+  },
+  categorySlug: true,
+  currency: true,
+  description: true,
+  discount: true,
+  id: true,
+  image: true,
+  name: true,
+  price: true,
+  tags: { select: { tag: { select: { label: true } } } }
+}
+
+export function productToData(product: ProductType): Product {
+  const { category, currency, image, name, price, tags, ...data } = product
   return {
+    category: category?.name,
     image: { alt: name, src: image },
     name,
     price: { currency, value: price.toNumber() },
-    productId: id
+    tags: tags?.map(tag => tag.tag.label),
+    ...data
   }
 }
 
-function productListToProductCardInfoList(
-  products: PrismaProductCardInfos[]
-): ProductCardInfos[] {
-  return products.map(product => productToProductCardInfo(product))
+function productListToDataList(products: ProductType[]): ProductData[] {
+  return products.map(product => productToData(product))
 }
 
 async function getProductListFromCategory(
   category: NonEmptyArrayOf<string>
-): ProductListType {
-  const products: PrismaProductCardInfos[] = await prisma.product.findMany({
+): Promise<ProductListType> {
+  const products = await prisma.product.findMany({
+    select: ProductSelect,
     where: { category: { slug: { in: category } } }
   })
 
-  return productListToProductCardInfoList(products)
+  return productListToDataList(products)
 }
 
 async function getProductListFromTags(
   category: NonEmptyArrayOf<string>,
   tags: NonEmptyArrayOf<string>
-): ProductListType {
-  const products: PrismaProductCardInfos[] = await prisma.product.findMany({
+): Promise<ProductListType> {
+  const products = await prisma.product.findMany({
+    select: ProductSelect,
     where: {
       category: { slug: { in: category } },
       tags: { some: { tagSlug: { in: tags } } }
     }
   })
 
-  return productListToProductCardInfoList(products)
+  return productListToDataList(products)
 }
 
-async function getAllProducts(): ProductListType {
-  const products: PrismaProductCardInfos[] = await prisma.product.findMany()
+async function getAllProducts(): Promise<ProductListType> {
+  const products = await prisma.product.findMany({
+    select: ProductSelect
+  })
 
-  return productListToProductCardInfoList(products)
+  return productListToDataList(products)
 }
 
 export function getProductList(
-  params: GetProductListParams = { category: [] }
-): ProductListType {
+  params: ProductParams = { category: [] }
+): Promise<ProductListType> {
   const { category, tag } = params
 
   if (category.length === 0) return getAllProducts()
@@ -81,31 +96,13 @@ export function getProductList(
   return getProductListFromTags(categories, tags)
 }
 
-export async function getProductDetails({
-  image,
-  name,
-  price,
-  productId
-}: ProductCardInfos): Promise<ProductPageInfos> {
-  const detailedProduct = await prisma.product.findUnique({
-    select: {
-      category: { select: { name: true } },
-      description: true,
-      tags: { select: { tag: { select: { label: true } } } }
-    },
-    where: { id: productId }
+export async function getProduct(id: string): Promise<ProductDetails> {
+  const product = await prisma.product.findUnique({
+    select: ProductSelect,
+    where: { id }
   })
 
-  if (!detailedProduct) throw new Error('Error when retrieving product detail')
+  if (!product) throw new Error('Error when retrieving product detail')
 
-  const { category, description, tags } = detailedProduct
-  return {
-    category: category.name,
-    description,
-    image,
-    name,
-    price,
-    productId,
-    tags: tags.map(tag => tag.tag.label)
-  }
+  return productToData(product) as ProductDetails
 }

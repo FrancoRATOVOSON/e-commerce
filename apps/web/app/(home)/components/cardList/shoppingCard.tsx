@@ -9,20 +9,20 @@ import {
 } from '@/(home)/lib'
 import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
+import { ProductData } from 'database/types'
 import Image from 'next/image'
-import { InteractiveCard, useShowDialog } from 'ui'
-import { ProductCardInfos } from 'utils/types'
+import { InteractiveProductCard, useShowDialog } from 'ui'
 
 interface ShoppingCardProps {
   className?: string
-  product: ProductCardInfos
+  product: ProductData
 }
 
 export default function ShoppingCard({
   className = '',
   product
 }: ShoppingCardProps) {
-  const { image, name } = product
+  const { name } = product
   const openModal = useShowDialog(productModal)
   const setOpenModal = useProductModalStore(state => state.openModal)
   const openAlertModal = useOpenAlertModal()
@@ -41,22 +41,18 @@ export default function ShoppingCard({
   }
 
   return (
-    <InteractiveCard
-      actionLabel="Ajouter au panier"
+    <InteractiveProductCard
+      buttonLabel="Ajouter au panier"
       className={className}
-      onClickAction={() => {
+      imageComponent={({ alt, ...props }) => (
+        <Image {...props} alt={alt || product.name} />
+      )}
+      onButtonClick={handleValidation}
+      onCardClick={() => {
         openModal()
         setOpenModal(product)
       }}
-      primaryAction={handleValidation}
       product={product}
-    >
-      <Image
-        alt={typeof image === 'string' ? name : image.alt}
-        height={208}
-        src={typeof image === 'string' ? image : image.src}
-        width={288}
-      />
-    </InteractiveCard>
+    />
   )
 }

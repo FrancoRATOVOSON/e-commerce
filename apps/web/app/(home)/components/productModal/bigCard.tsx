@@ -1,40 +1,43 @@
 import React from 'react'
 
 import { getProductDetails } from '@/lib'
-import { Button, BigCard as Card } from 'ui'
-import { ProductCardInfos, ProductPageInfos } from 'utils/types'
+import Image from 'next/image'
+import { Button, ProductCard } from 'ui'
 
 interface ProductModalProps {
+  id: string
   onAddToCart: (id: string) => void
   onCloseAction: () => void
-  product: ProductCardInfos
 }
 
 export default async function BigCard({
+  id,
   onAddToCart,
-  onCloseAction,
-  product
+  onCloseAction
 }: ProductModalProps) {
-  const detailedProduct: ProductPageInfos = await getProductDetails(product)
+  const product = await getProductDetails(id)
 
   return (
-    <Card className="p-5" product={detailedProduct}>
+    <ProductCard
+      className="p-5"
+      imageComponent={({ alt, ...props }) => (
+        <Image {...props} alt={alt || product.name} />
+      )}
+      product={product}
+      size="large"
+    >
       <div className="flex flex-row items-end justify-between w-full h-full gap-4">
-        <Button
-          className="w-full"
-          onClick={() => onCloseAction()}
-          variant="secondary"
-        >
+        <Button className="w-full" onClick={onCloseAction} variant="secondary">
           Fermer
         </Button>
         <Button
           className="w-full"
-          onClick={() => onAddToCart(product.productId)}
+          onClick={() => onAddToCart(product.id)}
           variant="action"
         >
           Ajouter au panier
         </Button>
       </div>
-    </Card>
+    </ProductCard>
   )
 }

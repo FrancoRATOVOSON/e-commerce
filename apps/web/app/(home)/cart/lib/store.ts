@@ -1,7 +1,7 @@
-import { ProductCardInfos } from 'utils/types'
+import { ProductData } from 'database/types'
 import { create } from 'zustand'
 
-type ProductList = Array<ProductCardInfos & { total: number }>
+type ProductList = Array<ProductData & { total: number }>
 
 type CartStoreState = {
   productList: ProductList
@@ -9,20 +9,18 @@ type CartStoreState = {
 
 type CartStoreActions = {
   emptyList: () => void
-  removeProduct: (productId: string) => void
-  setProductList: (list: ProductCardInfos[]) => void
-  setProductQuantity: (productId: string, quantity: number) => void
+  removeProduct: (id: string) => void
+  setProductList: (list: ProductData[]) => void
+  setProductQuantity: (id: string, quantity: number) => void
 }
 
 const useCartStore = create<CartStoreState & CartStoreActions>()(set => ({
   emptyList: () => set(state => ({ ...state, productList: [] })),
   productList: [],
-  removeProduct: (productId: string) => {
+  removeProduct: (id: string) => {
     set(state => ({
       ...state,
-      productList: state.productList.filter(
-        product => product.productId !== productId
-      )
+      productList: state.productList.filter(product => product.id !== id)
     }))
   },
   setProductList: list =>
@@ -33,11 +31,11 @@ const useCartStore = create<CartStoreState & CartStoreActions>()(set => ({
         total: product.price.value * (product.quantity || 1)
       }))
     })),
-  setProductQuantity: (productId: string, quantity: number) =>
+  setProductQuantity: (id: string, quantity: number) =>
     set(state => ({
       ...state,
       productList: state.productList.map(product => {
-        if (product.productId !== productId) return product
+        if (product.id !== id) return product
 
         return { ...product, quantity }
       })

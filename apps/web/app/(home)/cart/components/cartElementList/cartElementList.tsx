@@ -3,8 +3,9 @@
 import * as React from 'react'
 
 import { getUserCart } from '@/lib'
+import { ProductData } from 'database/types'
 import { cn } from 'ui/utils'
-import { ProductCardInfos, ServerActionReturnType } from 'utils/types'
+import { ServerActionReturnType } from 'utils/types'
 
 import { useProductList } from '../../lib'
 import CartElement from './cartElement'
@@ -26,7 +27,7 @@ export default function CartElementList({
 }: CartElementListProps) {
   const { productList, setProductList } = useProductList()
   const [result, setResult] = React.useState<
-    ServerActionReturnType<ProductCardInfos[]> | undefined
+    ServerActionReturnType<ProductData[]> | undefined
   >()
 
   React.useEffect(() => {
@@ -67,7 +68,7 @@ export default function CartElementList({
     >
       {productList.map(({ quantity, ...product }) => (
         <CartElement
-          key={product.productId}
+          key={product.id}
           product={product}
           quantity={quantity || 1}
         />
