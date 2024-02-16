@@ -55,7 +55,7 @@ function AlertFixture() {
 }
 
 export default {
-  Base: <AlertComponent />,
+  Base: <AlertComponent outline={'bordered'} />,
   Destructive: (
     <Alert
       Icon={<RocketIcon />}

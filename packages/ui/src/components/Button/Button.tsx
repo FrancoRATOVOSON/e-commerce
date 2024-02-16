@@ -23,10 +23,14 @@ export const buttonVariants = cva(
       }
     ],
     defaultVariants: {
+      fullWidth: false,
       size: 'normal',
       variant: 'primary'
     },
     variants: {
+      fullWidth: {
+        true: 'w-full'
+      },
       size: {
         icon: 'w-9 h-9',
         normal: 'px-3 h-9',
@@ -50,9 +54,9 @@ interface ButtonProps
     VariantProps<typeof buttonVariants> {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, size, variant, ...props }, ref) => (
+  ({ children, className, fullWidth, size, variant, ...props }, ref) => (
     <button
-      className={cn(buttonVariants({ className, size, variant }))}
+      className={cn(buttonVariants({ className, fullWidth, size, variant }))}
       ref={ref}
       {...props}
     >

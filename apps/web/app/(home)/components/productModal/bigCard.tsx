@@ -27,11 +27,11 @@ export default async function BigCard({
       size="large"
     >
       <div className="flex flex-row items-end justify-between w-full h-full gap-4">
-        <Button className="w-full" onClick={onCloseAction} variant="secondary">
+        <Button fullWidth onClick={onCloseAction} variant="secondary">
           Fermer
         </Button>
         <Button
-          className="w-full"
+          fullWidth
           onClick={() => onAddToCart(product.id)}
           variant="action"
         >

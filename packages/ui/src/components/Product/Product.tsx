@@ -227,7 +227,7 @@ function InteractiveProductCard({
       </button>
       <div>
         <Button
-          className={`w-full`}
+          fullWidth
           onClick={() => onButtonClick && onButtonClick(id)}
           variant="action"
         >
