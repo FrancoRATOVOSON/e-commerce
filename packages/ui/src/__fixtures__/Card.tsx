@@ -1,3 +1,4 @@
+import { Users } from '../Icons'
 import { Button, Card } from '../components'
 
 const description = `Here's some description for the card`
@@ -18,6 +19,9 @@ export default {
   ),
   Described: <Card description={description} size={'small'} title={title} />,
   Empty: <Card title={title} />,
+  Icon: (
+    <Card Icon={Users} description={description} size={'small'} title={title} />
+  ),
   'With Footer': (
     <Card
       description={description}

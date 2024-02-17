@@ -40,12 +40,21 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => (
     <Container className={className} ref={ref} {...props}>
-      <CardHeader>
+      <CardHeader
+        className={cn(
+          'flex flex-row justify-between items-start',
+          Icon && 'space-y-0'
+        )}
+      >
         <div>
           <CardTitle className={cn(cardStyle({ size }))}>{title}</CardTitle>
           {description && <CardDescription>{description}</CardDescription>}
         </div>
-        {Icon && <Icon size={24} />}
+        {Icon && (
+          <div className="w-fit h-fit ml-4 text-muted-foreground">
+            <Icon size={18} />
+          </div>
+        )}
       </CardHeader>
       {children && <CardContent>{children}</CardContent>}
       {footer && <CardFooter>{footer}</CardFooter>}
