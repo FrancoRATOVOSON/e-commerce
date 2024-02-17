@@ -93,10 +93,12 @@
 
   html {
     @apply font-jost;
+    @apply w-full h-full;
   }
 
   body {
     @apply bg-background text-foreground;
+    @apply w-full h-full;
   }
 }
 

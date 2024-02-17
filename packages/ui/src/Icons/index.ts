@@ -15,3 +15,5 @@ export {
   UserIcon as _,
   UserRoundIcon as UserIcon
 }
+
+export { default as AppIcon } from './AppIcon'

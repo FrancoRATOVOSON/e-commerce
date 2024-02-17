@@ -6,34 +6,18 @@ import {
   LinkProps as RouterLinkProps
 } from 'react-router-dom'
 
-import { buttonVariants } from 'ui'
-import { VariantProps, cva } from 'ui/utils'
+import { Link as UILink, LinkProps as UILinkProps } from 'ui'
 
-const linkVariants = cva('transition', {
-  defaultVariants: {
-    variant: 'default'
-  },
-  variants: {
-    variant: {
-      button: buttonVariants({ variant: 'primary' }),
-      default:
-        ' text-sld-base hover:underline underline-offset-4 hover:text-dark-sld-hover',
-      icon: buttonVariants({ size: 'icon', variant: 'ghost' }),
-      logo: 'text-inherit h-fit'
-    }
-  }
-})
-
-interface LinkProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    RouterLinkProps,
-    VariantProps<typeof linkVariants> {}
+interface LinkProps extends RouterLinkProps, Omit<UILinkProps, 'href'> {}
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ className, variant, ...props }, ref) => (
-    <RouterLink
-      className={linkVariants({ className, variant })}
+  ({ to, ...props }, ref) => (
+    <UILink
+      element={({ href }: { href: string }) => (
+        <RouterLink to={to || href} {...props} />
+      )}
       ref={ref}
+      variant={'nav'}
       {...props}
     />
   )
