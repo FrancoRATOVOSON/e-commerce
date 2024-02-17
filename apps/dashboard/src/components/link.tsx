@@ -6,7 +6,7 @@ import {
   LinkProps as RouterLinkProps
 } from 'react-router-dom'
 
-import { Link as UILink, LinkProps as UILinkProps } from 'ui'
+import { Link as UILink, LinkProps as UILinkProps } from 'ui/components'
 
 interface LinkProps extends RouterLinkProps, Omit<UILinkProps, 'href'> {}
 

@@ -10,7 +10,7 @@ import {
 } from '@/(home)/lib'
 import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
-import { Dialog, LargeProductSkeleton } from 'ui'
+import { Dialog, LargeProductSkeleton } from 'ui/components'
 
 import BigCard from './bigCard'
 

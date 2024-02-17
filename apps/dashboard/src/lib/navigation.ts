@@ -1,6 +1,6 @@
 /* eslint-disable perfectionist/sort-union-types */
 /* eslint-disable perfectionist/sort-objects */
-import { LinkTypes } from 'ui'
+import { LinkTypes } from 'ui/components'
 import { Home, Package, Settings, Users } from 'ui/icons'
 
 type Pages = 'overview' | 'customers' | 'products' | 'settings'

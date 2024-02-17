@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { DialogContextProvider } from 'ui'
+import { DialogContextProvider } from 'ui/components'
 
 import { alertModal } from '../lib'
 import Header from './header'

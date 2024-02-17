@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { ImageDetails, Product } from 'database/types'
+import { Product } from 'database/types'
+import { ImageDetails } from 'utils/types'
 
 import Skeleton from '../../shadcn/skeleton'
 import { VariantProps, cn, cva } from '../../utils'

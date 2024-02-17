@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { ToggleGroup } from 'ui'
+import { ToggleGroup } from 'ui/components'
 import { TagType } from 'utils/types'
 
 interface TagListProps {

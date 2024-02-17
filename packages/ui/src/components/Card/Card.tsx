@@ -64,4 +64,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = 'CardComponent'
 
+export {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Container as CardContainer
+}
+
 export default Card

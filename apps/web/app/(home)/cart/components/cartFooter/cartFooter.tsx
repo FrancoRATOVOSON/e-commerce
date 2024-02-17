@@ -4,7 +4,7 @@ import React from 'react'
 
 import { Link } from '@/components'
 import { handleServerAction, validateCart } from '@/lib'
-import { Button, Price } from 'ui'
+import { Button, Price } from 'ui/components'
 
 import { useClearProductCart, useProductTotal } from '../../lib'
 

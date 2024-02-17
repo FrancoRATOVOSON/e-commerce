@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { logOut } from '@/lib'
 import { useUserConnectionState } from '@/stores'
 import { usePathname, useRouter } from 'next/navigation'
-import { Button } from 'ui'
+import { Button } from 'ui/components'
 import { UserIcon } from 'ui/icons'
 
 interface UserIconButtonProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { Price, Slider as SliderComponent } from 'ui'
+import { Price, Slider as SliderComponent } from 'ui/components'
 import { useDebouncedCallback } from 'use-debounce'
 
 interface SliderComponentProps {

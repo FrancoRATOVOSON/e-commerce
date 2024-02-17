@@ -2,7 +2,7 @@ import React from 'react'
 
 import { getProductDetails } from '@/lib'
 import Image from 'next/image'
-import { Button, ProductCard } from 'ui'
+import { Button, ProductCard } from 'ui/components'
 
 interface ProductModalProps {
   id: string

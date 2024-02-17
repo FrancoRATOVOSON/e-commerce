@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Button, FormInput } from 'ui'
 import { FormContainer } from 'ui/common'
+import { Button, FormInput } from 'ui/components'
 
 // import { useLogin } from '../lib'
 

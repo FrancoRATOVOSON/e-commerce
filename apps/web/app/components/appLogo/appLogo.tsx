@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { AppLogo as Logo } from 'ui'
+import { AppLogo as Logo } from 'ui/components'
 import { AppLogoProps } from 'ui/types'
 
 import Link from '../link'

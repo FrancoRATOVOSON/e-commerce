@@ -11,7 +11,7 @@ import { addToCart, handleServerAction } from '@/lib'
 import { useIsUserConnected } from '@/stores'
 import { ProductData } from 'database/types'
 import Image from 'next/image'
-import { InteractiveProductCard, useShowDialog } from 'ui'
+import { InteractiveProductCard, useShowDialog } from 'ui/components'
 
 interface ShoppingCardProps {
   className?: string

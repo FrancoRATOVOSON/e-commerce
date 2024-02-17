@@ -4,7 +4,7 @@ import React from 'react'
 
 import { useCloseAlertModal } from '@/(home)/lib'
 import { useRouter } from 'next/navigation'
-import { Alert } from 'ui'
+import { Alert } from 'ui/components'
 
 export default function NotConnectedAlert() {
   const router = useRouter()

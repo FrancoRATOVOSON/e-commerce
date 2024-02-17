@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import { defineConfig } from 'vite'
 
+const pathResolve = (dir: string) => path.resolve(__dirname, dir)
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   // 1. prevent vite from obscuring rust errors
@@ -12,7 +14,10 @@ export default defineConfig(async () => ({
   //
   plugins: [react(), generouted()],
   resolve: {
-    alias: { '@': path.resolve(__dirname, 'src') }
+    alias: {
+      '@': pathResolve('src'),
+      '@overview': pathResolve('src/pages/(app)/overview')
+    }
   },
   // 2. tauri expects a fixed port, fail if that port is not available
   server: {

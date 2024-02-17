@@ -4,7 +4,7 @@ import React from 'react'
 
 // eslint-disable-next-line import/no-named-default
 import { default as NextLink, LinkProps as NextLinkProps } from 'next/link'
-import { Link as UILink, LinkProps as UILinkProps } from 'ui'
+import { Link as UILink, LinkProps as UILinkProps } from 'ui/components'
 
 interface LinkProps extends Omit<NextLinkProps, 'href'>, UILinkProps {}
 

@@ -28,3 +28,18 @@ export type ServerActionReturnType<T = undefined> =
 export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
 
 export type WithPartial<T, K extends keyof T> = Omit<T, K> & { [P in K]?: T[P] }
+
+export type ImageDetails = {
+  alt: string
+  src: string
+}
+
+export type PriceDetails = {
+  currency: string
+  value: number
+}
+
+export type InfoTileData = {
+  label: string
+  value: PriceDetails | number | string
+}

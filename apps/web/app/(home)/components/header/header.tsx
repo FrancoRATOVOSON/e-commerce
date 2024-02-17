@@ -6,7 +6,7 @@ import { useOpenAlertModal } from '@/(home)/lib'
 import { AppLogo, Link } from '@/components'
 import { useIsUserConnected } from '@/stores'
 import { usePathname, useRouter } from 'next/navigation'
-import { Button, Search } from 'ui'
+import { Button, Search } from 'ui/components'
 import { ShoppingCartIcon } from 'ui/icons'
 import { cn } from 'ui/utils'
 

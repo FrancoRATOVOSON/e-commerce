@@ -1,5 +1,5 @@
 'use client'
 
-import { Toaster } from 'ui'
+import { Toaster } from 'ui/components'
 
 export default Toaster

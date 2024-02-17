@@ -1,16 +1,11 @@
-import { WithPartial, WithRequired } from 'utils/types'
+import {
+  ImageDetails,
+  PriceDetails,
+  WithPartial,
+  WithRequired
+} from 'utils/types'
 
 import { Product as PrismaProduct, Tag as PrismaTag } from '../client'
-
-export type ImageDetails = {
-  alt: string
-  src: string
-}
-
-export type PriceDetails = {
-  currency: string
-  value: number
-}
 
 export type ProductType = WithPartial<
   PrismaProduct,

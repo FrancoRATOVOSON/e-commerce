@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { alertModal } from '@/(home)/lib'
-import { Dialog } from 'ui'
+import { Dialog } from 'ui/components'
 
 import NotConnectedAlert from './notConnectedAlert'
 

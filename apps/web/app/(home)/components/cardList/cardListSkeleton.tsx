@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { InteractiveProductSkeleton } from 'ui'
+import { InteractiveProductSkeleton } from 'ui/components'
 
 export default function CardListSkeleton() {
   return (

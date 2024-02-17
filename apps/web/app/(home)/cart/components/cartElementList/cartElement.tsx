@@ -4,7 +4,7 @@ import React from 'react'
 
 import { handleServerAction, removeItemFromCart, setProductQty } from '@/lib'
 import { useRouter } from 'next/navigation'
-import { CartElement as CartElt } from 'ui'
+import { CartElement as CartElt } from 'ui/components'
 import { CartElementProps } from 'ui/types'
 import { useDebouncedCallback } from 'use-debounce'
 

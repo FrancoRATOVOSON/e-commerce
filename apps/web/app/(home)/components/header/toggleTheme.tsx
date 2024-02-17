@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { Button, useTheme } from 'ui'
+import { Button, useTheme } from 'ui/components'
 import { MoonIcon, SunIcon } from 'ui/icons'
 
 export default function ToggleTheme() {

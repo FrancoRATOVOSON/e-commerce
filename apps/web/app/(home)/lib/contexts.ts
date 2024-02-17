@@ -1,4 +1,4 @@
-import { DialogContext, createDialogContext } from 'ui'
+import { DialogContext, createDialogContext } from 'ui/components'
 
 const productModal: DialogContext = createDialogContext()
 

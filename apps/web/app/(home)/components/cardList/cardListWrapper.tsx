@@ -3,7 +3,7 @@
 import React, { Suspense } from 'react'
 
 import { productModal } from '@/(home)/lib'
-import { DialogContextProvider } from 'ui'
+import { DialogContextProvider } from 'ui/components'
 
 import ProductModal from '../productModal'
 import CardListSkeleton from './cardListSkeleton'

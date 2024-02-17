@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { Button, FormInput } from 'ui'
+import { Button, FormInput } from 'ui/components'
 
 import { Form } from '../components'
 import { useLogin } from '../lib'

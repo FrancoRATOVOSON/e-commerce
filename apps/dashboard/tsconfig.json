@@ -6,7 +6,8 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@overview/*": ["./src/pages/(app)/overview/*"]
     }
   }
 }

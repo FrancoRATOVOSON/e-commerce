@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { DateRange } from 'react-day-picker'
 
-import { format } from 'date-fns'
+import { format } from 'utils'
 
 import { CalendarDays as CalendarIcon } from '../../Icons'
 import { Calendar } from '../../shadcn/calendar'
@@ -39,7 +39,7 @@ function DatePicker() {
 }
 
 interface DatePickerWithRangeProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
   defaultValues?: {
     from: Date
     to?: Date

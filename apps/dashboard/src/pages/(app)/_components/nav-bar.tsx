@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 import { Link } from '@/components'
 import { navLinks } from '@/lib'
-import { AppLogo, Button, Nav, Separator } from 'ui'
+import { AppLogo, Button, Nav, Separator } from 'ui/components'
 import { AppIcon, FoldHorizontal, UnfoldHorizontal } from 'ui/icons'
 import { cn } from 'ui/utils'
 

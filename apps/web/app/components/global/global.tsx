@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { useHydrateUserConnexionState } from '@/stores'
-import { Toaster } from 'ui'
+import { Toaster } from 'ui/components'
 
 import Themer from '../themer'
 

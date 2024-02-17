@@ -1,5 +1,5 @@
 import { ProductData } from 'database/types'
-import { useCloseDialog, useShowDialog } from 'ui'
+import { useCloseDialog, useShowDialog } from 'ui/components'
 import { create } from 'zustand'
 
 import { alertModal, productModal } from './contexts'
