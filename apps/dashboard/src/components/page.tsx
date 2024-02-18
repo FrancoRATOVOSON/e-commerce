@@ -9,7 +9,12 @@ interface PageProps {
 
 export default function Page({ children, className }: PageProps) {
   return (
-    <div className={cn(className, 'w-full h-full overflow-x-scroll')}>
+    <div
+      className={cn(
+        className,
+        'w-full h-full overflow-y-scroll overflow-x-hidden'
+      )}
+    >
       {children}
     </div>
   )

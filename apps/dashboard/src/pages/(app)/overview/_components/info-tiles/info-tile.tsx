@@ -32,7 +32,7 @@ export default function InfoTile({
       )}
     >
       <CardHeader className="p-0 flex flex-row justify-between items-start gap-2 space-y-0">
-        <CardTitle className="font-medium text-sm whitespace-nowrap">
+        <CardTitle className="font-medium text-sm whitespace-nowrap tracking-normal">
           {label}
         </CardTitle>
         <div className="text-muted-foreground">

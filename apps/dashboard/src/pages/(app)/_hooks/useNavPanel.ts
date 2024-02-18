@@ -19,7 +19,7 @@ function getNavSizes(screen: ReturnType<typeof useScreenSize>) {
   if (screen.lg) {
     navCollapsedSize = 5
     navDefaultSize = 20
-    navMaxSize = 25
+    navMaxSize = 20
     navMinSize = 15
   }
 

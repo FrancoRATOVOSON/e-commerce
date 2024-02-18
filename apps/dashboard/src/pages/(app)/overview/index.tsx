@@ -5,18 +5,19 @@ import { Container, DatePickerWithRange } from 'ui/components'
 import { cn } from 'ui/utils'
 import { today, yearFromNow } from 'utils'
 
-import { InfoTiles } from './_components'
+import { IncomeChart, InfoTiles } from './_components'
+import { BestSalesList, BestShopperList } from './_components/data-list'
 
 export default function Overview() {
   return (
-    <Page className="flex flex-col justify-start items-center p-6 space-y-6">
-      <Container>
-        <h1>Accueil</h1>
+    <Page className="flex flex-col justify-start items-center p-6 gap-8">
+      <Container className="flex flex-row justify-between items-start">
+        <h1 className="text-4xl font-bold tracking-tight">Accueil</h1>
         <DatePickerWithRange
           defaultValues={{ from: yearFromNow(-1), to: today() }}
         />
       </Container>
-      <Container>
+      <Container className="flex flex-col justify-start items-stretch gap-6">
         <Container
           className={cn(
             'gap-4',
@@ -27,10 +28,16 @@ export default function Overview() {
         >
           <InfoTiles />
         </Container>
-        <Container className="flex flex-rox justify-between items-start space-x-4">
-          {/* Chart */}
-          <div className="flex flex-col justify-start items-stretch">
-            {/* Lists */}
+        <Container
+          className={cn(
+            'flex flex-col-reverse justify-start items-stretch gap-4',
+            'lg:flex-row lg:justify-between'
+          )}
+        >
+          <IncomeChart className="w-full h-96 lg:h-full lg:grow" />
+          <div className="flex flex-col justify-start items-stretch gap-4">
+            <BestSalesList />
+            <BestShopperList />
           </div>
         </Container>
       </Container>

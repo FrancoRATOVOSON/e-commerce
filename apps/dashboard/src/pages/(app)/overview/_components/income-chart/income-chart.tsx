@@ -1,0 +1,91 @@
+import * as React from 'react'
+
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { CardContainer, CardContent } from 'ui/components'
+import { cn } from 'ui/utils'
+
+const data = [
+  {
+    name: 'Jan',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Feb',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Mar',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Apr',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'May',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Jun',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Jul',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Aug',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Sep',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Oct',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Nov',
+    total: Math.floor(Math.random() * 5000) + 1000
+  },
+  {
+    name: 'Dec',
+    total: Math.floor(Math.random() * 5000) + 1000
+  }
+]
+
+interface IncomeChartProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export default function IncomeChart({ className }: IncomeChartProps) {
+  return (
+    <CardContainer className={cn(className, 'pl-2 pb-2 pr-6 pt-6')}>
+      <CardContent className="w-full h-full p-0 m-0">
+        <ResponsiveContainer width="100%">
+          <BarChart data={data}>
+            <XAxis
+              axisLine={false}
+              dataKey="name"
+              fontSize={12}
+              stroke="#888888"
+              tickLine={false}
+            />
+            <YAxis
+              axisLine={false}
+              fontSize={12}
+              stroke="#888888"
+              tickFormatter={value => `$${value}`}
+              tickLine={false}
+            />
+            <Bar
+              className="fill-primary"
+              dataKey="total"
+              fill="currentColor"
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </CardContainer>
+  )
+}
