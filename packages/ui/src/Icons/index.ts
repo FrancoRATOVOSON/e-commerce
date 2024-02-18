@@ -17,3 +17,5 @@ export {
 }
 
 export { default as AppIcon } from './AppIcon'
+export { default as DoubleSquareStack } from './double-square-stack'
+export { default as Minimize } from './minimize'

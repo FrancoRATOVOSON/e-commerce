@@ -25,10 +25,6 @@ export type ServerActionReturnType<T = undefined> =
   | ErrorActionState
   | SuccessActionState<T>
 
-export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
-
-export type WithPartial<T, K extends keyof T> = Omit<T, K> & { [P in K]?: T[P] }
-
 export type ImageDetails = {
   alt: string
   src: string
@@ -43,3 +39,16 @@ export type InfoTileData = {
   label: string
   value: PriceDetails | number | string
 }
+
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
+export type WithPartial<T, K extends keyof T> = Omit<T, K> & { [P in K]?: T[P] }
+
+type RequiredOnly<T, K extends keyof T> = Required<Pick<T, K>>
+type PartialWithout<T, K extends keyof T> = Partial<
+  Pick<T, Exclude<keyof T, K>>
+>
+
+export type RequireAtLeastOne<T> = {
+  [K in keyof T]-?: RequiredOnly<T, K> & PartialWithout<T, K>
+}[keyof T]

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
+import { PageHeader } from '@/components'
 import { LayoutGroup, Panel, PanelResizeHandle } from 'ui/components'
 
 import { NavBar } from './_components'
@@ -39,7 +40,8 @@ export default function AppLayout() {
         />
       </Panel>
       <PanelResizeHandle disabled={!isNavResizable} />
-      <Panel>
+      <Panel className="flex flex-col justify-start items-stretch">
+        <PageHeader className="flex-auto" />
         <Outlet />
       </Panel>
     </LayoutGroup>

@@ -28,7 +28,7 @@ export default function InfoTile({
     <CardContainer
       className={cn(
         className,
-        'p-6 space-y-4 grow shrink basis-[fit-content] max-[1366px]:last:grow-0'
+        'p-6 space-y-4 grow shrink basis-auto max-[1366px]:last:grow-0'
       )}
     >
       <CardHeader className="p-0 flex flex-row justify-between items-start gap-2 space-y-0">

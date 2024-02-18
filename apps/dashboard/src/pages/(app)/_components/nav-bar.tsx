@@ -16,7 +16,12 @@ export default function NavBar({ isCollapsed, toggle }: NavBarProps) {
   const { pathname } = useLocation()
 
   return (
-    <div className="h-full w-full flex flex-col justify-start items-start space-y-4 px-2 py-4">
+    <div
+      className={cn(
+        'h-full w-full flex flex-col justify-start items-start space-y-4',
+        isCollapsed ? 'px-2 py-2' : 'px-4 py-4'
+      )}
+    >
       <div className="w-full flex justify-center items-center">
         {isCollapsed ? (
           <div className="w-fit h-fit">
