@@ -26,9 +26,12 @@ export default function InfoTile({
 }: InfoTileProps) {
   return (
     <CardContainer
-      className={cn(className, 'p-6 space-y-4 flex-1 last:grow-0')}
+      className={cn(
+        className,
+        'p-6 space-y-4 grow shrink basis-[fit-content] max-[1366px]:last:grow-0'
+      )}
     >
-      <CardHeader className="p-0 flex flex-row justify-between items-start space-y-0">
+      <CardHeader className="p-0 flex flex-row justify-between items-start gap-2 space-y-0">
         <CardTitle className="font-medium text-sm whitespace-nowrap">
           {label}
         </CardTitle>
