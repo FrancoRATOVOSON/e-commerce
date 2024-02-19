@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker'
-import { generateRandom, getAnArrayOf } from 'utils'
+import { getAnArrayOf } from 'utils'
+import { faker } from 'utils/faker'
 import { NonEmptyArrayOf } from 'utils/types'
 
 import { ProductData, TagType } from '../types'
@@ -139,8 +139,6 @@ export function fakeProductData(): ProductData {
   })
 
   return {
-    category: faker.commerce.department(),
-    description: faker.commerce.productDescription(),
     id: faker.string.uuid(),
     image: {
       alt: productName,
@@ -154,16 +152,7 @@ export function fakeProductData(): ProductData {
           max: 1_000,
           min: 1
         }) * 1_000
-    },
-    quantity: faker.number.int({ max: 10, min: 0 }),
-    tags: getAnArrayOf(
-      [
-        faker.commerce.product,
-        faker.commerce.productAdjective,
-        faker.commerce.productMaterial
-      ],
-      generateRandom(0, 5)
-    )
+    }
   }
 }
 

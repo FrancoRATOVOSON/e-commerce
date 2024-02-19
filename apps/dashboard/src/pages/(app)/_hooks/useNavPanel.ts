@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ControllablePanelHandle } from 'ui/components'
-import { useCustomMedia, useScreenSize } from 'ui/hooks'
+import { useCustomMedia, useScreenSize } from 'utils/hooks'
 
 function getNavSizes(screen: ReturnType<typeof useScreenSize>) {
   let navCollapsedSize = 8

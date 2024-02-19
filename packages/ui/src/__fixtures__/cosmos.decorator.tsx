@@ -27,7 +27,7 @@ export default ({ children }: { children: React.ReactNode }) => (
   <Theme>
     <div
       className={`
-    flex flex-col w-screen h-screen gap-8
+    flex flex-col w-screen h-screen gap-8 overflow-x-hidden
     `}
     >
       <div>
