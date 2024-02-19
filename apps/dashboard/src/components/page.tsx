@@ -51,7 +51,7 @@ function PageHeader({ className }: PageHeaderProps) {
     <Container
       className={cn(
         className,
-        'flex flex-row justify-between items-center py-2 px-2'
+        'flex flex-row justify-between items-center px-2 h-[52px]'
       )}
       data-tauri-drag-region
     >
@@ -63,7 +63,7 @@ function PageHeader({ className }: PageHeaderProps) {
         data-tauri-drag-region
       >
         {title && (
-          <h1 className={cn('text-2xl font-bold leading-none flex-none ml-4')}>
+          <h1 className={cn('text-3xl font-bold leading-none flex-none ml-4')}>
             {title}
           </h1>
         )}

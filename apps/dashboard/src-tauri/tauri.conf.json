@@ -25,14 +25,15 @@
         "minimize": true,
         "unmaximize": true,
         "unminimize": true,
-        "startDragging": true
+        "startDragging": true,
+        "setTitle": true
       }
     },
     "windows": [
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Dashboard",
+        "title": "Yshop Admin",
         "width": 900,
         "height": 600,
         "decorations": false,
