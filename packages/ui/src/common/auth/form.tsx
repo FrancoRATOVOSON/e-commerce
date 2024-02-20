@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Form, Link as UILink } from '../../components'
+import { Button, Form } from '../../components'
 import { cn } from '../../utils'
 
 interface DecoratorProps {
@@ -22,7 +22,7 @@ function FormWrapper({ children, linkComponent, pathName }: DecoratorProps) {
   const pageLabel = pathName === '/login' ? LOGIN : SIGNUP
   const pageAction = pathName === '/login' ? SIGNUP : LOGIN
 
-  const Link = linkComponent || UILink
+  const Link = linkComponent || 'a'
 
   return (
     <div className="flex flex-col items-center justify-start gap-10">
@@ -30,9 +30,11 @@ function FormWrapper({ children, linkComponent, pathName }: DecoratorProps) {
       {children}
       <p>
         {bottomText}
-        <Link href={pathName === '/login' ? '/signup' : '/login'}>
-          {pageAction}
-        </Link>
+        <Button asChild variant={'link'}>
+          <Link href={pathName === '/login' ? '/signup' : '/login'}>
+            {pageAction}
+          </Link>
+        </Button>
       </p>
     </div>
   )

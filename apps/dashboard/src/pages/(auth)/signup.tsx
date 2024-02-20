@@ -36,7 +36,6 @@ export default function Signup() {
           // aria-disabled={isSubmitting}
           // onClick={handleSubmit}
           type="submit"
-          variant="primary"
         >
           {`S'inscrire`}
         </Button>

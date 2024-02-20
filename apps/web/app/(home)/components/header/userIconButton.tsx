@@ -6,7 +6,7 @@ import { logOut } from '@/lib'
 import { useUserConnectionState } from '@/stores'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button } from 'ui/components'
-import { UserIcon } from 'ui/icons'
+import { User } from 'ui/icons'
 
 interface UserIconButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   onLogOut?: () => void
@@ -32,7 +32,9 @@ export default function UserIconButton({
         size={'icon'}
         variant={'ghost'}
       >
-        <UserIcon />
+        <div>
+          <User />
+        </div>
       </Button>
       <div
         className={`

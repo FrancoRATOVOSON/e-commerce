@@ -1,8 +1,12 @@
 import * as React from 'react'
 
 import {
+  Column,
   ColumnDef,
+  RowSelectionState,
   SortingState,
+  Table as TableType,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -10,9 +14,13 @@ import {
   useTable
 } from 'utils/hooks'
 
-import { ChevronLeft, ChevronRight } from '../../Icons'
-import Button from '../Button'
+import { cn } from '../../utils'
 import { Container } from '../Layout'
+import {
+  DataTablePagination,
+  DataTableRowSelection,
+  DataTableToolbar
+} from './DataTableComponents'
 import {
   Table,
   TableBody,
@@ -21,29 +29,75 @@ import {
   TableHeader,
   TableRow
 } from './Table'
+import { DataTablePaginationLabels } from './types'
+
+type DataTableElementProps<TData> = {
+  table: TableType<TData>
+}
+
+type DataTableColumnProps<TData, TValue> = {
+  column: Column<TData, TValue>
+}
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
+  customPagination?: boolean
   data: TData[]
+  pagination?: boolean
+  paginationLabels?: DataTablePaginationLabels
+  selection?: boolean
+  selectionLabel?: (rows: number, selected: number) => string
+  sorting?: boolean
+  visibility?: boolean
+  toolbar?: ({
+    table
+  }: { [key: string]: any } & DataTableElementProps<TData>) => React.JSX.Element
 }
 
 function DataTable<TData, TValue>({
   columns,
-  data
+  customPagination = false,
+  data,
+  pagination = false,
+  paginationLabels,
+  selection = false,
+  selectionLabel,
+  sorting: enableSorting = false,
+  toolbar: Toolbar,
+  visibility = false
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
+
   const table = useTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    onSortingChange: setSorting,
-    state: { sorting }
+    ...(pagination && { getPaginationRowModel: getPaginationRowModel() }),
+    ...(enableSorting && { getSortedRowModel: getSortedRowModel() }),
+    ...(visibility && { onColumnVisibilityChange: setColumnVisibility }),
+    ...(selection && { onRowSelectionChange: setRowSelection }),
+    ...(enableSorting && { onSortingChange: setSorting }),
+    state: {
+      ...(visibility && { columnVisibility }),
+      ...(selection && { rowSelection }),
+      ...(enableSorting && { sorting })
+    }
   })
 
   return (
     <Container>
+      {(visibility || Toolbar) && (
+        <DataTableToolbar
+          className="mb-4"
+          table={table}
+          visibility={visibility}
+        >
+          {Toolbar && <Toolbar table={table} />}
+        </DataTableToolbar>
+      )}
       <Container className="rounded-md border">
         <Table>
           <TableHeader>
@@ -88,24 +142,24 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </Container>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          disabled={!table.getCanPreviousPage()}
-          onClick={() => table.previousPage()}
-          variant="secondary"
+      {(selection || pagination || customPagination) && (
+        <div
+          className={cn(
+            'flex justify-between items-center px-2 mt-4',
+            selection && !(pagination || customPagination) && 'justify-start',
+            !selection && (pagination || customPagination) && 'justify-end'
+          )}
         >
-          <ChevronLeft size={16} />
-        </Button>
-        <Button
-          disabled={!table.getCanNextPage()}
-          onClick={() => table.nextPage()}
-          variant="secondary"
-        >
-          <ChevronRight size={16} />
-        </Button>
-      </div>
+          {selection && (
+            <DataTableRowSelection label={selectionLabel} table={table} />
+          )}
+          {pagination && !customPagination && (
+            <DataTablePagination labels={paginationLabels} table={table} />
+          )}
+        </div>
+      )}
     </Container>
   )
 }
 
-export default DataTable
+export { DataTable, type DataTableColumnProps, type DataTableElementProps }

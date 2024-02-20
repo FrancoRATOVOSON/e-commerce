@@ -27,7 +27,7 @@ export default async function BigCard({
       size="large"
     >
       <div className="flex flex-row items-end justify-between w-full h-full gap-4">
-        <Button fullWidth onClick={onCloseAction} variant="secondary">
+        <Button fullWidth onClick={onCloseAction} variant="outline">
           Fermer
         </Button>
         <Button

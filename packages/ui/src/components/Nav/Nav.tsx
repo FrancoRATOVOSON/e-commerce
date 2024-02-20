@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { IconNode } from '../../Icons'
 import { VariantProps, cn, cva } from '../../utils'
-import { Link } from '../Link'
 import { Tooltip, TooltipProvider } from '../Tooltip'
+import { NavLink } from './NavLink'
 
 const navStyle = cva('flex justify-start', {
   defaultVariants: {
@@ -27,9 +27,12 @@ interface NavProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof navStyle> {
   isCollapsed?: boolean
-  linkElement?: React.JSX.ElementType
   links: Array<LinkTypes>
   pathName?: string
+  linkElement?: (_: {
+    [key: string]: unknown
+    href: string
+  }) => React.JSX.Element
 }
 
 function Nav({
@@ -41,6 +44,8 @@ function Nav({
   pathName,
   ...props
 }: NavProps) {
+  const Link = linkElement || 'a'
+
   return (
     <TooltipProvider delayDuration={100}>
       <nav
@@ -61,23 +66,23 @@ function Nav({
 
           return (
             <Wrapper key={href}>
-              <Link
+              <NavLink
                 className={cn(
                   orientation === 'vertical' && !isCollapsed && 'w-full'
                 )}
-                data-link={pathName === href ? 'on' : 'off'}
-                element={linkElement}
-                href={href}
+                dataLink={pathName === href ? 'on' : 'off'}
                 key={href}
                 variant={isCollapsed ? 'icon' : 'nav'}
               >
-                {Icon && (
-                  <div>
-                    <Icon size={20} />
-                  </div>
-                )}
-                {!isCollapsed && <span>{label}</span>}
-              </Link>
+                <Link href={href}>
+                  {Icon && (
+                    <div>
+                      <Icon size={20} />
+                    </div>
+                  )}
+                  {!isCollapsed && <span>{label}</span>}
+                </Link>
+              </NavLink>
             </Wrapper>
           )
         })}

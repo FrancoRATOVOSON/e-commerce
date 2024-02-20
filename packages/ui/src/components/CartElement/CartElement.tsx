@@ -54,7 +54,9 @@ export default function CartElement({
             size="icon"
             variant="destructive"
           >
-            <TrashIcon />
+            <div>
+              <TrashIcon />
+            </div>
           </Button>
         </div>
         <p className="w-full">

@@ -27,7 +27,7 @@ export default function Login() {
         {...register('password')}
       />
       <div className="flex items-center justify-center w-full mx-4">
-        <Button aria-disabled={isSubmitting} type="submit" variant="primary">
+        <Button aria-disabled={isSubmitting} type="submit">
           Se connecter
         </Button>
       </div>

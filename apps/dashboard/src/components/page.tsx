@@ -1,9 +1,8 @@
 import * as React from 'react'
 
+import { useHeaderValue } from '@/hooks'
 import { Container } from 'ui/components'
 import { cn } from 'ui/utils'
-
-import { useHeaderValue } from '@/pages/(app)/overview/_hooks'
 
 import WindowControls from './window-controls'
 
@@ -40,6 +39,32 @@ function HeaderContent({ children, className }: PageContentProps) {
   )
 }
 
+interface HeaderTitleProps {
+  className?: string
+  title: string
+}
+
+function HeaderTitle({ className, title }: HeaderTitleProps) {
+  return (
+    <h1 className={cn('text-3xl font-bold leading-none flex-none', className)}>
+      {title}
+    </h1>
+  )
+}
+
+interface HeaderDescriptionProps {
+  className?: string
+  description: string
+}
+
+function HeaderDescription({ className, description }: HeaderDescriptionProps) {
+  return (
+    <p className={cn('text-lg font-normal text-muted-foreground', className)}>
+      {description}
+    </p>
+  )
+}
+
 type PageHeaderProps = {
   className?: string
 }
@@ -49,9 +74,10 @@ function PageHeader({ className }: PageHeaderProps) {
 
   return (
     <Container
+      as="header"
       className={cn(
         className,
-        'flex flex-row justify-between items-center px-2 h-[52px]'
+        'flex flex-row justify-between items-center p-2'
       )}
       data-tauri-drag-region
     >
@@ -62,19 +88,15 @@ function PageHeader({ className }: PageHeaderProps) {
         )}
         data-tauri-drag-region
       >
-        {title && (
-          <h1 className={cn('text-3xl font-bold leading-none flex-none ml-4')}>
-            {title}
-          </h1>
-        )}
+        {title && <HeaderTitle className={cn('ml-4')} title={title} />}
         {children || null}
       </Container>
 
-      <div className="flex-none">
+      <div className="flex-none self-start inline-block relative right-0 top-0">
         <WindowControls />
       </div>
     </Container>
   )
 }
 
-export { HeaderContent, Page, PageHeader }
+export { HeaderContent, HeaderDescription, HeaderTitle, Page, PageHeader }

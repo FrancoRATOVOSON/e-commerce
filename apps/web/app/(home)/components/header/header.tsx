@@ -7,7 +7,7 @@ import { AppLogo, Link } from '@/components'
 import { useIsUserConnected } from '@/stores'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button, Search } from 'ui/components'
-import { ShoppingCartIcon } from 'ui/icons'
+import { ShoppingCart } from 'ui/icons'
 import { cn } from 'ui/utils'
 
 import ToggleTheme from './toggleTheme'
@@ -40,7 +40,7 @@ export default function Header() {
       <MiddleElement />
       <div className={`flex flex-row justify-end space-x-3 items-center`}>
         {!isConnected ? (
-          <Link href={'/login'} variant={'button'}>
+          <Link href={'/login'} variant={'default'}>
             Se connecter
           </Link>
         ) : (
@@ -56,7 +56,9 @@ export default function Header() {
             size={'icon'}
             variant="ghost"
           >
-            <ShoppingCartIcon />
+            <div>
+              <ShoppingCart />
+            </div>
           </Button>
         )}
       </div>

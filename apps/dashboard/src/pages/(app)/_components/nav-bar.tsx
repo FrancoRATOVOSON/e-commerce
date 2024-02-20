@@ -1,7 +1,6 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import { Link } from '@/components'
 import { navLinks } from '@/lib'
 import { AppLogo, Button, Nav, Separator } from 'ui/components'
 import { AppIcon, FoldHorizontal, UnfoldHorizontal } from 'ui/icons'
@@ -35,7 +34,7 @@ export default function NavBar({ isCollapsed, toggle }: NavBarProps) {
       <Nav
         className="w-full"
         isCollapsed={isCollapsed}
-        linkElement={Link}
+        linkElement={({ href, ...props }) => <Link to={href} {...props} />}
         links={navLinks}
         orientation={'vertical'}
         pathName={pathname}
@@ -48,8 +47,8 @@ export default function NavBar({ isCollapsed, toggle }: NavBarProps) {
           )}
           fullWidth
           onClick={toggle}
-          size={isCollapsed ? 'icon' : 'normal'}
-          variant={'secondary'}
+          size={isCollapsed ? 'icon' : 'default'}
+          variant={'outline'}
         >
           {isCollapsed ? (
             <div>

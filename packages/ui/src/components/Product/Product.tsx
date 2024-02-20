@@ -6,7 +6,7 @@ import { ImageDetails } from 'utils/types'
 import Skeleton from '../../shadcn/skeleton'
 import { VariantProps, cn, cva } from '../../utils'
 import { Badge, BadgeList } from '../Badge'
-import Button from '../Button'
+import { Button } from '../Button'
 import Price from '../Price'
 
 const productStyle = cva('flex group/product', {

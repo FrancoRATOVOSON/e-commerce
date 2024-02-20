@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { Page } from '@/components'
-
-import { useSetHeader } from '../overview/_hooks'
+import { useSetHeader } from '@/hooks'
 
 export default function Settings() {
   const setHeader = useSetHeader()

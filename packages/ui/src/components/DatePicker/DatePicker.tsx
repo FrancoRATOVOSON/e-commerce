@@ -7,7 +7,7 @@ import { CalendarDays as CalendarIcon } from '../../Icons'
 import { Calendar } from '../../shadcn/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '../../shadcn/popover'
 import { cn } from '../../utils'
-import Button from '../Button'
+import { Button } from '../Button'
 
 function DatePicker() {
   const [date, setDate] = React.useState<Date>()
@@ -20,7 +20,7 @@ function DatePicker() {
             'w-[240px] justify-start text-left font-normal',
             !date && 'text-muted-foreground'
           )}
-          variant={'secondary'}
+          variant={'outline'}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? format(date, 'PPP') : <span>Pick a date</span>}

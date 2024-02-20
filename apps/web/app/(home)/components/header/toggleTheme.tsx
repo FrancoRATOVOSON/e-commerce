@@ -15,7 +15,7 @@ export default function ToggleTheme() {
 
   return (
     <Button onClick={() => toggleTheme()} size="icon" variant={'ghost'}>
-      {!theme || theme !== 'dark' ? <SunIcon /> : <MoonIcon />}
+      <div>{!theme || theme !== 'dark' ? <SunIcon /> : <MoonIcon />}</div>
     </Button>
   )
 }

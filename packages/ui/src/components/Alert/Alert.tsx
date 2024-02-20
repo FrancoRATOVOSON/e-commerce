@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { VariantProps, cn, cva } from '../../utils'
-import Button from '../Button'
+import { Button } from '../Button'
 
 interface AlertTitleProps {
   children: React.ReactNode
@@ -49,7 +49,7 @@ function AlertFooter({
   return (
     <div className="flex flex-row justify-end items-center space-x-4">
       {cancelAction && (
-        <Button onClick={cancelAction} variant="secondary">
+        <Button onClick={cancelAction} variant="outline">
           Annuler
         </Button>
       )}

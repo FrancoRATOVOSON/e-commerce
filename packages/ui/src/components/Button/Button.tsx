@@ -1,68 +1,62 @@
 import React from 'react'
 
+import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, cva } from 'class-variance-authority'
 
+import { Button as ButtonBase, buttonVariants } from '../../shadcn/button'
 import { cn } from '../../utils'
 
-export const buttonVariants = cva(
-  [
-    'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium',
-    'ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-    'disabled:pointer-events-none disabled:opacity-50'
-  ],
-  {
-    compoundVariants: [
-      {
-        className: 'text-primary-foreground bg-primary',
-        variant: ['action', 'primary']
-      },
-      {
-        className: 'hover:text-foreground/80 hover:border hover:border-border',
-        size: 'icon',
-        variant: 'ghost'
-      }
-    ],
-    defaultVariants: {
-      fullWidth: false,
-      size: 'normal',
-      variant: 'primary'
+const extendedButtonVariants = cva('', {
+  defaultVariants: {
+    fullWidth: false,
+    variant: 'default'
+  },
+  variants: {
+    fullWidth: {
+      true: 'w-full'
     },
-    variants: {
-      fullWidth: {
-        true: 'w-full'
-      },
-      size: {
-        icon: 'w-9 h-9',
-        normal: 'px-3 h-9',
-        'small-icon': 'w-6 h-6'
-      },
-      variant: {
-        action: 'hover:bg-sld-base',
-        destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/80',
-        ghost: '',
-        primary: 'hover:bg-primary/90',
-        secondary:
-          'border border-input bg-background hover:bg-accent hover:text-accent-foreground'
-      }
+    size: {
+      default: buttonVariants({ size: 'default' }),
+      icon: buttonVariants({ size: 'icon' }),
+      lg: buttonVariants({ size: 'lg' }),
+      sm: buttonVariants({ size: 'sm' })
+    },
+    variant: {
+      action: cn(buttonVariants({ variant: 'default' }), 'hover:bg-sld-base'),
+      default: buttonVariants({ variant: 'default' }),
+      destructive: buttonVariants({ variant: 'destructive' }),
+      ghost: buttonVariants({
+        className: 'bg-background text-foreground',
+        variant: 'ghost'
+      }),
+      link: buttonVariants({ variant: 'link' }),
+      outline: cn(buttonVariants({ variant: 'outline' })),
+      secondary: buttonVariants({ variant: 'secondary' })
     }
   }
+})
+
+interface ExtendedButtonProps
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof ButtonBase>,
+      'size' | 'variant'
+    >,
+    VariantProps<typeof extendedButtonVariants> {}
+
+const Button = React.forwardRef<HTMLButtonElement, ExtendedButtonProps>(
+  ({ asChild = false, className, fullWidth, size, variant, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button'
+    return (
+      <Comp
+        className={cn(
+          extendedButtonVariants({ className, fullWidth, size, variant })
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
 )
+Button.displayName = 'Button'
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, className, fullWidth, size, variant, ...props }, ref) => (
-    <button
-      className={cn(buttonVariants({ className, fullWidth, size, variant }))}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </button>
-  )
-)
-
-export default Button
+export { Button, buttonVariants }

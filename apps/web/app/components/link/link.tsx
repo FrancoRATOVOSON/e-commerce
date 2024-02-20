@@ -2,15 +2,28 @@
 
 import React from 'react'
 
-// eslint-disable-next-line import/no-named-default
-import { default as NextLink, LinkProps as NextLinkProps } from 'next/link'
-import { Link as UILink, LinkProps as UILinkProps } from 'ui/components'
+import NextLink from 'next/link'
+import { Button, buttonVariants } from 'ui/components'
+import { VariantProps, cn } from 'ui/utils'
 
-interface LinkProps extends Omit<NextLinkProps, 'href'>, UILinkProps {}
+interface LinkProps
+  extends React.ComponentProps<typeof NextLink>,
+    VariantProps<typeof buttonVariants> {}
 
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ ...props }, ref) => <UILink element={NextLink} ref={ref} {...props} />
-)
+function Link({ className, size, variant = 'link', ...props }: LinkProps) {
+  return (
+    <Button asChild size={size} variant={variant}>
+      <NextLink
+        className={cn(
+          className,
+          variant === 'link' &&
+            'text-sld-base p-0 m-0 w-fit h-fit px-0 py-0 mx-0 my-0'
+        )}
+        {...props}
+      />
+    </Button>
+  )
+}
 
 Link.displayName = 'Link'
 

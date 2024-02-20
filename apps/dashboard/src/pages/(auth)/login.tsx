@@ -29,7 +29,6 @@ export default function Login() {
           // aria-disabled={isSubmitting}
           // onClick={handleSubmit}
           type="submit"
-          variant="primary"
         >
           Se connecter
         </Button>

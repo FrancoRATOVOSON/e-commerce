@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { HeaderContent, Page } from '@/components'
+import { useSetHeader } from '@/hooks'
 import { Container, DatePickerWithRange } from 'ui/components'
 import { cn } from 'ui/utils'
 import { today, yearFromNow } from 'utils'
 
 import { IncomeChart, InfoTiles } from './_components'
 import { BestSalesList, BestShopperList } from './_components/data-list'
-import { useSetHeader } from './_hooks'
 
 export default function Overview() {
   const setHeader = useSetHeader()
@@ -27,11 +27,6 @@ export default function Overview() {
 
   return (
     <Page className="flex flex-col justify-start items-stretch gap-6 p-6">
-      {/* <Container>
-        <DatePickerWithRange
-          defaultValues={{ from: yearFromNow(-1), to: today() }}
-        />
-      </Container> */}
       <Container
         className={cn(
           'gap-4',

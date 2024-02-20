@@ -20,10 +20,13 @@ function useHeaderValue() {
 function useSetHeader() {
   const setHeaderAtom = useSetAtom(headerProps)
 
-  const setHeader = (header: TitleOrChildrenType) =>
-    appWindow
-      .setTitle(`YShop Admin - ${header.title}`)
-      .then(() => setHeaderAtom(header))
+  const setHeader = (header: TitleOrChildrenType) => {
+    if (window.__TAURI__)
+      appWindow
+        .setTitle(`YShop Admin - ${header.title}`)
+        .then(() => setHeaderAtom(header))
+    else setHeaderAtom(header)
+  }
 
   return setHeader
 }

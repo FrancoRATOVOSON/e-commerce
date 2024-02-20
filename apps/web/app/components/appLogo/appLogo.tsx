@@ -2,10 +2,9 @@
 
 import React from 'react'
 
+import Link from 'next/link'
 import { AppLogo as Logo } from 'ui/components'
 import { AppLogoProps } from 'ui/types'
-
-import Link from '../link'
 
 export default function AppLogo({
   className = '',
@@ -13,7 +12,10 @@ export default function AppLogo({
   ...props
 }: Omit<AppLogoProps, 'ref'>) {
   return (
-    <Link href={'/'} variant="logo">
+    <Link
+      className="text-inherit h-fit text-decoration-none outline-none border-none"
+      href={'/'}
+    >
       <Logo
         className={`${className} fill-foreground`}
         scale={scale}

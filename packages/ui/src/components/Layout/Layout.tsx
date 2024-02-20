@@ -9,12 +9,29 @@ import {
 import Separator from '../../shadcn/separator'
 import { cn } from '../../utils'
 
-const Container = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div className={cn('w-full', className)} {...props} ref={ref} />
-))
+type ContainerProps<T extends keyof React.JSX.IntrinsicElements = 'div'> = {
+  as?: T
+  children?: React.ReactNode
+} & React.JSX.IntrinsicElements[T]
+
+const ContainerComponent = <
+  T extends keyof React.JSX.IntrinsicElements = 'div'
+>(
+  {
+    as: Element = 'div' as T,
+    children,
+    className,
+    ...props
+  }: ContainerProps<T>,
+  ref: React.ForwardedRef<HTMLElement>
+) =>
+  React.createElement(
+    Element,
+    { ...props, className: cn('w-full', className), ref },
+    children
+  )
+
+const Container = React.forwardRef(ContainerComponent)
 
 export {
   Container,
