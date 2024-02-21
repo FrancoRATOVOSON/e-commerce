@@ -9,7 +9,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '../../shadcn/popover'
 import { cn } from '../../utils'
 import { Button } from '../Button'
 
-function DatePicker() {
+interface DatePickerProps {
+  className?: string
+}
+
+function DatePicker({ className }: DatePickerProps) {
   const [date, setDate] = React.useState<Date>()
 
   return (
@@ -17,8 +21,9 @@ function DatePicker() {
       <PopoverTrigger asChild>
         <Button
           className={cn(
-            'w-[240px] justify-start text-left font-normal',
-            !date && 'text-muted-foreground'
+            'justify-start text-left font-normal',
+            !date && 'text-muted-foreground',
+            className
           )}
           variant={'outline'}
         >
@@ -70,9 +75,10 @@ function DatePickerWithRange({
         <PopoverTrigger asChild>
           <Button
             className={cn(
-              'w-[300px] justify-start text-left font-normal',
+              'justify-start text-left font-normal',
               !date && 'text-muted-foreground'
             )}
+            fullWidth
             id="date"
             variant={'secondary'}
           >

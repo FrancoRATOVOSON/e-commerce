@@ -7935,6 +7935,7 @@ __metadata:
     "@tauri-apps/api": "npm:^1.5.2"
     "@tauri-apps/cli": "npm:^1.5.8"
     "@vitejs/plugin-react": "npm:^4.2.1"
+    database: "workspace:*"
     eslint-config-custom: "workspace:*"
     jotai: "npm:^2.6.4"
     react-helmet-async: "npm:^2.0.4"

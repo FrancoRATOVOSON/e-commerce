@@ -15,6 +15,7 @@ export default function Overview() {
   const HeaderChildren = (
     <HeaderContent className="flex justify-center items-center">
       <DatePickerWithRange
+        className="w-64"
         defaultValues={{ from: yearFromNow(-1), to: today() }}
       />
     </HeaderContent>
