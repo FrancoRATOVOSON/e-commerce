@@ -3,27 +3,63 @@ import * as React from 'react'
 import { Link } from '@/components'
 import { ShopperData } from 'database/types'
 import {
+  Button,
   DataTableActionCell,
   DataTableHeader,
   DataTableNumberCell,
   DataTablePriceCell,
-  DataTableTextCell
+  DataTableTextCell,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  openSheet
 } from 'ui/components'
-import { ArrowUpRightFromSquare } from 'ui/icons'
+import { ArrowUpRightFromSquare, BadgeInfo, MoreHorizontal } from 'ui/icons'
 import { cn } from 'ui/utils'
 import { format } from 'utils'
 import { ColumnDef } from 'utils/hooks'
+
+import Overview from './overview'
 
 const details: ColumnDef<ShopperData> = {
   cell: ({ row }) => {
     const shopper = row.original
     return (
-      <DataTableActionCell tooltip="Voir les détails">
-        <Link to={`/customer/${shopper.id}`}>
-          <div>
-            <ArrowUpRightFromSquare size={16} />
-          </div>
-        </Link>
+      <DataTableActionCell>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button size={'icon'} variant={'ghost'}>
+              <div>
+                <MoreHorizontal className="h-4 w-4" />
+              </div>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <Link
+                className="flex flex-row justify-start items-center gap-4"
+                to={`/customer/${shopper.id}`}
+                variant={'ghost'}
+              >
+                <ArrowUpRightFromSquare className="w-4 h-4" />
+                Détails
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button
+                className="flex flex-row justify-start items-center gap-4"
+                onClick={() =>
+                  openSheet({ content: <Overview shopper={row.original} /> })
+                }
+                variant={'ghost'}
+              >
+                <BadgeInfo className="w-4 h-4" />
+                Apperçu
+              </Button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </DataTableActionCell>
     )
   },

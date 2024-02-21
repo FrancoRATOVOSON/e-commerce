@@ -2,7 +2,7 @@ import React from 'react'
 
 import { HeaderDescription, HeaderTitle, Page } from '@/components'
 import { useSetHeader } from '@/hooks'
-import { Container } from 'ui/components'
+import { Container, ControlledSheet } from 'ui/components'
 
 import { DataList } from './_components'
 
@@ -24,6 +24,7 @@ export default function Customer() {
   return (
     <Page className="flex justify-start items-stretch flex-auto p-6">
       <DataList className="mb-6" />
+      <ControlledSheet />
     </Page>
   )
 }

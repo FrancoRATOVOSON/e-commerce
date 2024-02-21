@@ -6,37 +6,40 @@ import { VariantProps, cva } from 'class-variance-authority'
 import { Button as ButtonBase, buttonVariants } from '../../shadcn/button'
 import { cn } from '../../utils'
 
-const extendedButtonVariants = cva('', {
-  defaultVariants: {
-    fullWidth: false,
-    variant: 'default'
-  },
-  variants: {
-    fullWidth: {
-      true: 'w-full'
+const extendedButtonVariants = cva(
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  {
+    defaultVariants: {
+      fullWidth: false,
+      size: 'default',
+      variant: 'default'
     },
-    size: {
-      default: buttonVariants({ size: 'default' }),
-      icon: buttonVariants({ size: 'icon' }),
-      lg: buttonVariants({ size: 'lg' }),
-      sm: buttonVariants({ size: 'sm' })
-    },
-    variant: {
-      action: cn(buttonVariants({ variant: 'default' }), 'hover:bg-sld-base'),
-      default: buttonVariants({ variant: 'default' }),
-      destructive: buttonVariants({ variant: 'destructive' }),
-      ghost: buttonVariants({
-        className: 'bg-background text-foreground',
-        variant: 'ghost'
-      }),
-      link: buttonVariants({ variant: 'link' }),
-      outline: cn(
-        buttonVariants({ className: 'text-foreground', variant: 'outline' })
-      ),
-      secondary: buttonVariants({ variant: 'secondary' })
+    variants: {
+      fullWidth: {
+        true: 'w-full'
+      },
+      size: {
+        default: 'h-9 px-4 py-2',
+        icon: 'h-9 w-9',
+        lg: 'h-10 rounded-md px-8',
+        sm: 'h-8 rounded-md px-3 text-xs'
+      },
+      variant: {
+        action: cn(buttonVariants({ variant: 'default' }), 'hover:bg-sld-base'),
+        default:
+          'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+        destructive:
+          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'text-primary underline-offset-4 hover:underline',
+        outline:
+          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80'
+      }
     }
   }
-})
+)
 
 interface ExtendedButtonProps
   extends Omit<
