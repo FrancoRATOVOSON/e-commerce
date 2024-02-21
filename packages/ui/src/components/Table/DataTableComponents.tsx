@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { PriceDetails } from 'utils/types'
+
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,21 +19,72 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '../DropdownMenu'
+import { Container } from '../Layout'
+import Price from '../Price'
+import Search from '../Search'
 import { Select, SelectController } from '../Select'
-import { Tooltip, TooltipProvider } from '../Tooltip'
+import { Tooltip } from '../Tooltip'
 import { DataTableElementProps } from './DataTable'
-import { DataTablePaginationLabels } from './types'
+import { DataTablePaginationLabels, SearchProps } from './types'
 
-interface ActionCellProps {
+interface DataTableActionCellProps {
   children: React.ReactNode
   tooltip?: string
 }
 
-function ActionCell({ children, tooltip }: ActionCellProps) {
+function DataTableActionCell({ children, tooltip }: DataTableActionCellProps) {
   return tooltip ? (
     <Tooltip content={tooltip}>{children}</Tooltip>
   ) : (
     <>{children}</>
+  )
+}
+
+interface DataTableTextCellProps {
+  children?: React.ReactNode
+  className?: string
+  text?: React.ReactNode
+}
+
+function DataTableTextCell({
+  children,
+  className,
+  text
+}: DataTableTextCellProps) {
+  return (
+    <p className={cn('text-sm', className)}>
+      {text}
+      {children}
+    </p>
+  )
+}
+
+interface DataTablePriceCellProps {
+  className?: string
+  value: PriceDetails | number
+}
+
+function DataTablePriceCell({ className, value }: DataTablePriceCellProps) {
+  return (
+    <DataTableTextCell className={cn('font-medium', className)}>
+      <Price
+        currency={typeof value === 'number' ? undefined : value.currency}
+        value={typeof value === 'number' ? value : value.value}
+      />
+    </DataTableTextCell>
+  )
+}
+
+interface DataTableNumberCellProps {
+  className?: string
+  value: number | string
+}
+
+function DataTableNumberCell({ className, value }: DataTableNumberCellProps) {
+  return (
+    <DataTableTextCell className={cn('text-center', className)}>
+      {value}
+    </DataTableTextCell>
   )
 }
 
@@ -53,7 +106,7 @@ function DataTablePagination<TData>({
           onValueChange={value => {
             table.setPageSize(Number(value))
           }}
-          options={[10, 15, 20, 30, 40, 50].map(pageSize => ({
+          options={[5, 10, 20, 30, 40, 50].map(pageSize => ({
             label: `${pageSize}`,
             value: `${pageSize}`
           }))}
@@ -70,48 +123,46 @@ function DataTablePagination<TData>({
         {table.getPageCount()}
       </div>
       <div className="flex items-center space-x-2">
-        <TooltipProvider delayDuration={100}>
-          <Tooltip content={labels?.firstPage || 'First Page'} side="top">
-            <Button
-              className="hidden h-8 w-8 p-0 lg:flex"
-              disabled={!table.getCanPreviousPage()}
-              onClick={() => table.setPageIndex(0)}
-              variant="outline"
-            >
-              <ChevronsLeft size={16} />
-            </Button>
-          </Tooltip>
-          <Tooltip content={labels?.previousPage || 'Previous'} side="top">
-            <Button
-              className="h-8 w-8 p-0"
-              disabled={!table.getCanPreviousPage()}
-              onClick={() => table.previousPage()}
-              variant="outline"
-            >
-              <ChevronLeft size={16} />
-            </Button>
-          </Tooltip>
-          <Tooltip content={labels?.nextPage || 'Next'} side="top">
-            <Button
-              className="h-8 w-8 p-0"
-              disabled={!table.getCanNextPage()}
-              onClick={() => table.nextPage()}
-              variant="outline"
-            >
-              <ChevronRight size={16} />
-            </Button>
-          </Tooltip>
-          <Tooltip content={labels?.lastPage || 'Last Page'} side="top">
-            <Button
-              className="hidden h-8 w-8 p-0 lg:flex"
-              disabled={!table.getCanNextPage()}
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              variant="outline"
-            >
-              <ChevronsRight size={16} />
-            </Button>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip content={labels?.firstPage || 'First Page'} side="top">
+          <Button
+            className="hidden h-8 w-8 p-0 lg:flex"
+            disabled={!table.getCanPreviousPage()}
+            onClick={() => table.setPageIndex(0)}
+            variant="outline"
+          >
+            <ChevronsLeft size={16} />
+          </Button>
+        </Tooltip>
+        <Tooltip content={labels?.previousPage || 'Previous'} side="top">
+          <Button
+            className="h-8 w-8 p-0"
+            disabled={!table.getCanPreviousPage()}
+            onClick={() => table.previousPage()}
+            variant="outline"
+          >
+            <ChevronLeft size={16} />
+          </Button>
+        </Tooltip>
+        <Tooltip content={labels?.nextPage || 'Next'} side="top">
+          <Button
+            className="h-8 w-8 p-0"
+            disabled={!table.getCanNextPage()}
+            onClick={() => table.nextPage()}
+            variant="outline"
+          >
+            <ChevronRight size={16} />
+          </Button>
+        </Tooltip>
+        <Tooltip content={labels?.lastPage || 'Last Page'} side="top">
+          <Button
+            className="hidden h-8 w-8 p-0 lg:flex"
+            disabled={!table.getCanNextPage()}
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            variant="outline"
+          >
+            <ChevronsRight size={16} />
+          </Button>
+        </Tooltip>
       </div>
     </div>
   )
@@ -151,7 +202,10 @@ function DataTableViewOptions<TData>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="ml-auto lg:flex" variant="outline">
+        <Button
+          className="ml-auto flex justify-end items-center gap-2"
+          variant="outline"
+        >
           <SlidersHorizontal size={16} />
           {labels?.title || 'View'}
         </Button>
@@ -182,37 +236,67 @@ function DataTableViewOptions<TData>({
   )
 }
 
-interface DataTableToolbarProps<TData> extends DataTableElementProps<TData> {
-  children?: React.ReactNode
-  className?: string
-  visibility?: boolean
+interface DataTableSearchProps<TData> extends DataTableElementProps<TData> {
+  column: keyof TData
+  placeholder?: string
 }
+
+function DataTableSearch<TData>({
+  column,
+  placeholder,
+  table
+}: DataTableSearchProps<TData>) {
+  return (
+    <Search
+      onChange={e =>
+        table.getColumn(column.toString())?.setFilterValue(e.target.value)
+      }
+      placeholder={placeholder}
+      value={table.getColumn(column.toString())?.getFilterValue() as string}
+    />
+  )
+}
+
+type DataTableToolbarProps<TData> = DataTableElementProps<TData> & {
+  children?: React.ReactNode
+  visibility?: boolean
+} & SearchProps<TData>
 
 function DataTableToolbar<TData>({
   children,
-  className,
   table,
-  visibility = false
+  visibility = false,
+  ...props
 }: DataTableToolbarProps<TData>) {
+  const Wrapper = children && props.search ? Container : React.Fragment
+  const { search } = props
+
   return (
     <div
       className={cn(
-        'flex items-center',
-        children && visibility && 'justify-between',
-        visibility && !children && 'justify-end',
-        className
+        'flex items-center mb-4',
+        (children || search) && visibility && 'justify-between',
+        visibility && !(children || search) && 'justify-end'
       )}
     >
-      {children}
+      <Wrapper className="flex flex-row justify-start items-center gap-2">
+        {props.search && (
+          <DataTableSearch column={props.searchColumn} table={table} />
+        )}
+        {children}
+      </Wrapper>
       {visibility && <DataTableViewOptions table={table} />}
     </div>
   )
 }
 
 export {
-  ActionCell,
+  DataTableActionCell,
+  DataTableNumberCell,
   DataTablePagination,
+  DataTablePriceCell,
   DataTableRowSelection,
+  DataTableTextCell,
   DataTableToolbar,
   DataTableViewOptions
 }

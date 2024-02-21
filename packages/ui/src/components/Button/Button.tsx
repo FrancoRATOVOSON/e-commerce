@@ -30,7 +30,9 @@ const extendedButtonVariants = cva('', {
         variant: 'ghost'
       }),
       link: buttonVariants({ variant: 'link' }),
-      outline: cn(buttonVariants({ variant: 'outline' })),
+      outline: cn(
+        buttonVariants({ className: 'text-foreground', variant: 'outline' })
+      ),
       secondary: buttonVariants({ variant: 'secondary' })
     }
   }

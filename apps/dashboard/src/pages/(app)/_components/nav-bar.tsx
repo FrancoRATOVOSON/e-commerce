@@ -56,7 +56,9 @@ export default function NavBar({ isCollapsed, toggle }: NavBarProps) {
             </div>
           ) : (
             <>
-              <FoldHorizontal size={20} />
+              <div>
+                <FoldHorizontal size={20} />
+              </div>
               <span>Fermer</span>
             </>
           )}

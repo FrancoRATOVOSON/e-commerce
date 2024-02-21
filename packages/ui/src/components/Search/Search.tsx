@@ -5,7 +5,7 @@ import { SearchIcon } from 'lucide-react'
 import Input from '../../shadcn/input'
 import { cn } from '../../utils'
 
-interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+interface SearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string
 }
 

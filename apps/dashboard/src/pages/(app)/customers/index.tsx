@@ -1,13 +1,29 @@
 import React from 'react'
 
-import { Page } from '@/components'
+import { HeaderDescription, HeaderTitle, Page } from '@/components'
+import { useSetHeader } from '@/hooks'
+import { Container } from 'ui/components'
 
-import { useSetHeader } from '../overview/_hooks'
+import { DataList } from './_components'
 
 export default function Customer() {
   const setHeader = useSetHeader()
 
-  setHeader({ title: 'Clients' })
+  setHeader({
+    children: (
+      <Container className="flex flex-col justify-start grow ml-4">
+        <HeaderTitle title="Vos Clients" />
+        <HeaderDescription
+          className="text-nowrap"
+          description="Analysez et gérez vos clients"
+        />
+      </Container>
+    )
+  })
 
-  return <Page className="flex justify-center items-center">Customer</Page>
+  return (
+    <Page className="flex justify-start items-stretch flex-auto p-6">
+      <DataList className="mb-6" />
+    </Page>
+  )
 }

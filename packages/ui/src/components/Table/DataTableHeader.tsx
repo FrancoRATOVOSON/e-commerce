@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '../DropdownMenu'
+import { Tooltip } from '../Tooltip'
 import { DataTableColumnProps } from './DataTable'
 
 interface DataTableColumnHeaderProps<TData, TValue>
@@ -22,6 +23,7 @@ interface DataTableColumnHeaderProps<TData, TValue>
     DataTableColumnProps<TData, TValue> {
   sorting?: boolean
   title: string
+  tooltip?: string
   visibility?: boolean
   labels?: {
     asc?: string
@@ -34,12 +36,22 @@ export default function DataTableColumnHeader<TData, TValue>({
   className,
   column,
   labels,
-  sorting = false,
+  sorting: sort,
   title,
-  visibility = false
+  tooltip,
+  visibility: hide
 }: DataTableColumnHeaderProps<TData, TValue>) {
-  if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>
+  const sorting = sort === false ? false : column.getCanSort()
+  const visibility = hide === false ? false : column.getCanHide()
+
+  const Wrapper = tooltip ? Tooltip : React.Fragment
+
+  if (!sorting) {
+    return (
+      <Wrapper content={tooltip} side="bottom">
+        <div className={cn(className)}>{title}</div>
+      </Wrapper>
+    )
   }
 
   let icon
@@ -56,59 +68,68 @@ export default function DataTableColumnHeader<TData, TValue>({
   }
 
   return (
-    <div
-      className={cn(
-        'flex items-center',
-        sorting && visibility && 'space-x-2',
-        className
-      )}
-    >
-      {!sorting && !visibility ? (
-        <span>{title}</span>
-      ) : (
-        <>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                className="-ml-3 h-8 data-[state=open]:bg-accent"
-                variant="ghost"
-              >
-                <span>{title}</span>
-                {icon}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              {sorting && (
-                <>
-                  <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-                    <ArrowUpNarrowWide
-                      className="mr-2 text-muted-foreground/70"
-                      size={16}
-                    />
-                    {labels?.asc || 'Asc'}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-                    <ArrowDownWideNarrow
-                      className="mr-2 text-muted-foreground/70"
-                      size={16}
-                    />
-                    {labels?.desc || 'Desc'}
-                  </DropdownMenuItem>
-                </>
-              )}
-              {sorting && visibility && <DropdownMenuSeparator />}
-              {visibility && (
-                <DropdownMenuItem
-                  onClick={() => column.toggleVisibility(false)}
+    <Wrapper content={tooltip} side="bottom">
+      <div
+        className={cn(
+          'flex items-center',
+          sorting && visibility && 'space-x-2',
+          className
+        )}
+      >
+        {!sorting && !visibility ? (
+          <span>{title}</span>
+        ) : (
+          <>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  className="-ml-3 h-8 data-[state=open]:bg-accent"
+                  variant="ghost"
                 >
-                  <EyeOff className="mr-2 text-muted-foreground/70" size={16} />
-                  {labels?.hide || 'Hide'}
-                </DropdownMenuItem>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </>
-      )}
-    </div>
+                  <span>{title}</span>
+                  {icon}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                {sorting && (
+                  <>
+                    <DropdownMenuItem
+                      onClick={() => column.toggleSorting(false)}
+                    >
+                      <ArrowUpNarrowWide
+                        className="mr-2 text-muted-foreground/70"
+                        size={16}
+                      />
+                      {labels?.asc || 'Asc'}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => column.toggleSorting(true)}
+                    >
+                      <ArrowDownWideNarrow
+                        className="mr-2 text-muted-foreground/70"
+                        size={16}
+                      />
+                      {labels?.desc || 'Desc'}
+                    </DropdownMenuItem>
+                  </>
+                )}
+                {sorting && visibility && <DropdownMenuSeparator />}
+                {visibility && (
+                  <DropdownMenuItem
+                    onClick={() => column.toggleVisibility(false)}
+                  >
+                    <EyeOff
+                      className="mr-2 text-muted-foreground/70"
+                      size={16}
+                    />
+                    {labels?.hide || 'Hide'}
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        )}
+      </div>
+    </Wrapper>
   )
 }

@@ -18,9 +18,21 @@ type DataTableSelectionActionComponentProps<TData> =
 
 type DataTableCustomComponentProps<TData> = DataTableElementProps<TData>
 
+type HasSearch<TData> = {
+  search: true
+  searchColumn: keyof TData
+}
+
+type NotHasSearch = {
+  search?: false
+}
+
+type SearchProps<TData> = HasSearch<TData> | NotHasSearch
+
 export type {
   DataTableCustomComponentProps,
   DataTableCustomFilterComponentProps,
   DataTablePaginationLabels,
-  DataTableSelectionActionComponentProps
+  DataTableSelectionActionComponentProps,
+  SearchProps
 }

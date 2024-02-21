@@ -97,6 +97,16 @@ export default {
       <DataTable columns={columns({})} data={payments()} pagination />
     </DataTableContainer>
   ),
+  Search: (
+    <DataTableContainer>
+      <DataTable
+        columns={columns({ sorting: true, visibility: true })}
+        data={payments(10)}
+        search={true}
+        searchColumn="email"
+      />
+    </DataTableContainer>
+  ),
   Sort: (
     <DataTableContainer>
       <DataTable
