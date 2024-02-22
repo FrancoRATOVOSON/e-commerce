@@ -37,8 +37,7 @@ function createOrder(productId: string, shopperId: number) {
   return prisma.order.create({
     data: {
       products: { create: { productId } },
-      shopperId,
-      status: OrderStatusType.CART
+      shopperId
     }
   })
 }
@@ -102,7 +101,7 @@ export async function getUserCartProducts(shopperId: number) {
         }
       }
     },
-    where: { shopperId, status: OrderStatusType.CART }
+    where: { deliveredAt: null, shopperId, validatedAt: null }
   })
 
   if (userOrders.length === 0) return { id: undefined, products: [] }
@@ -124,7 +123,7 @@ export async function updateCartState(
 
   return prisma.order.update({
     data: {
-      status: cartState,
+      deliveredAt: cartState === OrderStatusType.DONE ? new Date() : undefined,
       validatedAt:
         cartState === OrderStatusType.VALIDATED ? new Date() : undefined
     },
