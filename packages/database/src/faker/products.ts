@@ -1,8 +1,8 @@
-import { getAnArrayOf } from 'utils'
+import { generateRandom, getAnArrayOf, getRandomElementOf } from 'utils'
 import { faker } from 'utils/faker'
 import { NonEmptyArrayOf } from 'utils/types'
 
-import { ProductData, TagType } from '../types'
+import { ProductData, ProductOrder, TagType } from '../types'
 
 interface DataCategoryType {
   name: string
@@ -127,7 +127,7 @@ export const DATA_CATEGORIES: Array<DataCategoryType> = [
   }
 ]
 
-export function getRandomDescription() {
+export function fakeRandomDescription() {
   return faker.lorem.paragraph(2)
 }
 
@@ -158,3 +158,25 @@ export function fakeProductData(): ProductData {
 
 export const fakeProductList = (n: number = 10) =>
   getAnArrayOf(fakeProductData, n)
+
+export function fakeProductOrder(): ProductOrder {
+  const name = faker.commerce.productName()
+  const productCategory = getRandomElementOf(DATA_CATEGORIES)
+  const tags: string[] = productCategory.tags.reduce((arr, tag) => {
+    if (generateRandom(0, 10) % 2 === 0) arr.push(tag.label)
+    return arr
+  }, [] as string[])
+
+  return {
+    category: productCategory.name,
+    discount: faker.number.int({ max: 85, min: 0 }),
+    id: faker.string.uuid(),
+    name,
+    price: {
+      currency: 'MGA',
+      value: faker.number.int({ max: 1_000, min: 1 }) * 1_000
+    },
+    quantity: faker.number.int({ max: 50, min: 1 }),
+    tags
+  }
+}

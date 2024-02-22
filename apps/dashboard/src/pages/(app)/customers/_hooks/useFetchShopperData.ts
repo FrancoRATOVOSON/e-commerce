@@ -1,8 +1,8 @@
-import { getShopperDataList } from 'database/faker'
+import { fakeShopperDataList } from 'database/faker'
 import { ShopperData } from 'database/types'
 
 function useFetchShopperData(): Array<ShopperData> {
-  return getShopperDataList()
+  return fakeShopperDataList()
 }
 
 export default useFetchShopperData

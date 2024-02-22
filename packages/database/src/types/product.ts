@@ -1,11 +1,15 @@
 import {
   ImageDetails,
+  OmitStrict,
   PriceDetails,
-  WithPartial,
-  WithRequired
+  WithPartial
 } from 'utils/types'
 
-import { Product as PrismaProduct, Tag as PrismaTag } from '../client'
+import {
+  OrderProduct,
+  Product as PrismaProduct,
+  Tag as PrismaTag
+} from '../client'
 
 export type ProductType = WithPartial<
   PrismaProduct,
@@ -17,40 +21,37 @@ export type ProductType = WithPartial<
   tags?: Array<{ tag: { label: string } }>
 }
 
-type FormatedProduct = {
-  category: string
-  image: ImageDetails
-  price: PriceDetails
-  quantity?: number
-  tags: string[]
-} & Omit<
-  ProductType,
-  'category' | 'categorySlug' | 'currency' | 'image' | 'price' | 'tags'
->
+type FormatedProductType = Pick<
+  PrismaProduct,
+  'description' | 'discount' | 'id' | 'name'
+> &
+  Pick<OrderProduct, 'quantity'> & {
+    category: string
+    image: ImageDetails
+    price: PriceDetails
+    tags: string[]
+  }
 
-export type Product = WithRequired<
-  Partial<FormatedProduct>,
-  'id' | 'image' | 'name' | 'price'
+type ProductDetailsType = Pick<
+  FormatedProductType,
+  'category' | 'description' | 'discount' | 'tags'
 >
 
 export type ProductData = Pick<
-  FormatedProduct,
+  FormatedProductType,
   'id' | 'image' | 'name' | 'price'
 >
 
-export type ProductCartData = Pick<
-  FormatedProduct,
-  'id' | 'image' | 'name' | 'price' | 'quantity'
->
+type ProdcutOrderType = Pick<FormatedProductType, 'quantity'>
 
-export type ProductDetails = WithPartial<FormatedProduct, 'discount'>
+export type Product = ProductData & Partial<ProductDetailsType>
+
+export type ProductCartData = ProductData & Partial<ProdcutOrderType>
+
+export type ProductDetails = ProductData &
+  WithPartial<ProductDetailsType, 'discount'>
 
 export type ProductListType = Array<ProductData>
-
-export type ProductInput = WithPartial<
-  Omit<FormatedProduct, 'id'>,
-  'discount' | 'tags'
->
 
 export type ProductParams = {
   category: string | string[]
@@ -65,4 +66,8 @@ export type ProductParams = {
   tag?: string | string[]
 }
 
-export type TagType = Omit<PrismaTag, 'categorySlug'>
+export type TagType = OmitStrict<PrismaTag, 'categorySlug'>
+
+export type ProductOrder = OmitStrict<ProductData, 'image'> &
+  OmitStrict<ProductDetailsType, 'description'> &
+  ProdcutOrderType

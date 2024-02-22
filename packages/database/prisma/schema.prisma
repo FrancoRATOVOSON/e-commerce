@@ -63,6 +63,7 @@ model Order {
   id Int @id @default(autoincrement())
   shopperId Int @map("shopper_id")
   validatedAt DateTime? @map("validated_at")
+  deliveredAt DateTime? @map("delivered_at")
   status String
   products OrderProduct[]
   shopper Shopper @relation(fields: [shopperId], references: [id])

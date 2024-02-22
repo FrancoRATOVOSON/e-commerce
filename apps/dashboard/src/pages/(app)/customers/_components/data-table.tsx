@@ -9,7 +9,7 @@ import {
   details,
   isOrdering,
   itemsTotalPruchased,
-  lastCommandDate,
+  lastOrderDate,
   login,
   productTotalPurchased,
   totalAmount,
@@ -37,7 +37,7 @@ function DataTable({ className }: DataTableProps) {
         totalAmount,
         productTotalPurchased,
         itemsTotalPruchased,
-        lastCommandDate
+        lastOrderDate
       ]}
       data={data}
       pagination

@@ -28,7 +28,7 @@ function Overview({ shopper }: OverviewProps) {
     id,
     isOrdering,
     itemsTotalPruchased,
-    lastCommandDate,
+    lastOrderDate,
     login,
     productTotalPurchased,
     totalAmount,
@@ -115,7 +115,7 @@ function Overview({ shopper }: OverviewProps) {
           {itemsTotalPruchased}
         </Data>
         <Data label="Date de la dernière commande">
-          {format(lastCommandDate, 'dd/MM/yyyy')}
+          {format(lastOrderDate, 'dd/MM/yyyy')}
         </Data>
       </Container>
       <SheetFooter className="justify-self-end self-stretch grow-0">

@@ -1,17 +1,18 @@
-import { getAnArrayOf } from 'utils'
+import { generateRandom, getAnArrayOf } from 'utils'
 import { faker } from 'utils/faker'
 
-import { ShopperData, ShopperInfo } from '../types'
+import { ShopperData, ShopperDetails, ShopperInfo } from '../types'
+import { fakeOrderDetails } from './orders'
 
-export function getShopperInfo(): ShopperInfo {
+export function fakeShopperInfo(): ShopperInfo {
   return {
     id: faker.number.int(),
     login: faker.internet.email()
   }
 }
 
-export function getShopperData(): ShopperData {
-  const { id, login } = getShopperInfo()
+export function fakeShopperData(): ShopperData {
+  const { id, login } = fakeShopperInfo()
   const isOrdering = faker.datatype.boolean(0.35)
   const validatedOrders = faker.number.int(300)
   const waitingOrders = faker.number.int(300)
@@ -28,14 +29,14 @@ export function getShopperData(): ShopperData {
     amountPerOrder *
     (validatedOrders + waitingOrders) *
     faker.number.float({ max: 3, min: 0.1 })
-  const lastCommandDate = faker.date.past()
+  const lastOrderDate = faker.date.past()
 
   return {
     amountPerOrder,
     id,
     isOrdering,
     itemsTotalPruchased,
-    lastCommandDate,
+    lastOrderDate,
     login,
     productTotalPurchased,
     totalAmount,
@@ -44,6 +45,19 @@ export function getShopperData(): ShopperData {
   }
 }
 
-export function getShopperDataList(amount: number = 100): ShopperData[] {
-  return getAnArrayOf(getShopperData, amount)
+export function fakeShopperDataList(amount: number = 100): ShopperData[] {
+  return getAnArrayOf(fakeShopperData, amount)
+}
+
+export function fakeShopperDetails(shopperId: number): ShopperDetails {
+  const amount = faker.number.int({ max: 450, min: 0 })
+  const isOrdering = generateRandom(0, 10) % 3 === 0
+  const orderList = getAnArrayOf(() => fakeOrderDetails, amount)
+  const cartIndex = generateRandom(0, amount)
+
+  return {
+    orders: orderList.map((order, index) =>
+      order(shopperId, isOrdering && index === cartIndex)
+    )
+  }
 }

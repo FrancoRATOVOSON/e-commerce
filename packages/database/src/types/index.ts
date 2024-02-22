@@ -5,6 +5,7 @@ import {
 
 export * from './product'
 export * from './user'
+export * from './orders'
 
 export type OrderProduct = Omit<PrismaOrderProduct, 'orderId'>
 

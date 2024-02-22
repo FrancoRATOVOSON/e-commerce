@@ -1,3 +1,4 @@
+/* eslint-enable perfectionist/sort-exports */
 export { alertStyle, default as Alert } from './Alert'
 export { default as AppLogo } from './AppLogo'
 export * from './Button'
@@ -25,3 +26,4 @@ export * from './Table'
 export * from './Select'
 export * from './DropdownMenu'
 export * from './Sheet'
+export * from './Collapsible'

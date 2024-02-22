@@ -52,3 +52,7 @@ type PartialWithout<T, K extends keyof T> = Partial<
 export type RequireAtLeastOne<T> = {
   [K in keyof T]-?: RequiredOnly<T, K> & PartialWithout<T, K>
 }[keyof T]
+
+export type OmitStrict<T, K extends keyof T> = {
+  [P in Exclude<keyof T, K>]: T[P]
+}

@@ -186,11 +186,11 @@ const itemsTotalPruchased: ColumnDef<ShopperData> = {
   )
 }
 
-const lastCommandDate: ColumnDef<ShopperData> = {
-  accessorKey: 'lastCommandDate',
+const lastOrderDate: ColumnDef<ShopperData> = {
+  accessorKey: 'lastOrderDate',
   cell: ({ row }) => (
     <DataTableTextCell className="text-right">
-      {format(row.original.lastCommandDate, 'dd/MM/yyyy')}
+      {format(row.original.lastOrderDate, 'dd/MM/yyyy')}
     </DataTableTextCell>
   ),
   enableHiding: true,
@@ -210,7 +210,7 @@ export {
   details,
   isOrdering,
   itemsTotalPruchased,
-  lastCommandDate,
+  lastOrderDate,
   login,
   productTotalPurchased,
   totalAmount,

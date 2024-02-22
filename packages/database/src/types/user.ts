@@ -1,12 +1,13 @@
-import { PriceDetails } from 'utils/types'
+import { OmitStrict, PriceDetails } from 'utils/types'
 
 import { Shopper as PrismaShopper } from '../client'
+import { OrderDetails } from './orders'
 
 export type Shopper = PrismaShopper
 
-export type ShopperInfo = Omit<Shopper, 'password'>
+export type ShopperInfo = OmitStrict<Shopper, 'password'>
 
-export type ShopperInput = Omit<Shopper, 'id'> & { confPassword?: string }
+export type ShopperInput = OmitStrict<Shopper, 'id'> & { confPassword?: string }
 
 /* eslint-disable perfectionist/sort-object-types */
 export type ShopperData = ShopperInfo & {
@@ -25,5 +26,10 @@ export type ShopperData = ShopperInfo & {
   // Total number of item ordered (without distinction per product)
   itemsTotalPruchased: number
 
-  lastCommandDate: Date
+  lastOrderDate: Date
+}
+/* eslint-enable perfectionist/sort-object-types */
+
+export type ShopperDetails = {
+  orders: Array<OrderDetails>
 }

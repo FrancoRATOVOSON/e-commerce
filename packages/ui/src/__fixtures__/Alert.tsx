@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority'
-import { getRandomDescription } from 'database/faker'
+import { fakeRandomDescription } from 'database/faker'
 import { RocketIcon } from 'lucide-react'
 
 import {
@@ -29,7 +29,7 @@ function AlertComponent({ intent, outline }: VariantProps<typeof alertStyle>) {
       Icon={<RocketIcon />}
       action={() => close()}
       cancelAction={() => close()}
-      description={getRandomDescription()}
+      description={fakeRandomDescription()}
       intent={intent}
       outline={outline}
       title="Alert dialog"
@@ -59,7 +59,7 @@ export default {
   Destructive: (
     <Alert
       Icon={<RocketIcon />}
-      description={getRandomDescription()}
+      description={fakeRandomDescription()}
       intent={'destructive'}
       outline={'bordered'}
       title="Alert dialog"
