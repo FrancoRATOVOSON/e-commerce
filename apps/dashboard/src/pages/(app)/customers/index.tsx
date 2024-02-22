@@ -1,13 +1,14 @@
 import React from 'react'
 
 import { HeaderDescription, HeaderTitle, Page } from '@/components'
-import { useSetHeader } from '@/hooks'
+import { useSetHeader, useSetWindowTitle } from '@/hooks'
 import { Container, ControlledSheet } from 'ui/components'
 
 import { DataList } from './_components'
 
 export default function Customer() {
   const setHeader = useSetHeader()
+  const setWindowTitle = useSetWindowTitle()
 
   setHeader({
     children: (
@@ -20,6 +21,8 @@ export default function Customer() {
       </Container>
     )
   })
+
+  setWindowTitle('Clients')
 
   return (
     <Page className="flex justify-start items-stretch flex-auto p-6">

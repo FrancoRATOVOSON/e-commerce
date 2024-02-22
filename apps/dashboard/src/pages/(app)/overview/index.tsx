@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { HeaderContent, Page } from '@/components'
-import { useSetHeader } from '@/hooks'
+import { useSetHeader, useSetWindowTitle } from '@/hooks'
 import { Container, DatePickerWithRange } from 'ui/components'
 import { cn } from 'ui/utils'
 import { today, yearFromNow } from 'utils'
@@ -11,6 +11,7 @@ import { BestSalesList, BestShopperList } from './_components/data-list'
 
 export default function Overview() {
   const setHeader = useSetHeader()
+  const setWindowTitle = useSetWindowTitle()
 
   const HeaderChildren = (
     <HeaderContent className="flex justify-center items-center">
@@ -25,6 +26,8 @@ export default function Overview() {
     children: HeaderChildren,
     title: 'Accueil'
   })
+
+  setWindowTitle('Accueil')
 
   return (
     <Page className="flex flex-col justify-start items-stretch gap-6 p-6">

@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { appWindow } from '@tauri-apps/api/window'
 import { atom, useAtomValue, useSetAtom } from 'jotai'
 import { RequireAtLeastOne } from 'utils/types'
 
@@ -20,13 +19,12 @@ function useHeaderValue() {
 function useSetHeader() {
   const setHeaderAtom = useSetAtom(headerProps)
 
-  const setHeader = (header: TitleOrChildrenType) => {
-    if (window.__TAURI__)
-      appWindow
-        .setTitle(`YShop Admin - ${header.title}`)
-        .then(() => setHeaderAtom(header))
-    else setHeaderAtom(header)
-  }
+  const setHeader = React.useCallback(
+    (header: TitleOrChildrenType) => {
+      setHeaderAtom(header)
+    },
+    [setHeaderAtom]
+  )
 
   return setHeader
 }
