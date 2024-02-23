@@ -27,7 +27,7 @@ export default function Overview() {
     title: 'Accueil'
   })
 
-  setWindowTitle('Accueil')
+  setWindowTitle(base => `${base} - Accueil`)
 
   return (
     <Page className="flex flex-col justify-start items-stretch gap-6 p-6">

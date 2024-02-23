@@ -8,7 +8,7 @@ export default function Products() {
   const setWindowTitle = useSetWindowTitle()
 
   setHeader({ title: 'Produits' })
-  setWindowTitle('Produits')
+  setWindowTitle(base => `${base} - Produits`)
 
   return <Page className="flex justify-center items-center">Products</Page>
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Link } from '@/components'
+import { Link } from '@/router'
 import { ShopperData } from 'database/types'
 import {
   Button,
@@ -125,13 +125,15 @@ function Overview({ shopper }: OverviewProps) {
           </Button>
         </SheetClose>
         <SheetClose asChild>
-          <Link
-            className="flex justify-center items-center gap-4 w-full"
-            to={`/customer/${id}`}
-            variant={'default'}
-          >
-            Voir plus <ArrowUpRightFromSquare className="h-4 w-4" />
-          </Link>
+          <Button asChild variant={'default'}>
+            <Link
+              className="flex justify-center items-center gap-4 w-full"
+              params={{ id: id.toString() }}
+              to={'/customer/:id'}
+            >
+              Voir plus <ArrowUpRightFromSquare className="h-4 w-4" />
+            </Link>
+          </Button>
         </SheetClose>
       </SheetFooter>
     </SheetContent>

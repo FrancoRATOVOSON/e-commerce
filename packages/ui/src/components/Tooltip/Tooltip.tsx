@@ -15,7 +15,9 @@ interface TooltipProps extends React.ComponentProps<typeof TooltipPrimitive> {
 function Tooltip({ children, content, side = 'top', ...props }: TooltipProps) {
   return (
     <TooltipPrimitive {...props}>
-      <TooltipTrigger className="w-fit h-fit">{children}</TooltipTrigger>
+      <TooltipTrigger asChild className="w-fit h-fit">
+        {children}
+      </TooltipTrigger>
       <TooltipContent side={side}>{content}</TooltipContent>
     </TooltipPrimitive>
   )

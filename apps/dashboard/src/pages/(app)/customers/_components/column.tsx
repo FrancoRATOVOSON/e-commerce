@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Link } from '@/components'
+import { Link } from '@/router'
 import { ShopperData } from 'database/types'
 import {
   Button,
@@ -28,7 +28,7 @@ const details: ColumnDef<ShopperData> = {
     return (
       <DataTableActionCell>
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button size={'icon'} variant={'ghost'}>
               <div>
                 <MoreHorizontal className="h-4 w-4" />
@@ -37,14 +37,16 @@ const details: ColumnDef<ShopperData> = {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>
-              <Link
-                className="flex flex-row justify-start items-center gap-4"
-                to={`/customer/${shopper.id}`}
-                variant={'ghost'}
-              >
-                <ArrowUpRightFromSquare className="w-4 h-4" />
-                Détails
-              </Link>
+              <Button asChild variant={'ghost'}>
+                <Link
+                  className="flex flex-row justify-start items-center gap-4"
+                  params={{ id: shopper.id.toString() }}
+                  to={'/customer/:id'}
+                >
+                  <ArrowUpRightFromSquare className="w-4 h-4" />
+                  Détails
+                </Link>
+              </Button>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Button

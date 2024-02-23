@@ -8,7 +8,7 @@ export default function Settings() {
   const setWindowTitle = useSetWindowTitle()
 
   setHeader({ title: 'Paramètres' })
-  setWindowTitle('Paramètres')
+  setWindowTitle(base => `${base} - Paramètres`)
 
   return <Page className="flex justify-center items-center">Settings</Page>
 }

@@ -9,8 +9,11 @@ function useSetWindowTitle() {
   const setTitle = useSetAtom(windowTitle)
 
   const setWindowTitle = React.useCallback(
-    (value: string) => {
-      if (window.__TAURI__) appWindow.setTitle(value)
+    (value: ((base: string) => string) | string) => {
+      if (window.__TAURI__)
+        appWindow.setTitle(
+          typeof value === 'string' ? value : value('YShop Admin')
+        )
     },
     [setTitle]
   )

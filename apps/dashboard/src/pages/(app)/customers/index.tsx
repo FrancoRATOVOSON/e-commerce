@@ -22,7 +22,7 @@ export default function Customer() {
     )
   })
 
-  setWindowTitle('Clients')
+  setWindowTitle(base => `${base} - Clients`)
 
   return (
     <Page className="flex justify-start items-stretch flex-auto p-6">
