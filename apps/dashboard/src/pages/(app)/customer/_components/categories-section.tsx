@@ -17,7 +17,7 @@ import { PriceDisplay } from '../../_components'
 import { useFormatShopperDetails } from '../_hooks'
 import { SectionType } from '../_lib'
 
-type TagCardProps = { className?: string } & SectionType
+type TagCardProps = { className?: string; label: string } & SectionType
 
 function TagCard({ amount, className, label, quantity }: TagCardProps) {
   return (
@@ -41,8 +41,9 @@ function TagCard({ amount, className, label, quantity }: TagCardProps) {
 type CategoryCardProps = {
   className?: string
   isOpen: boolean
+  label: string
   onOpenChange: (open: boolean) => void
-  tags: Array<SectionType>
+  tags: Map<string, SectionType>
 } & SectionType
 
 function CategoryCard({
@@ -52,8 +53,9 @@ function CategoryCard({
   label,
   onOpenChange,
   quantity,
-  tags
+  tags: tagsMap
 }: CategoryCardProps) {
+  const tags = Array.from(tagsMap.entries())
   return (
     <CardContainer
       className={cn('min-w-64 p-4', className, isOpen && 'grow h-full')}
@@ -84,9 +86,10 @@ function CategoryCard({
         </CollapsibleTrigger>
         <CollapsibleContent className={cn(isOpen && 'grow')}>
           <Container className="flex flex-col justify-start items-stretch gap-2">
-            {tags.map((tag, index) => (
+            {tags.map(([tagLabel, tag], index) => (
               <TagCard
-                key={tag.label}
+                key={tagLabel}
+                label={tagLabel}
                 {...tag}
                 className={cn(index % 2 === 0 && 'bg-muted/50')}
               />
@@ -116,6 +119,7 @@ export default function CategoriesSection({
 }: CategoriesSectionProps) {
   const orders = useFormatShopperDetails(details)
   const [isOpen, setIsOpen] = React.useState(false)
+  const categories = Array.from(orders.categories.entries())
 
   return (
     <Container
@@ -149,11 +153,12 @@ export default function CategoriesSection({
           '2xl:flex 2xl:flex-row 2xl:flex-wrap 2xl:last:grow-0'
         )}
       >
-        {orders.categories.map(category => (
+        {categories.map(([label, category]) => (
           <CategoryCard
             className="self-start"
             isOpen={isOpen}
-            key={category.label}
+            key={label}
+            label={label}
             onOpenChange={setIsOpen}
             {...category}
           />
