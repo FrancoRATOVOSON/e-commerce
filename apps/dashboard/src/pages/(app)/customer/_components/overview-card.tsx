@@ -66,11 +66,7 @@ export default function OverviewCard({
 
   return (
     <CardContainer className={cn('p-4', className)}>
-      <Collapsible
-        className="transition-all"
-        onOpenChange={setIsOpen}
-        open={isOpen}
-      >
+      <Collapsible onOpenChange={setIsOpen} open={isOpen}>
         <CollapsibleTrigger asChild>
           <Button
             className="flex flex-row justify-start items-center gap-2"

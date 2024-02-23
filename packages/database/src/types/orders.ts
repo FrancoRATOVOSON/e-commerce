@@ -1,9 +1,9 @@
-import { OmitStrict, OrderStatusType } from 'utils/types'
+import { OrderStatusType } from 'utils/types'
 
 import { ProductOrder } from '.'
 import { Order as PrismaOrder } from '../client'
 
-export type Order = OmitStrict<PrismaOrder, 'status'> & {
+export type Order = PrismaOrder & {
   status: OrderStatusType
 }
 
