@@ -15,7 +15,7 @@ function Page({ children, className }: PageProps) {
     <div
       className={cn(
         className,
-        'w-full h-full overflow-y-scroll overflow-x-hidden'
+        'w-full h-full overflow-y-auto overflow-x-hidden'
       )}
     >
       {children}

@@ -13,10 +13,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Indicator,
   openSheet
 } from 'ui/components'
 import { ArrowUpRightFromSquare, BadgeInfo, MoreHorizontal } from 'ui/icons'
-import { cn } from 'ui/utils'
 import { format } from 'utils'
 import { ColumnDef } from 'utils/hooks'
 
@@ -82,14 +82,7 @@ const isOrdering: ColumnDef<ShopperData> = {
   accessorKey: 'isOrdering',
   cell: ({ row }) => (
     <div className="flex justify-center items-center">
-      <div
-        className={cn(
-          'w-4 h-4 rounded-full',
-          row.original.isOrdering
-            ? 'bg-success-foreground'
-            : 'bg-error-foreground'
-        )}
-      />
+      <Indicator state={row.original.isOrdering ? 'success' : 'error'} />
     </div>
   ),
   enableHiding: true,

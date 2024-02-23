@@ -5,7 +5,7 @@ import { ShopperData } from 'database/types'
 import {
   Button,
   Container,
-  Price,
+  Indicator,
   SheetClose,
   SheetContent,
   SheetDescription,
@@ -16,7 +16,8 @@ import {
 import { ArrowUpRightFromSquare } from 'ui/icons'
 import { cn } from 'ui/utils'
 import { format } from 'utils'
-import { PriceDetails } from 'utils/types'
+
+import { PriceDisplay } from '../../_components'
 
 interface OverviewProps {
   shopper: ShopperData
@@ -35,16 +36,6 @@ function Overview({ shopper }: OverviewProps) {
     validatedOrders,
     waitingOrders
   } = shopper
-
-  const PriceDisplay = React.useCallback(
-    ({ value }: { value: PriceDetails | number }) => (
-      <Price
-        currency={typeof value === 'number' ? undefined : value.currency}
-        value={typeof value === 'number' ? value : value.value}
-      />
-    ),
-    [shopper]
-  )
 
   const Data = React.useCallback(
     ({
@@ -76,12 +67,7 @@ function Overview({ shopper }: OverviewProps) {
       </SheetHeader>
       <Container className="w-fit flex flex-col justify-start items-start gap-3 text-sm overflow-y-scroll pb-4 self-stretch grow">
         <div className="flex flex-row justify-start items-center gap-1">
-          <div
-            className={cn(
-              'w-4 h-4 rounded-full',
-              isOrdering ? 'bg-success-foreground' : 'bg-error-foreground'
-            )}
-          />
+          <Indicator state={isOrdering ? 'success' : 'error'} />
           <p>
             {isOrdering
               ? 'Possède un panier encore non valié.'

@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { HeaderDescription, HeaderTitle } from '@/components'
+import { HeaderDescription, HeaderTitle, Page } from '@/components'
 import { useSetHeader, useSetWindowTitle } from '@/hooks'
 import { getFromShopperCache } from '@/lib'
 import { useParams } from '@/router'
-import { Container, Price } from 'ui/components'
-import { format } from 'utils'
+import { Container } from 'ui/components'
+
+import { OverviewCard } from './_components'
 
 export default function Customer() {
   const setWindowTitle = useSetWindowTitle()
@@ -23,11 +24,11 @@ export default function Customer() {
   React.useEffect(() => {
     setHeader({
       children: (
-        <Container className="flex flex-col justify-start grow ml-4">
-          <HeaderTitle title={`${shopper.login}`} />
+        <Container className="flex flex-col justify-start items-start grow-0 ml-4">
+          <HeaderTitle title={shopper.login} />
           <HeaderDescription
             className="text-nowrap"
-            description="Analysez et gérez vos clients"
+            description={`Client numéro : ${shopper.id}`}
           />
         </Container>
       )
@@ -36,27 +37,10 @@ export default function Customer() {
   }, [])
 
   return (
-    <div>
-      {Object.entries(shopper).map(([key, value]) => {
-        let valueComponent
-
-        if (value instanceof Date)
-          valueComponent = <p>{format(value, 'dd/MM/yyyy')}</p>
-        else if (typeof value !== 'object') valueComponent = <p>{value}</p>
-        else
-          valueComponent = (
-            <p>
-              <Price value={value.value} />
-            </p>
-          )
-
-        return (
-          <div key={key}>
-            <p>{key} :</p>
-            {valueComponent}
-          </div>
-        )
-      })}
-    </div>
+    <Page className="p-6">
+      <Container>
+        <OverviewCard {...shopper} />
+      </Container>
+    </Page>
   )
 }

@@ -68,7 +68,8 @@ function Nav({
             <Wrapper key={href}>
               <NavLink
                 className={cn(
-                  orientation === 'vertical' && !isCollapsed && 'w-full'
+                  orientation === 'vertical' && !isCollapsed && 'w-full',
+                  isCollapsed && 'size-10'
                 )}
                 dataLink={pathName === href ? 'on' : 'off'}
                 key={href}
