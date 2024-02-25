@@ -2,7 +2,7 @@ import React from 'react'
 
 import { VariantProps, cn, cva } from '../../utils'
 
-const indicatorStyle = cva('size-4 rounded-full', {
+const indicatorStyle = cva('size-4 rounded-full w-4 h-4', {
   defaultVariants: {
     state: 'success'
   },

@@ -16,6 +16,7 @@ export default defineConfig(async () => ({
   resolve: {
     alias: {
       '@': pathResolve('src'),
+      '@customer': pathResolve('src/pages/(app)/customer'),
       '@overview': pathResolve('src/pages/(app)/overview')
     }
   },

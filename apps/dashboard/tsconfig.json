@@ -7,7 +7,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@overview/*": ["./src/pages/(app)/overview/*"]
+      "@overview/*": ["./src/pages/(app)/overview/*"],
+      "@customer/*": ["./src/pages/(app)/customer/*"]
     }
   }
 }

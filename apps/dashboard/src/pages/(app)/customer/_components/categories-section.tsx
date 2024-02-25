@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { ShopperDetails } from 'database/types'
 import {
   Badge,
   Button,
@@ -55,7 +54,9 @@ function CategoryCard({
   quantity,
   tags: tagsMap
 }: CategoryCardProps) {
-  const tags = Array.from(tagsMap.entries())
+  const tags = Array.from(tagsMap.entries()).toSorted(
+    (prev, next) => prev[1].quantity - next[1].quantity
+  )
   return (
     <CardContainer
       className={cn('min-w-64 p-4', className, isOpen && 'grow h-full')}
@@ -110,16 +111,16 @@ function CategoryCard({
 
 interface CategoriesSectionProps {
   className?: string
-  details: ShopperDetails
 }
 
 export default function CategoriesSection({
-  className,
-  details
+  className
 }: CategoriesSectionProps) {
-  const orders = useFormatShopperDetails(details)
+  const orders = useFormatShopperDetails()
   const [isOpen, setIsOpen] = React.useState(false)
-  const categories = Array.from(orders.categories.entries())
+  const categories = Array.from(orders.categories.entries()).toSorted(
+    (prev, next) => prev[1].quantity - next[1].quantity
+  )
 
   return (
     <Container
@@ -130,9 +131,9 @@ export default function CategoriesSection({
     >
       <div>
         <Button
-          className="flex flex-row justify-start items-center gap-2"
+          className="flex flex-row justify-start items-center gap-2 hover:bg-primary/10"
           onClick={() => setIsOpen(!isOpen)}
-          variant={'secondary'}
+          variant={'ghost'}
         >
           <span>
             {isOpen ? (
@@ -155,7 +156,7 @@ export default function CategoriesSection({
       >
         {categories.map(([label, category]) => (
           <CategoryCard
-            className="self-start"
+            className={cn('md:self-start')}
             isOpen={isOpen}
             key={label}
             label={label}

@@ -41,7 +41,7 @@ module.exports = {
     'import/order': 'off',
     'no-unused-expressions': ['error', { allowShortCircuit: true }],
     'perfectionist/sort-imports': [
-      'error',
+      'warn',
       {
         'custom-groups': {
           type: {

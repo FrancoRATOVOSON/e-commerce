@@ -77,7 +77,7 @@ function PageHeader({ className }: PageHeaderProps) {
       as="header"
       className={cn(
         className,
-        'flex flex-row justify-between items-center p-2'
+        'flex flex-row justify-between items-center p-2 border-b border-border'
       )}
       data-tauri-drag-region
     >

@@ -12,10 +12,13 @@ export default function Customer() {
 
   setHeader({
     children: (
-      <Container className="flex flex-col justify-start grow ml-4">
-        <HeaderTitle title="Vos Clients" />
+      <Container
+        className="flex flex-col justify-start grow ml-4"
+        data-tauri-drag-region
+      >
+        <HeaderTitle className="w-fit" title="Vos Clients" />
         <HeaderDescription
-          className="text-nowrap"
+          className="text-nowrap w-fit"
           description="Analysez et gérez vos clients"
         />
       </Container>

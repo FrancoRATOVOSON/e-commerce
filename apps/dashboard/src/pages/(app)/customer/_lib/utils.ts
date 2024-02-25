@@ -1,6 +1,7 @@
 import { OrderDetails } from 'database/types'
+import { PriceDetails } from 'utils/types'
 
-import { FormatedShopperDetails } from './types'
+import { FormatedShopperDetails, OrderOverview } from './types'
 
 function detailsToFormatedDetails(
   orders: Array<OrderDetails>
@@ -49,5 +50,36 @@ function detailsToFormatedDetails(
   return formatedResult
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export { detailsToFormatedDetails }
+function detailToOverview(order: OrderDetails): OrderOverview {
+  const { deliveredAt, id, products, status, validatedAt } = order
+
+  let amount: PriceDetails = { currency: 'MGA', value: 0 }
+  let itemCount = 0
+  let productCount = 0
+
+  products.forEach(({ discount, price: { currency, value }, quantity }) => {
+    itemCount += quantity
+    productCount += 1
+    amount = {
+      currency,
+      value: amount.value + quantity * value * (discount / 100)
+    }
+  })
+  return {
+    amount,
+    deliveredAt,
+    id,
+    itemCount,
+    productCount,
+    status,
+    validatedAt
+  }
+}
+
+function detailsToOrderOverview(
+  orders: Array<OrderDetails>
+): Array<OrderOverview> {
+  return orders.map(order => detailToOverview(order))
+}
+
+export { detailToOverview, detailsToFormatedDetails, detailsToOrderOverview }
