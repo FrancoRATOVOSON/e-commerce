@@ -4,18 +4,39 @@ import { VariantProps } from 'class-variance-authority'
 
 import { Badge as PrimitiveBadge, badgeVariants } from '../../shadcn/badge'
 import Skeleton from '../../shadcn/skeleton'
-import { cn } from '../../utils'
+import { cn, cva } from '../../utils'
+
+const badgeColors = cva('', {
+  defaultVariants: {
+    theme: 'default'
+  },
+  variants: {
+    theme: {
+      default: '',
+      error: 'bg-error',
+      success: 'bg-success'
+    }
+  }
+})
 
 interface BadgeProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    VariantProps<typeof badgeVariants> {
+    VariantProps<typeof badgeVariants>,
+    VariantProps<typeof badgeColors> {
   label: string
 }
 
-function Badge({ className, label, size, variant, ...props }: BadgeProps) {
+function Badge({
+  className,
+  label,
+  size,
+  theme,
+  variant,
+  ...props
+}: BadgeProps) {
   return (
     <PrimitiveBadge
-      className={cn(className)}
+      className={cn(badgeColors({ className, theme }))}
       size={size}
       variant={variant}
       {...props}

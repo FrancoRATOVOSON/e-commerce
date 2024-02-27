@@ -27,7 +27,11 @@ const id: OrderTableColumn = {
   ),
   enableSorting: false,
   header: ({ column }) => (
-    <DataTableHeader className="text-center" column={column} title="Numéro" />
+    <DataTableHeader
+      className="text-center"
+      column={column}
+      title="Numéro de commande"
+    />
   )
 }
 
