@@ -4,15 +4,7 @@ import { ProductOrder } from 'database/types'
 import { DataTable } from 'ui/components'
 import { cn } from 'ui/utils'
 
-import {
-  amount,
-  category,
-  discount,
-  name,
-  price,
-  quantity,
-  tags
-} from './column'
+import { amount, category, discount, name, price, quantity } from './column'
 
 interface TableProps {
   className?: string
@@ -23,7 +15,7 @@ export default function Table({ className, products }: TableProps) {
   return (
     <DataTable
       className={cn(className)}
-      columns={[name, category, tags, price, discount, quantity, amount]}
+      columns={[name, category, price, discount, quantity, amount]}
       data={products}
       filtering
       pagination

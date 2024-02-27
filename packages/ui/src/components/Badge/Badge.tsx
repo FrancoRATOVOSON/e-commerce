@@ -13,8 +13,8 @@ const badgeColors = cva('', {
   variants: {
     theme: {
       default: '',
-      error: 'bg-error',
-      success: 'bg-success'
+      error: 'bg-error-foreground',
+      success: 'bg-success-foreground'
     }
   }
 })

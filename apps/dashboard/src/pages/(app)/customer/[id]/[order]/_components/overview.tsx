@@ -55,11 +55,11 @@ export default function Overview({
 
   return (
     <CardContainer className={cn(className)}>
-      <CardHeader>
+      <CardHeader className="flex flex-row justify-between items-start">
         <div>
-          <div>
-            <h1>{id}</h1>
-            <Badge {...badge} />
+          <div className="flex flex-row justify-start items-center gap-1">
+            <h1 className="font-semibold">{id}</h1>
+            <Badge size={'xs'} {...badge} />
           </div>
           {validatedAt && (
             <CardDescription>
@@ -67,19 +67,21 @@ export default function Overview({
             </CardDescription>
           )}
         </div>
-        <div>
+        <div className="m-0">
           <Button disabled={status === OrderStatusType.DONE} variant={'action'}>
             {status === OrderStatusType.DONE
               ? 'Commande Livrée'
               : 'Marquer comme livrée'}
           </Button>
-          {deliveredAt && <p>{`le ${format(deliveredAt, 'dd MMMM yyyy')}`}</p>}
+          {deliveredAt && (
+            <p className="tex-sm text-muted-foreground">{`le ${format(deliveredAt, 'dd MMMM yyyy')}`}</p>
+          )}
         </div>
       </CardHeader>
       <CardContent>
         <p>
-          <span>Montant total :</span>
-          <span>
+          <span>{'Montant total : '}</span>
+          <span className="font-semibold">
             <PriceDisplay value={amount} />
           </span>
         </p>

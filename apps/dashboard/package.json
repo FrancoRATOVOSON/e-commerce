@@ -12,6 +12,7 @@
   "dependencies": {
     "@generouted/react-router": "^1.18.2",
     "@tauri-apps/api": "^1.5.2",
+    "@uidotdev/usehooks": "^2.4.1",
     "database": "workspace:*",
     "jotai": "^2.6.4",
     "react-helmet-async": "^2.0.4",

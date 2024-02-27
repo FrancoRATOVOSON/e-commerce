@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Link, useParams } from '@/router'
 import { OrderOverview } from '@customer/_lib'
 import {
   Button,
@@ -25,6 +26,8 @@ export default function OrderCard({
   productCount,
   status
 }: OrderCardProps) {
+  const shopperId = useParams('/customer/:id').id
+
   return (
     <CardContainer
       className={cn(
@@ -34,20 +37,23 @@ export default function OrderCard({
       )}
     >
       <CardHeader className="flex flex-row justify-between items-center p-0">
-        <Button
-          className="flex flex-row justify-between items-center gap-2 hover:bg-background group"
-          fullWidth
-          variant={'ghost'}
-        >
-          <span>
-            <ArrowUpRightSquare className="size-4" />
-          </span>
-          <span className="group-hover:underline">{id}</span>
-          <div>
-            <Indicator
-              state={status === OrderStatusType.DONE ? 'success' : 'error'}
-            />
-          </div>
+        <Button asChild fullWidth variant={'ghost'}>
+          <Link
+            className="flex flex-row justify-between items-center gap-2 hover:bg-background group"
+            params={{ id: shopperId, order: id.toString() }}
+            relative="path"
+            to={'/customer/:id/:order'}
+          >
+            <span>
+              <ArrowUpRightSquare className="size-4" />
+            </span>
+            <span className="group-hover:underline">{id}</span>
+            <div>
+              <Indicator
+                state={status === OrderStatusType.DONE ? 'success' : 'error'}
+              />
+            </div>
+          </Link>
         </Button>
       </CardHeader>
       <CardContent className="flex flex-col justify-center items-center p-0">

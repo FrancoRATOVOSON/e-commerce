@@ -52,7 +52,7 @@ export default function Customer() {
       <Page className="pt-6 flex flex-col justify-start items-stretch gap-6 bg-muted">
         <OverviewCard className="bg-background mx-6" {...shopper} />
         <CategoriesSection className="ml-4 mx-6 w-auto" />
-        <Container className="bg-background px-6 pb-10 pt-6 border-t border-border">
+        <Container className="bg-background border-t border-border">
           <Outlet />
         </Container>
       </Page>

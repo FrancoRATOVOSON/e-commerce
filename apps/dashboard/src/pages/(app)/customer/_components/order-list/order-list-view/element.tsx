@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Link, useParams } from '@/router'
 import { OrderOverview } from '@customer/_lib'
 import {
   Button,
@@ -28,6 +29,8 @@ export default function OrderListElement({
   status,
   validatedAt
 }: OrderListElementProps) {
+  const shopperId = useParams('/customer/:id').id
+
   return (
     <CardContainer
       className={cn(
@@ -36,14 +39,17 @@ export default function OrderListElement({
       )}
     >
       <CardHeader className="flex flex-row justify-between items-center p-0">
-        <Button
-          className="flex flex-row justify-between items-center gap-2"
-          variant={'secondary'}
-        >
-          <span>{id}</span>
-          <span>
-            <ArrowUpRightSquare className="size-4" />
-          </span>
+        <Button asChild variant={'secondary'}>
+          <Link
+            className="flex flex-row justify-between items-center gap-2"
+            params={{ id: shopperId, order: id.toString() }}
+            to={'/customer/:id/:order'}
+          >
+            <span>{id}</span>
+            <span>
+              <ArrowUpRightSquare className="size-4" />
+            </span>
+          </Link>
         </Button>
         <div>
           <Indicator
