@@ -13,7 +13,7 @@ import {
 
 export type ProductType = WithPartial<
   PrismaProduct,
-  'categorySlug' | 'description' | 'discount'
+  'categorySlug' | 'description'
 > & {
   category?: {
     name: string
@@ -21,12 +21,10 @@ export type ProductType = WithPartial<
   tags?: Array<{ tag: { label: string } }>
 }
 
-type FormatedProductType = Pick<
-  PrismaProduct,
-  'description' | 'discount' | 'id' | 'name'
-> &
+type FormatedProductType = Pick<PrismaProduct, 'description' | 'id' | 'name'> &
   Pick<OrderProduct, 'quantity'> & {
     category: string
+    discount: number
     image: ImageDetails
     price: PriceDetails
     tags: string[]
